@@ -4,7 +4,7 @@ import os
 import torch
 from pathlib import Path
 from ultralytics import YOLO
-from typing import List, Tuple, Dict, Any
+from typing import List, Dict, Any
 from torch.utils.data import DataLoader
 from src.logger import setup_logger
 

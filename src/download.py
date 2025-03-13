@@ -18,7 +18,7 @@ class YouTubeDL:
 
 if __name__ == "__main__":
 
-    output_folder = Path(__file__).resolve().parent / "data" / "00--raw" / "videos"
+    output_folder = Path(__file__).resolve().parent.parent / "data" / "00--raw" / "videos"
     yt_dl = YouTubeDL(output_folder)
 
     # bundesliga

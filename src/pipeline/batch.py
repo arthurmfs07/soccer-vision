@@ -87,10 +87,8 @@ class BatchProcessor:
         return outputs
 
 
-
 if __name__ == "__main__":
 
     game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.webm"
     file_path = Path(__file__).resolve().parent / "soccer-vision" / "data" / "00--raw" / "videos" / game_name
 
-    
