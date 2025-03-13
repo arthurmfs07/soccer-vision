@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 from src.logger import setup_logger
 
 class ObjectDetector:
-    MODEL_PATH = "data/03--models/yolov8.pt" # default model
+    MODEL_PATH = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
     YOLO_WEIGHTS_URL = "yolov8n.pt"
     
     def __init__(
@@ -25,7 +25,7 @@ class ObjectDetector:
         self._ensure_model_downloaded()
 
         self.model = YOLO(model_path).to(self.device)
-        self.logger.info(f"Loaded YOLO model : {model_path.split('/')[-1]}")
+        self.logger.info(f"Loaded YOLO model : {model_path.name}")
 
     def detect(self, images: torch.Tensor) -> List[Dict[str, Any]]:
         """
@@ -61,12 +61,13 @@ class ObjectDetector:
 if __name__ == "__main__":
     from src.pipeline.batch import DatasetLoader
 
-    model_path = "data/03--models/yolov8.pt"
+    model_path = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
     detector = ObjectDetector(model_path)
 
     game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.webm"
-    path = f"data/00--raw/videos/{game_name}"
-    dataset = DatasetLoader(path)
+    file_path = Path(__file__).resolve().parent / "soccer-vision" / "data" / "00--raw" / "videos" / game_name
+
+    dataset = DatasetLoader(file_path)
     dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
     for images in dataloader:

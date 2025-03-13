@@ -1,7 +1,8 @@
 import subprocess
+from pathlib import Path
 
 class YouTubeDL:
-    def __init__(self, output_folder: str = "data/00--raw/videos"):
+    def __init__(self, output_folder: Path = Path("videos")):
         self.output_folder = output_folder
 
     def download_playlist(self, playlist_url):
@@ -17,7 +18,8 @@ class YouTubeDL:
 
 if __name__ == "__main__":
 
-    yt_dl = YouTubeDL()
+    output_folder = Path(__file__).resolve().parent / "data" / "00--raw" / "videos"
+    yt_dl = YouTubeDL(output_folder)
 
     # bundesliga
     url = "https://www.youtube.com/watch?v=BDtadhXmuAA&list=PLsFWLnYCEXEVcFhJIJe3zhJbyGhx99e7y"
