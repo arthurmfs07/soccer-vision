@@ -46,7 +46,7 @@ class ObjectDetector:
         if images.device != self.device:
             images = images.to(self.device)
 
-        results = self.model(images, verbose=True, conf=0.02)
+        results = self.model(images, verbose=False, conf=0.02)
         detections = []
 
         for result in results:
@@ -85,7 +85,6 @@ if __name__ == "__main__":
 
 
     for i, batch in enumerate(dataloader):
-        
         detections = detector.detect(batch.image)
         print(detections)
         break

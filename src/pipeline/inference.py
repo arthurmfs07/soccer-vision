@@ -46,7 +46,6 @@ class InferenceProcess:
             images = batch.image.to(self.detector.device) / 255  # Normalize
             
             # Perform detection
-
             detections_batch = self.detector.detect(images)
 
             images_np = (batch.image.permute(0, 2, 3, 1).cpu().numpy() * 255).astype(np.uint8)
@@ -59,8 +58,7 @@ class InferenceProcess:
                     image=images_np[i],
                     detections=detections_batch[i]
                 )
-                self.buffer.put(frame_instance)
-        
+                self.buffer.put(frame_instance)        
         print("✅ Batch Inference Process Finished")
 
     def stop(self):
@@ -76,41 +74,41 @@ class VisualizationProcess:
             buffer: queue.Queue, 
             visualizer, 
             max_buffer_size: int = 40,
-            batch_size: int = 4):
+            batch_size: int = 4,
+            target_fps: int = 10
+            ):
         self.buffer = buffer
         self.visualizer = visualizer
         self.max_buffer_size = max_buffer_size
         self.batch_size = batch_size
+        self.target_fps = target_fps
+        self.frame_interval = 1.0 / target_fps
         self.running = True
 
     def process_frames(self):
         """Continuously fetches frames and renders at 1 sec per sec."""
         while self.running:
+            start_time = time.time()
+
+            if self.buffer.qsize() < self.max_buffer_size // 2:
+                print(f"⏳ Buffer low ({self.buffer.qsize()}/{self.max_buffer_size}), waiting for more frames...")
+                time.sleep(2)
+                continue
             try:
                 video_frame = self.buffer.get(timeout=0.1)
-                
                 self.visualizer.update(video_frame)
                 self.visualizer.show()
             except queue.Empty:
                 print("⏳ Buffer is empty, waiting for frames...")
-                time.sleep(0.01)
-            
-            start_time = time.time()
+                time.sleep(0.1)
+                continue
 
-            for _ in range(min(self.batch_size, self.buffer.qsize())):
-                try:
-                    video_frame = self.buffer.get_nowait()
-                    self.visualizer.update(video_frame)
-                    self.visualizer.show()
-
-                except queue.Empty:
-                    break # No more frames to process
-
+            # sleep_time = max ( 0, 1/target_fps - t_process )
             elapsed_time = time.time() - start_time
-            target_fps = 30
-            sleep_time = max(0, (1 / target_fps) - elapsed_time)
-            time.sleep(sleep_time)
-        
+            remaining_time = self.frame_interval - elapsed_time
+            if remaining_time > 0:
+                time.sleep(remaining_time)
+
         print("✅ Visualization Process Finished")
 
     def stop(self):

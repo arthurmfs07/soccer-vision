@@ -25,14 +25,16 @@ class DatasetLoader(Dataset):
     def __init__(
             self, 
             video_path: str, 
-            image_size: Tuple[int, int] = (640, 640),
+            image_size: Tuple[int, int] = (640, 352),
             skip_sec: int = 0,
+            target_fps: int = 10,
             ):
         
         self.logger = setup_logger("dataset_loader.log")
         self.video_path = video_path
         self.image_size = image_size
         self.skip_sec = skip_sec
+        self.target_fps = target_fps
 
         self.transform = transforms.Compose([
             transforms.ToTensor(),
@@ -43,19 +45,21 @@ class DatasetLoader(Dataset):
         if not self.cap.isOpened():
             raise RuntimeError(f"❌ Failed to open video: {self.video_path}")
 
-        self.fps = int(self.cap.get(cv2.CAP_PROP_FPS))
+        self.original_fps = int(self.cap.get(cv2.CAP_PROP_FPS))
         self.frame_count = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        self.start_frame = min(self.skip_sec * self.fps, self.frame_count)
+        self.frame_interval = max(1, self.original_fps // self.target_fps)
+        
+        self.start_frame = min(self.skip_sec * self.original_fps, self.frame_count)
         self.cap.set(cv2.CAP_PROP_POS_FRAMES, self.start_frame)
         
         self.logger.info(f"📂 Video: {self.video_path} | Frames: {self.frame_count}")
 
     def __len__(self) -> int:
-        return self.frame_count - self.start_frame
+        return (self.frame_count - self.start_frame) // self.frame_interval
 
     def __getitem__(self, idx: int) -> Sample:
         """Loads a single frame lazily on demand."""
-        frame_idx = self.start_frame + idx
+        frame_idx = self.start_frame + idx * self.frame_interval
         self.cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
         ret, frame = self.cap.read()
 
@@ -65,7 +69,7 @@ class DatasetLoader(Dataset):
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         image = self.transform(frame)
 
-        return Sample(frame_id=frame_idx, timestamp=frame_idx / self.fps, image=image)
+        return Sample(frame_id=frame_idx, timestamp=frame_idx / self.original_fps, image=image)
 
 
     def __del__(self):
