@@ -89,6 +89,14 @@ class BatchProcessor:
 
 if __name__ == "__main__":
 
-    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.webm"
-    file_path = Path(__file__).resolve().parent / "soccer-vision" / "data" / "00--raw" / "videos" / game_name
+    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
+    file_path = Path(__file__).resolve().parent.parent.parent / "data" / "00--raw" / "videos" / game_name
 
+    dataset = DatasetLoader(video_path=file_path)
+    dataloader = DataLoader(dataset, batch_size=4, shuffle=False)
+
+    print(f"Dataset contains {len(dataset)} frames.")
+
+    for batch in dataloader:
+        print(f"Batch shape: {batch.image.shape}")
+        break
