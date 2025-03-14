@@ -6,15 +6,17 @@ from pathlib import Path
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from dataclasses import dataclass
-from typing import List, Tuple, Dict, Optional
+from typing import List, Tuple, Dict, Any
 
 from src.logger import setup_logger
 
+
 @dataclass
 class Sample:
-    """Encapsulates a sample in the dataset (image and annotations)."""
+    """Encapsulate a single video frame for inference."""
+    frame_id: int
+    timestamp: float
     image: torch.Tensor
-    labels: torch.Tensor
 
 
 class DatasetLoader(Dataset):
@@ -23,21 +25,18 @@ class DatasetLoader(Dataset):
     def __init__(
             self, 
             video_path: str, 
-            annotation_path: Optional[str] = None, 
             image_size: Tuple[int, int] = (640, 640),
             skip_sec: int = 0,
             ):
         
         self.logger = setup_logger("dataset_loader.log")
         self.video_path = video_path
-        self.annotation_path = annotation_path
         self.image_size = image_size
         self.skip_sec = skip_sec
 
         self.transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Resize(self.image_size),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
 
         self.cap = cv2.VideoCapture(self.video_path)
@@ -49,13 +48,7 @@ class DatasetLoader(Dataset):
         self.start_frame = min(self.skip_sec * self.fps, self.frame_count)
         self.cap.set(cv2.CAP_PROP_POS_FRAMES, self.start_frame)
         
-        self.annotations = self._load_annotations() if annotation_path else None
-
         self.logger.info(f"📂 Video: {self.video_path} | Frames: {self.frame_count}")
-
-    def _load_annotations(self) -> List[np.ndarray]:
-        """Loads annotation data if provided."""
-        return np.load(self.annotation_path, allow_pickle=True)
 
     def __len__(self) -> int:
         return self.frame_count - self.start_frame
@@ -71,9 +64,9 @@ class DatasetLoader(Dataset):
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         image = self.transform(frame)
-        label = torch.tensor(self.annotations[idx]) if self.annotations is not None else torch.zeros(1)
 
-        return Sample(image=image, labels=label)
+        return Sample(frame_id=frame_idx, timestamp=frame_idx / self.fps, image=image)
+
 
     def __del__(self):
         """Ensure the video file is properly closed."""
@@ -90,22 +83,24 @@ class BatchProcessor:
         self.model = model.to(device)
         self.device = device
 
-    def process_batch(self, batch: List[Sample]) -> List[Dict[str, torch.Tensor]]:
+    def process_batch(self, batch: Sample) -> List[Dict[str, torch.Tensor]]:
         """Runs inference on a batch and returns detections."""
         self.model.eval()
 
         with torch.no_grad():
-            images = torch.stack([sample.image.to(self.device) for sample in batch])
+            images = batch.image.to(self.device)
             outputs = self.model(images)
 
         return outputs
 
 
-def collate_fn(batch: List[Sample]) -> Dict[str, torch.Tensor]:
+def collate_fn(batch: List[Sample]) -> Sample:
     """Custom collate function to batch Sample objects."""
     images = torch.stack([sample.image for sample in batch])
-    labels = torch.stack([sample.labels for sample in batch])
-    return {"images": images, "labels": labels}
+    frame_ids = torch.tensor([sample.frame_id for sample in batch])
+    timestamps = torch.tensor([sample.timestamp for sample in batch])
+
+    return Sample(frame_id=frame_ids, timestamp=timestamps, image=images)
 
 
 if __name__ == "__main__":

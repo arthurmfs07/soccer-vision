@@ -11,9 +11,9 @@ class Visualizer:
         self.field_visualizer = FieldVisualizer(field_config)
         self.video_visualizer = VideoVisualizer(frame)
 
-    def update(self, detections):
+    def update(self, video_frame):
         """Updates the vieo visualization with YOLO detections."""
-        self.video_visualizer.annotate(detections)
+        self.video_visualizer.update(video_frame)
 
     def generate_combined_view(self) -> np.ndarray:
         """Generates a combined visualization with the video on top and field below."""
@@ -28,24 +28,16 @@ class Visualizer:
         return np.vstack((video_img_resized, field_img_resized))
 
 
-    def show(self, frame_generator) -> None:
+    def show(self) -> None:
         """
-        Displays the combined visualization continuously, updating frame by frame.
+        Displays the latest visualization.
+        """
+        combined_img = self.generate_combined_view()
+        cv2.imshow("Visualizer", combined_img)
+        key = cv2.waitKey(1) & 0xFF  
         
-        Args:
-            frame_generator: Generator that yields frames to visualize.
-        """
-        for frame in frame_generator:
-            self.video_visualizer.frame = frame
-            combined_img = self.generate_combined_view()
-            
-            cv2.imshow("Visualizer", combined_img)
-            key = cv2.waitKey(1) & 0xFF  
-            
-            if key == ord('q'):
-                break
-
-        cv2.destroyAllWindows()
+        if key == ord('q'):
+            cv2.destroyAllWindows()
 
 
     def get_image(self) -> np.ndarray:
