@@ -59,18 +59,24 @@ class ObjectDetector:
 
 
 if __name__ == "__main__":
-    from src.pipeline.batch import DatasetLoader
+    from src.pipeline.batch import DatasetLoader, collate_fn
 
     model_path = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
     detector = ObjectDetector(model_path)
 
-    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.webm"
-    file_path = Path(__file__).resolve().parent / "soccer-vision" / "data" / "00--raw" / "videos" / game_name
+    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
+    file_path = Path(__file__).resolve().parent.parent.parent / "data" / "00--raw" / "videos" / game_name
 
-    dataset = DatasetLoader(file_path)
-    dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
+    print(f"Loading file from: {file_path}")
 
-    for images in dataloader:
-        detections = detector.detect(images)
+    dataset = DatasetLoader(video_path=file_path)
+    dataloader = DataLoader(dataset, batch_size=4, shuffle=False, collate_fn=collate_fn)
+
+
+    for i, batch in enumerate(dataloader):
+        
+        detections = detector.detect(batch['images'])
         print(detections)
         break
+
+

@@ -7,3 +7,29 @@
 [2025-03-13 17:00:45] INFO - Model downloaded and saved to data/03--models/yolov8.pt
 [2025-03-13 17:00:45] INFO - Loaded YOLO model : yolov8.pt
 [2025-03-13 17:11:13] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:01:43] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/src/model/data/03--models/yolov8.pt. Downloading YOLO model...
+[2025-03-13 22:01:45] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/src/model/data/03--models/yolov8.pt
+[2025-03-13 22:01:45] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:02:31] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:03:25] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:11:40] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/src/pipeline/data/03--models/yolov8.pt. Downloading YOLO model...
+[2025-03-13 22:11:40] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/src/pipeline/data/03--models/yolov8.pt
+[2025-03-13 22:11:40] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:12:11] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:12:42] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:17:03] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:18:39] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:20:20] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:21:38] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:22:43] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:25:31] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:26:48] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:27:55] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:28:14] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:31:37] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:31:57] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:34:18] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:35:53] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:37:28] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:37:41] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-13 22:37:52] INFO - Loaded YOLO model : yolov8.pt

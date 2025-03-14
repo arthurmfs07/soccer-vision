@@ -8,13 +8,12 @@ class YouTubeDL:
         self.output_folder.mkdir(parents=True, exist_ok=True)
 
     def download_playlist(self, playlist_url: str):
-        """Downloads YouTube videos in MP4 format with H.264 codec."""
+        """Downloads YouTube videos as MP4 without AV1 and without HLS fragmentation."""
         command = [
             "yt-dlp",
-            "--playlist-end", "3",  # Download only the first 3 videos
-            "--verbose",
-            "-f", "bv*[ext=mp4][vcodec~='^avc']+ba[ext=m4a]/b[ext=mp4]",
-            "--merge-output-format", "mp4",
+            "--playlist-end", "1",  # Limits to first 3 videos (remove if not needed)
+            "-f", "best[ext=mp4]",  # Forces MP4 format
+            "--merge-output-format", "mp4",  # Ensures the final file is MP4
             "-o", f"{self.output_folder}/%(title)s.%(ext)s",
             playlist_url
         ]
