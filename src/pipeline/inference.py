@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import List, Dict, Any
 from torch.utils.data import DataLoader
 
-from model.detection.objdetect import ObjectDetector
+from src.model.detect.objdetect import ObjectDetector
 from src.visualizer.visualizer import Visualizer
 from src.visualizer.video import VideoFrame
 from src.pipeline.batch import DatasetLoader, collate_fn

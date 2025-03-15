@@ -46,7 +46,7 @@ class ObjectDetector:
         if images.device != self.device:
             images = images.to(self.device)
 
-        results = self.model(images, verbose=False, conf=0.02)
+        results = self.model(images, verbose=False, conf=0.01)
         detections = []
 
         for result in results:
