@@ -30,9 +30,12 @@ class YOLOTrainer:
 
         if resume_checkpoint.exists():
             self.model = YOLO(resume_checkpoint).to(self.device)  # Resume from last checkpoint
+            self.resume=True
             print(f"Resuming training from {resume_checkpoint}")
+
         else:
             self.model = YOLO(f"{self.model_size}.pt").to(self.device)  # Start fresh
+            self.resume=False
             print(f"Starting new training from {self.model_size}.pt")
 
 
@@ -41,8 +44,8 @@ class YOLOTrainer:
             epochs=self.epochs,
             batch=self.batch_size,
             device=self.device,
+            resume=self.resume,
             imgsz=640,
-            resume=True,
             patience=15,
             lr0=0.005,
             save=True,
@@ -78,9 +81,8 @@ class YOLOTrainer:
 
 if __name__ == "__main__":
     dataset_yaml = Path(__file__).resolve().parents[3] / "data" / "00--raw" / "football-players-detection.v12i.yolov8" / "data.yaml"
-    trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=50, batch_size=1)
+    trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=200, batch_size=16)
 
     trainer.train()
     trainer.evaluate()
     trainer.save_model()
-
