@@ -1,6 +1,5 @@
 /venv/*
-/data/00--raw/*
-/data/10--models/*
+/data/00--raw/videos/*
 /yolo_training/*
 /YOLOv8/*
 
