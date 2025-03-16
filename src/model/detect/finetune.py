@@ -87,4 +87,4 @@ if __name__ == "__main__":
     save_path = data_path / "10--models" / "yolo_finetune2.pt"
     trainer.train()
     trainer.evaluate()
-    trainer.save_model()
+    trainer.save_model(save_path=save_path)

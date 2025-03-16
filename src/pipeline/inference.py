@@ -1,12 +1,9 @@
 # real time inference handling
-import cv2
 import time
 import queue
 import threading
 import numpy as np
 from pathlib import Path
-from dataclasses import dataclass
-from typing import List, Dict, Any
 from torch.utils.data import DataLoader
 
 from src.model.detect.objdetect import ObjectDetector
@@ -115,46 +112,57 @@ class VisualizationProcess:
         """Stops the visualization process."""
         self.running = False
 
+class RealTimeInference:
 
-def main():
-    # Paths
-    data_path = Path(__file__).resolve().parents[2] / "data"
-    model_path = data_path/ "10--models" / "yolov8_finetuned.pt"
-    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
-    video_path = data_path / "00--raw" / "videos" / game_name
+    """Real-time object detection and visualization pipeline."""
 
-    batch_size = 4
-    max_buffer_size = 40
+    def __init__(self):
+        
+        self.batch_size = 4       # Size of a single inference batch
+        self.max_buffer_size = 40 # Visualization buffer size (in batches)
+        self.setup()
 
-    # Load YOLO detector
-    detector = ObjectDetector(model_path, conf=0.5)
 
-    # Load dataset
-    dataset = DatasetLoader(video_path=video_path, skip_sec=100*60)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
+    def setup(self):
+        self.data_path = Path(__file__).resolve().parents[2] / "data"
 
-    # Shared buffer (FIFO queue)
-    buffer = queue.Queue(maxsize=50)  # Adjust buffer size if needed
+        self.yolo_path = self.data_path/ "10--models" / "yolov8_finetuned.pt"
 
-    # Initialize processes
-    batch_inference = InferenceProcess(detector, dataloader, buffer, batch_size=batch_size)
-    visualizer = Visualizer(PitchConfig(scale=5, linewidth=1), np.zeros((720, 1280, 3), dtype=np.uint8), detector.class_names)
-    visualization = VisualizationProcess(buffer, visualizer, max_buffer_size=max_buffer_size, batch_size=batch_size)
+        game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
+        self.example_video_path = self.data_path / "00--raw" / "videos" / game_name
+        
 
-    # Start threads
-    inference_thread = threading.Thread(target=batch_inference.process_batches)
-    visualization_thread = threading.Thread(target=visualization.process_frames)
+    def run(self):
+        # Load YOLO detector
+        detector = ObjectDetector(self.yolo_path, conf=0.5)
 
-    inference_thread.start()
-    visualization_thread.start()
+        # Load dataset
+        dataset = DatasetLoader(video_path=self.example_video_path, skip_sec=100*60)
+        dataloader = DataLoader(dataset, batch_size=self.batch_size, shuffle=False, collate_fn=collate_fn)
 
-    # Wait for threads to finish
-    try:
-        inference_thread.join()
-        visualization_thread.join()
-    except KeyboardInterrupt:
-        batch_inference.stop()
-        visualization.stop()
+        # Shared buffer (FIFO queue)
+        buffer = queue.Queue(maxsize=50)  # Adjust buffer size if needed
+
+        # Initialize processes
+        batch_inference = InferenceProcess(detector, dataloader, buffer, batch_size=self.batch_size)
+        visualizer = Visualizer(PitchConfig(scale=5, linewidth=1), np.zeros((720, 1280, 3), dtype=np.uint8), detector.class_names)
+        visualization = VisualizationProcess(buffer, visualizer, max_buffer_size=self.max_buffer_size, batch_size=self.batch_size)
+
+        # Start threads
+        inference_thread = threading.Thread(target=batch_inference.process_batches)
+        visualization_thread = threading.Thread(target=visualization.process_frames)
+
+        inference_thread.start()
+        visualization_thread.start()
+
+        try:
+            inference_thread.join()
+            visualization_thread.join()
+        except KeyboardInterrupt:
+            batch_inference.stop()
+            visualization.stop()
 
 if __name__ == "__main__":
-    main()
+
+    pipeline = RealTimeInference()
+    pipeline.run()
