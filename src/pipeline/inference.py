@@ -43,7 +43,7 @@ class InferenceProcess:
             
             frame_ids = batch.frame_id  # Extract frame IDs
             timestamps = batch.timestamp
-            images = batch.image.to(self.detector.device) / 255  # Normalize
+            images = batch.image.to(self.detector.device)#  / 255  # Normalize
             
             # Perform detection
             detections_batch = self.detector.detect(images)
@@ -118,15 +118,16 @@ class VisualizationProcess:
 
 def main():
     # Paths
-    model_path = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
+    data_path = Path(__file__).resolve().parents[2] / "data"
+    model_path = data_path/ "10--models" / "yolov8_finetuned.pt"
     game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
-    video_path = Path(__file__).resolve().parent.parent.parent / "data" / "00--raw" / "videos" / game_name
+    video_path = data_path / "00--raw" / "videos" / game_name
 
     batch_size = 4
     max_buffer_size = 40
 
     # Load YOLO detector
-    detector = ObjectDetector(model_path)
+    detector = ObjectDetector(model_path, conf=0.5)
 
     # Load dataset
     dataset = DatasetLoader(video_path=video_path, skip_sec=100*60)
@@ -137,7 +138,7 @@ def main():
 
     # Initialize processes
     batch_inference = InferenceProcess(detector, dataloader, buffer, batch_size=batch_size)
-    visualizer = Visualizer(PitchConfig(scale=5, linewidth=1), np.zeros((720, 1280, 3), dtype=np.uint8))
+    visualizer = Visualizer(PitchConfig(scale=5, linewidth=1), np.zeros((720, 1280, 3), dtype=np.uint8), detector.class_names)
     visualization = VisualizationProcess(buffer, visualizer, max_buffer_size=max_buffer_size, batch_size=batch_size)
 
     # Start threads

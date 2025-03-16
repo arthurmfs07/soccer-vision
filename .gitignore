@@ -1,6 +1,5 @@
 /venv/*
-/data/00--raw/videos/*
+/data/00--raw/*
 /yolo_training/*
 /YOLOv8/*
-
 *__pycache__*

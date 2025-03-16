@@ -16,9 +16,22 @@ class VideoFrame:
 
 
 class VideoVisualizer:
-    def __init__(self, initial_frame: np.ndarray):
+    def __init__(
+            self, 
+            initial_frame: np.ndarray, 
+            class_names: Dict[int, str] = None):
+        
+        self.class_names = class_names if class_names is not None else {}
         self.logger = setup_logger("api.log")
         self.frame = self._prepare_frame(initial_frame)
+
+        # color for each class
+        self.color_dict = {
+            0: (255, 255, 255),  # ball : white
+            1: (  0,   0, 255),  # goalkeeper : blue
+            2: (  0, 255,   0),  # player : green
+            3: (255, 165,   0),  # referee : orange
+        }
 
 
 
@@ -34,11 +47,12 @@ class VideoVisualizer:
 
         for box, conf, cls in zip(detections.boxes, detections.confidences, detections.classes):
             x1, y1, x2, y2 = map(int, box)
-            label = f"{int(cls)}: {conf:.2f}"
-            color = (0, 255, 0)
-            cv2.rectangle(self.frame, (x1, y1), (x2, y2), color, 2)
+            label_class = self.class_names.get(int(cls), str(int(cls)))
+            label = f"{label_class}: {conf:.2f}"
+            color = self.color_dict.get(int(cls), (0, 255, 0))
+            cv2.rectangle(self.frame, (x1, y1), (x2, y2), color, 1)
             cv2.putText(self.frame, label, (x1, y1 - 5),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.4, color, 1)
 
 
     def _prepare_frame(self, frame: np.ndarray) -> np.ndarray:

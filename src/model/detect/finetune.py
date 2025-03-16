@@ -80,9 +80,11 @@ class YOLOTrainer:
         results.show()
 
 if __name__ == "__main__":
-    dataset_yaml = Path(__file__).resolve().parents[3] / "data" / "00--raw" / "football-players-detection.v12i.yolov8" / "data.yaml"
+    data_path = Path(__file__).resolve().parents[3] / "data"
+    dataset_yaml = data_path / "00--raw" / "football-players-detection.v12i.yolov8" / "data.yaml"
     trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=200, batch_size=16)
 
+    save_path = data_path / "10--models" / "yolo_finetune2.pt"
     trainer.train()
     trainer.evaluate()
     trainer.save_model()

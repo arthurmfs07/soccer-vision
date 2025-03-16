@@ -95,3 +95,51 @@
 [2025-03-14 21:57:27] INFO - Loaded YOLO model : yolov8.pt
 [2025-03-14 21:58:19] INFO - Loaded YOLO model : yolov8.pt
 [2025-03-14 21:58:40] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-15 10:14:22] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/src/pipeline/data/03--models/yolov8.pt. Downloading YOLO model...
+[2025-03-15 10:14:25] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/src/pipeline/data/03--models/yolov8.pt
+[2025-03-15 10:14:26] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-15 10:16:50] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8.pt. Downloading YOLO model...
+[2025-03-15 10:16:50] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8.pt
+[2025-03-15 10:16:50] INFO - Loaded YOLO model : yolov8.pt
+[2025-03-15 10:17:20] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt. Downloading YOLO model...
+[2025-03-15 10:17:20] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt
+[2025-03-15 10:17:20] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 10:18:00] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 10:18:23] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 10:18:58] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:08:49] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt. Downloading YOLO model...
+[2025-03-15 14:08:52] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt
+[2025-03-15 14:08:52] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:09:36] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:10:47] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:11:09] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:13:32] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:14:04] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:14:37] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:17:17] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:18:08] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:18:31] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:18:58] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:19:22] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:25:46] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:27:46] INFO - Model not found at /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt. Downloading YOLO model...
+[2025-03-15 14:27:49] INFO - Model downloaded and saved to /home/tonso/code/00--research/soccer-vision/data/03--models/yolov8_finetuned.pt
+[2025-03-15 14:27:50] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:28:01] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:28:53] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:30:15] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:33:34] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:34:09] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:35:17] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:35:42] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:37:48] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:46:12] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:51:16] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:51:49] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:52:19] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:52:53] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:53:33] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 14:55:38] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 15:19:09] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 15:22:45] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-15 20:43:31] INFO - Loaded YOLO model : yolov8_finetuned.pt

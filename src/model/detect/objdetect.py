@@ -22,15 +22,24 @@ class Detection:
 class ObjectDetector:
     MODEL_PATH = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
     YOLO_WEIGHTS_URL = "yolov8m.pt"
-    
+
+    class_names = {
+        0: "ball",
+        1: "goalkeeper",
+        2: "player",
+        3: "referee"
+    }
+
     def __init__(
             self,
             model_path: Path = Path("yolov8m.pt"),
+            conf: float = 0.01,
             device: str = "cuda"
         ):
         """Loads YOLOv8 model for object detection."""
         self.logger = setup_logger("api.log")
         self.device = device if torch.cuda.is_available() else "cpu"
+        self.conf = conf
 
         self.model_path = model_path or self.MODEL_PATH
         self._ensure_model_downloaded()
@@ -46,7 +55,7 @@ class ObjectDetector:
         if images.device != self.device:
             images = images.to(self.device)
 
-        results = self.model(images, verbose=False, conf=0.01)
+        results = self.model(images, verbose=False, conf=self.conf)
         detections = []
 
         for result in results:
@@ -72,11 +81,12 @@ class ObjectDetector:
 if __name__ == "__main__":
     from src.pipeline.batch import DatasetLoader, collate_fn
 
-    model_path = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
+    data_path = Path(__file__).resolve().parents[3] / "data"
+    model_path = data_path / "10--models" / "yolov8_finetuned.pt"
     detector = ObjectDetector(model_path)
 
     game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
-    file_path = Path(__file__).resolve().parent.parent.parent / "data" / "00--raw" / "videos" / game_name
+    file_path = data_path / "00--raw" / "videos" / game_name
 
     print(f"Loading file from: {file_path}")
 
