@@ -8,6 +8,8 @@ from torchvision import transforms
 from dataclasses import dataclass
 from typing import List, Tuple, Dict, Any
 
+from src.config import DataConfig
+
 from src.logger import setup_logger
 
 
@@ -24,21 +26,27 @@ class DatasetLoader(Dataset):
     
     def __init__(
             self, 
-            video_path: str, 
-            image_size: Tuple[int, int] = (640, 352),
+            config: DataConfig = DataConfig(),
             skip_sec: int = 0,
-            target_fps: int = 10,
             ):
         
         self.logger = setup_logger("dataset_loader.log")
-        self.video_path = video_path
-        self.image_size = image_size
+        self.config = config
+        self.video_dir = config.video_dir
+        self.video_name = config.video_name
+        self.video_path = Path(self.video_dir) / self.video_name
+        self.device = config.device
+
+        self.target_fps = config.target_fps
+        self.batch_size = config.batch_size
+        self.shuffle = config.shuffle
+        self.width = config.width
+        self.height = config.height
         self.skip_sec = skip_sec
-        self.target_fps = target_fps
 
         self.transform = transforms.Compose([
             transforms.ToTensor(),
-            transforms.Resize(self.image_size),
+            transforms.Resize((self.height, self.width)),
         ])
 
         self.cap = cv2.VideoCapture(self.video_path)
@@ -53,6 +61,17 @@ class DatasetLoader(Dataset):
         self.cap.set(cv2.CAP_PROP_POS_FRAMES, self.start_frame)
         
         self.logger.info(f"📂 Video: {self.video_path} | Frames: {self.frame_count}")
+
+    def load(self):
+        """Load the model weights."""
+        self.dataloader = DataLoader(
+            dataset=self, 
+            batch_size=self.batch_size, 
+            shuffle=self.shuffle, 
+            collate_fn=BatchProcessor.collate_fn
+            )
+        return self.dataloader
+
 
     def __len__(self) -> int:
         return (self.frame_count - self.start_frame) // self.frame_interval
@@ -82,10 +101,13 @@ class DatasetLoader(Dataset):
 class BatchProcessor:
     """Handles batch inference and dataset processing."""
 
-    def __init__(self, model: torch.nn.Module, device: str = "cuda" if torch.cuda.is_available() else "cpu"):
+    def __init__(self, model: torch.nn.Module, config: DataConfig):
+        self.config = config
+        self.batch_size = config.batch_size
+        self.device = config.device
+        self.shuffle = config.shuffle
         self.logger = setup_logger("batch_processor.log")
-        self.model = model.to(device)
-        self.device = device
+        self.model = model.to(self.device)
 
     def process_batch(self, batch: Sample) -> List[Dict[str, torch.Tensor]]:
         """Runs inference on a batch and returns detections."""
@@ -96,30 +118,23 @@ class BatchProcessor:
             outputs = self.model(images)
 
         return outputs
+    
+    @staticmethod
+    def collate_fn(batch: List[Sample]) -> Sample:
+        """Custom collate function to batch Sample objects."""
+        images = torch.stack([sample.image for sample in batch])
+        frame_ids = torch.tensor([sample.frame_id for sample in batch])
+        timestamps = torch.tensor([sample.timestamp for sample in batch])
 
-
-def collate_fn(batch: List[Sample]) -> Sample:
-    """Custom collate function to batch Sample objects."""
-    images = torch.stack([sample.image for sample in batch])
-    frame_ids = torch.tensor([sample.frame_id for sample in batch])
-    timestamps = torch.tensor([sample.timestamp for sample in batch])
-
-    return Sample(frame_id=frame_ids, timestamp=timestamps, image=images)
+        return Sample(frame_id=frame_ids, timestamp=timestamps, image=images)
 
 
 if __name__ == "__main__":
 
-    game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
-    file_path = Path(__file__).resolve().parent.parent.parent / "data" / "00--raw" / "videos" / game_name
+    from src.utils import load_abs_path
+    project_path = load_abs_path()
 
-    print(f"Loading file from: {file_path}")
-
-    dataset = DatasetLoader(video_path=file_path)
-    dataloader = DataLoader(dataset, batch_size=4, shuffle=False, collate_fn=collate_fn)
-
+    dataset = DatasetLoader(config=DataConfig(), skip_sec=100*60)
+    
     print(f"Dataset contains {len(dataset)} frames.")
 
-    for i, batch in enumerate(dataloader):
-        print(f"Batch {i+1} shape: {batch['images'].shape}")
-        if i == 4:
-            break

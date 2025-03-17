@@ -1,15 +1,17 @@
 import cv2
 import numpy as np
 
+from typing import Dict
 from src.logger import setup_logger
 from src.visualizer.field import FieldVisualizer, PitchConfig
 from src.visualizer.video import VideoVisualizer
 
 class Visualizer:
-    def __init__(self, field_config: PitchConfig, frame: np.ndarray):
+    def __init__(self, field_config: PitchConfig, frame: np.ndarray, class_names: Dict[int, str] = None):
         self.logger = setup_logger("api.log")
+
         self.field_visualizer = FieldVisualizer(field_config)
-        self.video_visualizer = VideoVisualizer(frame)
+        self.video_visualizer = VideoVisualizer(frame, class_names)
 
     def update(self, video_frame):
         """Updates the vieo visualization with YOLO detections."""

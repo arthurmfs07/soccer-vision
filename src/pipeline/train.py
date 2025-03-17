@@ -1,52 +1,27 @@
-import torch
-
-from src.pipeline.batch import DataLoader
+from pathlib import Path
 from src.logger import setup_logger
+from src.model.detect.finetune import YOLOTrainer
 
+from typing import Any, Dict, List, Tuple
 
 class Trainer:
-    """Handles the training pipeline for object detection."""
-    
 
-    # REBUILD THIS
-
-    def __init__(self, 
-                 model: torch.nn.Module, 
-                 dataloader: DataLoader, 
-                 optimizer: torch.optim.Optimizer, 
-                 criterion: torch.nn.Module, 
-                 device: str = "cuda" if torch.cuda.is_available() else "cpu"):
-        
-        self.logger = setup_logger("trainer.log")
-        self.model = model.to(device)
-        self.dataloader = dataloader
+    def __init__(self, model, optimizer, criterion, device, logger=None):
+        self.model = model
         self.optimizer = optimizer
         self.criterion = criterion
         self.device = device
+        self.logger = logger or setup_logger("trainer")
 
-    def train_epoch(self) -> float:
-        """Runs one training epoch."""
-        self.model.train()
-        total_loss = 0
-        
-        for batch in self.dataloader:
-            images, labels = batch.image.to(self.device), batch.labels.to(self.device)
+    def finetune_yolo(self):
+        data_path = Path(__file__).resolve().parents[3] / "data"
+        dataset_yaml = data_path / "00--raw" / "football-players-detection.v12i.yolov8" / "data.yaml"
+        trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=200, batch_size=16)
+        save_path = data_path / "10--models" / "yolo_finetune2.pt"
 
-            self.optimizer.zero_grad()
-            outputs = self.model(images)
-            loss = self.criterion(outputs, labels)
-            loss.backward()
-            self.optimizer.step()
-            
-            total_loss += loss.item()
-        
-        avg_loss = total_loss / len(self.dataloader)
-        self.logger.info(f"Epoch completed. Avg Loss: {avg_loss:.4f}")
-        return avg_loss
+        trainer.train()
+        trainer.evaluate()
+        trainer.save_model(save_path=save_path)
 
-    def train(self, epochs: int):
-        """Trains the model for multiple epochs."""
-        for epoch in range(epochs):
-            self.logger.info(f"Starting epoch {epoch+1}/{epochs}")
-            avg_loss = self.train_epoch()
-            self.logger.info(f"Epoch {epoch+1} finished. Loss: {avg_loss:.4f}")
+    def train_projection(self):
+        pass

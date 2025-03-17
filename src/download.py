@@ -1,5 +1,6 @@
 import subprocess
 from pathlib import Path
+from src.config import DownloadConfig
 
 class YouTubeDL:
     def __init__(self, output_folder: Path = Path("data/00--raw/videos")):
@@ -9,10 +10,11 @@ class YouTubeDL:
 
     def download_playlist(self, playlist_url: str):
         """Downloads YouTube videos as MP4 without AV1 and without HLS fragmentation."""
+        n_to_download = DownloadConfig.numbers_to_download
         command = [
             "yt-dlp",
-            "--playlist-end", "1",  # Limits to first 3 videos (remove if not needed)
-            "-f", "best[ext=mp4]",  # Forces MP4 format
+            "--playlist-end", n_to_download, # Limits to first 3 videos (remove if not needed)
+            "-f", "best[ext=mp4]",           # Forces MP4 format
             "--merge-output-format", "mp4",  # Ensures the final file is MP4
             "-o", f"{self.output_folder}/%(title)s.%(ext)s",
             playlist_url
