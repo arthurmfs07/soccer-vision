@@ -173,3 +173,30 @@
 [2025-03-16 18:36:23] INFO - Loaded YOLO model : yolov8_finetuned.pt
 [2025-03-16 18:39:09] INFO - Loaded YOLO model : yolov8_finetuned.pt
 [2025-03-17 13:20:55] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-18 14:59:52] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-18 15:01:49] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-18 15:12:32] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:12:32] INFO - Pitch drawing completed.
+[2025-03-18 15:13:00] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:13:00] INFO - Pitch drawing completed.
+[2025-03-18 15:15:19] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:15:19] INFO - Pitch drawing completed.
+[2025-03-18 15:16:41] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:16:41] INFO - Pitch drawing completed.
+[2025-03-18 15:16:52] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:16:52] INFO - Pitch drawing completed.
+[2025-03-18 15:20:30] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:20:30] INFO - Pitch drawing completed.
+[2025-03-18 15:20:30] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-18 15:22:51] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-18 15:23:14] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:23:14] INFO - Pitch drawing completed.
+[2025-03-18 15:23:14] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-18 15:25:49] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:25:50] INFO - Pitch drawing completed.
+[2025-03-18 15:25:50] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-18 15:25:50] INFO - Loaded image 'reports/screenshot_2025-03-18.png' with shape (350, 667, 3).
+[2025-03-18 15:25:50] INFO - Figure saved to homography_pitch.png.
+[2025-03-18 15:25:58] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:25:58] INFO - Pitch drawing completed.
+[2025-03-18 15:25:59] INFO - Numpy representation has shape (900, 1600, 3).
