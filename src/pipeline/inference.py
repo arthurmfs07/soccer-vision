@@ -18,11 +18,12 @@ class RealTimeInference:
 
     """Real-time object detection and visualization pipeline."""
 
-    def __init__(self, config: RealTimeConfig):
+    def __init__(self):
         
-        self.batch_size = config.batch_size
-        self.max_buffer_size = config.max_buffer_size
-        self.config = config
+        self.config = RealTimeConfig()
+        self.batch_size = self.config.batch_size
+        self.max_buffer_size = self.config.max_buffer_size
+        self.config = self.config
         self.setup()
 
 
