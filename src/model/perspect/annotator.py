@@ -16,7 +16,7 @@ class HomographyAnnotator(Process):
             raise ValueError(f"Could not load image from {image_path}")
 
         self.field = FieldVisualizer()
-        self.field.resize_to_width(self.image.shape[1])
+        self.field.frame.resize_to_width(self.image.shape[1])
 
         self.reference_field_pts = self.field.get_template_pixel_points()
 

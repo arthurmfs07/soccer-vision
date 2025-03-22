@@ -52,10 +52,7 @@ class RealTimeInference:
         # Initialize processes
         batch_inference = InferenceProcess(detector, dataloader, buffer)
         visualizer = Visualizer(
-            PitchConfig(
-                scale=5, 
-                linewidth=1
-                ), 
+            PitchConfig(), 
                 np.zeros(
                     (dataconfig.width, dataconfig.height, 3), 
                     dtype=np.uint8), 
@@ -118,7 +115,7 @@ class InferenceProcess:
                     frame_id=frame_ids[i].item(),
                     timestamp=timestamps[i].item(),
                     image=images_np[i],
-                    detections=detections_batch[i]
+                    detections=[detections_batch[i]]
                 )
                 self.buffer.put(frame_instance)        
         print("✅ Batch Inference Process Finished")
@@ -126,6 +123,7 @@ class InferenceProcess:
     def stop(self):
         """Stops the batch inference loop."""
         self.running = False
+
 
 
 class VisualizationProcess:

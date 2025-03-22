@@ -4,6 +4,7 @@ import cv2
 from typing import List, Tuple, Optional, Dict, Any
 from dataclasses import dataclass, field
 
+from src.model.detect.objdetect import Detection
 from src.struct.annotation import *
 from src.struct.utils import *
 
@@ -114,15 +115,30 @@ class Frame:
         self._original_annotations = self._original_annotations[:self._static_count]
         self._transform_dirty = True
         
-    def annotation_from_detection(self, detection: Dict[str, Any]) -> None:
+    def annotation_from_detection(self, detection: Detection) -> None:
         """Convert YOLO detection into annotations"""
-        bbox = detection['bbox']
-        class_id = detection.get('class_id', 2)
-        label = detection.get('label', f"ID{class_id}")
+        for i in range(len(detection.boxes)):
+            x1, y1, x2, y2 = detection.boxes[i]
+            class_id = int(detection.classes[i])
+            conf = detection.confidences[i]
+
+            label = f"{self.data.metadata.get(class_id, str(class_id))}: {conf:.2f}"
+            color = "green" if class_id != 0 else "orange"
+
+            self.add_rect(x1, y1, x2, y2, color=color)
+            self.add_text(x1, y1 - 5, label, color=color)
+
+
+    def resize_to_width(self, new_width: int):
+        self.update_currents()
+        current_width = self.current_width
+        if current_width <= 0:
+            return
         
-        color = "green"  # or pick color based on class_id
-        self.add_rect(bbox[0], bbox[1], bbox[2], bbox[3], color=color)
-        self.add_text(bbox[0], bbox[1] - 5, label, color=color)
+        scale_factor = float(new_width) / float(current_width)
+        new_scale = self._scale * scale_factor
+        self.current_width = int((scale_factor / float(current_width)))
+        self.update_scale(new_scale)
 
 
     def set_static_checkpoint(self) -> None:
@@ -216,8 +232,8 @@ class Frame:
     def update_currents(self):
         if self._transform_dirty or self._cached_transformed_image is None:
             w, h = self.original_width, self.original_height
-            new_w = int(w * self._scale)
-            new_h = int(h * self._scale)
+            new_w = round(w * self._scale)
+            new_h = round(h * self._scale)
 
             self.current_width = new_w
             self.current_height = new_h
@@ -234,8 +250,8 @@ class Frame:
         """
         h, w = self.original_height, self.original_width
         if self._scale != 1.0:
-            new_w = int(w * self._scale)
-            new_h = int(h * self._scale)
+            new_w = round(w * self._scale)
+            new_h = round(h * self._scale)
             img = cv2.resize(img, (new_w, new_h), 
                             interpolation=cv2.INTER_LINEAR)
         else:

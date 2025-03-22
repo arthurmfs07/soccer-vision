@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from src.logger import setup_logger
 
 from src.struct.frame import Frame
-from src.visual.window import Window
 
 @dataclass
 class VideoFrame:
@@ -17,7 +16,7 @@ class VideoFrame:
     detections: List[Dict[str, Any]]
 
 
-class VideoVisualizer(Window):
+class VideoVisualizer:
     def __init__(
             self, 
             initial_frame: np.ndarray, 
@@ -42,7 +41,7 @@ class VideoVisualizer(Window):
     def update(self, video_frame: VideoFrame) -> None:
         """Updates the visualizer with a new frame and applies annotations."""
         prepared = self._prepare_frame(video_frame.image)
-        self.frame = Frame(prepared)
+        self.frame = Frame(prepared, metadata={"class_names":self.class_names})
 
         for det in video_frame.detections:
             self.frame.annotation_from_detection(det)
@@ -62,7 +61,6 @@ class VideoVisualizer(Window):
             self.frame.clear_annotations()
 
 
-
     def show(self) -> None:
         """Displays the annotated frame."""
         cv2.imshow("Video Visualizer", self.frame)
@@ -72,18 +70,6 @@ class VideoVisualizer(Window):
         """Returns the annotated frame as a NumPy array."""
         return self.frame.frame.image
     
-
-    def _parse_color(self, color: str) -> tuple:
-        color_map = {
-            "white": (255, 255, 255),
-            "green": (0, 255, 0),
-            "blue": (255, 0, 0),
-            "red": (0, 0, 255),
-            "yellow": (0, 255, 255),
-            "orange": (255, 165, 0),
-        }
-        return color_map.get(color.lower(), (0, 255, 0))
-
 
     def _prepare_frame(self, frame: np.ndarray) -> np.ndarray:
         """Converts the frame into OpenCV format."""

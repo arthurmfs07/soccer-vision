@@ -19,6 +19,8 @@ class Detection:
     classes: np.ndarray # Class IDs
 
 
+
+
 class ObjectDetector:
     MODEL_PATH = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
     YOLO_WEIGHTS_URL = "yolov8m.pt"

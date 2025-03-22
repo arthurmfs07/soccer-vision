@@ -6,10 +6,9 @@ from src.logger import setup_logger
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.visual.video import VideoVisualizer
 from src.struct.frame import Frame
-from src.visual.window import Window
 
 
-class Visualizer(Window):
+class Visualizer:
     """Manages visualization, integraetes video and field, and interacts with a process."""
 
     def __init__(
@@ -32,7 +31,7 @@ class Visualizer(Window):
         """Returns the numpy array of the combined visualization."""
         return self.generate_combined_view()
 
-    def update(self, video_frame):
+    def update(self, video_frame: "VideoFrame"):
         """Updates the vieo visualization with YOLO detections."""
         self.video_visualizer.update(video_frame)
 
@@ -46,6 +45,12 @@ class Visualizer(Window):
 
         video_img = self.video_visualizer.frame.rendered
         field_img = self.field_visualizer.frame.rendered
+
+        if video_img.shape[1] != field_img.shape[1]:
+            target_width = video_img.shape[1]
+            aspect_ratio = field_img.shape[0] / field_img.shape[1]
+            new_height = int(round(target_width * aspect_ratio))
+            field_img = cv2.resize(field_img, (target_width, new_height), interpolation=cv2.INTER_LINEAR)
 
         combined_image = np.vstack((video_img, field_img))
         self.frame = Frame(combined_image)
@@ -160,14 +165,12 @@ class Visualizer(Window):
             self.field_visualizer.frame.current_width
             )
         
-        self.video_visualizer.resize_to_width(max_width)
-        self.field_visualizer.resize_to_width(max_width)
-
+        self.video_visualizer.frame.resize_to_width(max_width)
+        self.field_visualizer.frame.resize_to_width(max_width)
 
     def _create_H_matrices(self):
         self.video_visualizer.frame.update_currents()
-        video_height = self.video_visualizer.frame.current_width
-        video_height -= 200
+        video_height = self.video_visualizer.frame.current_height
 
         self.H_video2combined = np.eye(3)
         

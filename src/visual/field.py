@@ -8,7 +8,6 @@ from src.logger import setup_logger
 from src.struct.frame import Frame
 from src.struct.annotation import *
 from src.struct.utils import get_color
-from src.visual.window import Window
 
 
 
@@ -28,7 +27,7 @@ class PitchConfig:
     bgc:         str   = "gray"
 
 
-class FieldVisualizer(Window):
+class FieldVisualizer:
     """
     Visualizes a soccer field by storing all drawing as Annotations
     in a single Frame object. Coordinates are in 'mode space',
