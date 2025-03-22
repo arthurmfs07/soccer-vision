@@ -200,3 +200,448 @@
 [2025-03-18 15:25:58] INFO - HomographyPitchDrawer initialized.
 [2025-03-18 15:25:58] INFO - Pitch drawing completed.
 [2025-03-18 15:25:59] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-18 15:58:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 15:58:20] INFO - Pitch drawing completed.
+[2025-03-18 15:58:20] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-18 16:02:41] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-18 16:03:22] INFO - HomographyPitchDrawer initialized.
+[2025-03-18 16:03:22] INFO - Pitch drawing completed.
+[2025-03-18 16:03:22] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:38:13] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:38:13] INFO - Pitch drawing completed.
+[2025-03-20 12:38:14] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:38:39] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:38:39] INFO - Pitch drawing completed.
+[2025-03-20 12:38:39] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:38:53] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:38:53] INFO - Pitch drawing completed.
+[2025-03-20 12:38:53] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:39:08] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:39:08] INFO - Pitch drawing completed.
+[2025-03-20 12:39:08] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:43:50] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:43:50] INFO - Pitch drawing completed.
+[2025-03-20 12:43:50] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:43:59] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:43:59] INFO - Pitch drawing completed.
+[2025-03-20 12:44:35] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:44:35] INFO - Pitch drawing completed.
+[2025-03-20 12:44:35] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:44:46] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:44:46] INFO - Pitch drawing completed.
+[2025-03-20 12:44:46] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:46:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:46:48] INFO - Pitch drawing completed.
+[2025-03-20 12:46:49] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 12:57:14] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 12:57:15] INFO - Pitch drawing completed.
+[2025-03-20 12:57:15] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:08:21] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:08:21] INFO - Pitch drawing completed.
+[2025-03-20 13:08:21] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:09:52] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:09:52] INFO - Pitch drawing completed.
+[2025-03-20 13:09:53] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:12:19] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:12:19] INFO - Pitch drawing completed.
+[2025-03-20 13:12:19] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:24:12] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:24:12] INFO - Pitch drawing completed.
+[2025-03-20 13:24:13] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:26:40] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:26:40] INFO - Pitch drawing completed.
+[2025-03-20 13:26:41] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 13:29:04] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 13:29:04] INFO - Pitch drawing completed.
+[2025-03-20 13:29:05] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:04:59] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:04:59] INFO - Pitch drawing completed.
+[2025-03-20 16:05:00] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:11:57] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:11:57] INFO - Pitch drawing completed.
+[2025-03-20 16:11:57] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:13:22] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:13:22] INFO - Pitch drawing completed.
+[2025-03-20 16:13:22] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:16:51] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:16:51] INFO - Pitch drawing completed.
+[2025-03-20 16:16:51] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:17:27] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:17:27] INFO - Pitch drawing completed.
+[2025-03-20 16:17:28] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:17:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:17:48] INFO - Pitch drawing completed.
+[2025-03-20 16:17:48] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:17:59] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:17:59] INFO - Pitch drawing completed.
+[2025-03-20 16:18:00] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:18:51] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:18:51] INFO - Pitch drawing completed.
+[2025-03-20 16:18:51] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:19:58] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:19:58] INFO - Pitch drawing completed.
+[2025-03-20 16:19:58] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:24:22] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:24:22] INFO - Pitch drawing completed.
+[2025-03-20 16:24:22] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:24:53] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:24:53] INFO - Pitch drawing completed.
+[2025-03-20 16:24:53] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:26:12] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:26:12] INFO - Pitch drawing completed.
+[2025-03-20 16:26:13] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:26:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:26:20] INFO - Pitch drawing completed.
+[2025-03-20 16:26:20] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:27:25] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:27:25] INFO - Pitch drawing completed.
+[2025-03-20 16:27:25] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:31:23] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:31:23] INFO - Pitch drawing completed.
+[2025-03-20 16:31:23] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:32:39] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:32:39] INFO - Pitch drawing completed.
+[2025-03-20 16:32:39] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:33:53] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:33:53] INFO - Pitch drawing completed.
+[2025-03-20 16:33:54] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:34:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:34:20] INFO - Pitch drawing completed.
+[2025-03-20 16:34:20] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:34:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:34:48] INFO - Pitch drawing completed.
+[2025-03-20 16:34:48] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:48:55] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:48:55] INFO - Pitch drawing completed.
+[2025-03-20 16:48:56] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:48:56] INFO - Pitch resized to width=667, height=444
+[2025-03-20 16:57:45] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:57:45] INFO - Pitch drawing completed.
+[2025-03-20 16:57:45] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:57:45] INFO - Pitch resized to width=667, height=444
+[2025-03-20 16:58:14] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 16:58:14] INFO - Pitch drawing completed.
+[2025-03-20 16:58:15] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 16:58:15] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:00:37] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:00:37] INFO - Pitch drawing completed.
+[2025-03-20 17:00:37] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 17:00:37] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:03:08] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:03:08] INFO - Pitch drawing completed.
+[2025-03-20 17:03:08] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:03:08] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:03:49] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:03:49] INFO - Pitch drawing completed.
+[2025-03-20 17:03:49] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:03:49] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:07:14] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:07:14] INFO - Pitch drawing completed.
+[2025-03-20 17:07:14] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:07:14] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:07:56] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:07:56] INFO - Pitch drawing completed.
+[2025-03-20 17:07:56] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:07:57] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:08:28] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:08:28] INFO - Pitch drawing completed.
+[2025-03-20 17:08:28] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:08:28] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:09:03] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:09:03] INFO - Pitch drawing completed.
+[2025-03-20 17:09:03] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:09:03] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:10:49] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:10:49] INFO - Pitch drawing completed.
+[2025-03-20 17:10:49] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:10:49] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:11:44] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:11:44] INFO - Pitch drawing completed.
+[2025-03-20 17:11:44] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:11:44] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:12:02] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:12:02] INFO - Pitch drawing completed.
+[2025-03-20 17:12:02] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:12:02] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:12:19] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:12:19] INFO - Pitch drawing completed.
+[2025-03-20 17:12:19] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:12:19] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:23:16] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:23:16] INFO - Pitch drawing completed.
+[2025-03-20 17:23:16] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 17:24:49] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:24:49] INFO - Pitch drawing completed.
+[2025-03-20 17:24:50] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 17:28:13] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:28:14] INFO - Pitch drawing completed.
+[2025-03-20 17:28:14] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:28:14] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:28:52] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:28:52] INFO - Pitch drawing completed.
+[2025-03-20 17:28:52] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:28:52] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:29:10] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:29:10] INFO - Pitch drawing completed.
+[2025-03-20 17:29:10] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:29:10] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:34:28] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:34:28] INFO - Pitch drawing completed.
+[2025-03-20 17:34:28] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:34:28] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:35:08] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:35:08] INFO - Pitch drawing completed.
+[2025-03-20 17:35:08] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:35:08] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:35:43] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:35:43] INFO - Pitch drawing completed.
+[2025-03-20 17:35:43] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:35:43] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:38:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:38:20] INFO - Pitch drawing completed.
+[2025-03-20 17:38:20] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:38:20] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:41:06] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:41:07] INFO - Pitch drawing completed.
+[2025-03-20 17:41:07] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:41:07] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:45:47] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:45:47] INFO - Pitch drawing completed.
+[2025-03-20 17:45:47] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:45:47] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:46:11] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:46:11] INFO - Pitch drawing completed.
+[2025-03-20 17:46:11] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 17:55:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:55:20] INFO - Pitch drawing completed.
+[2025-03-20 17:55:20] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 17:55:28] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:55:28] INFO - Pitch drawing completed.
+[2025-03-20 17:55:28] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:55:28] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 17:55:46] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 17:55:46] INFO - Pitch drawing completed.
+[2025-03-20 17:55:46] INFO - Pitch resized to width=667, height=444
+[2025-03-20 17:55:46] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 19:02:54] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 19:02:54] INFO - Pitch drawing completed.
+[2025-03-20 19:02:54] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 19:03:13] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 19:03:13] INFO - Pitch drawing completed.
+[2025-03-20 19:03:13] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 19:49:59] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 19:49:59] INFO - Pitch drawing completed.
+[2025-03-20 19:49:59] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 19:50:55] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 19:50:55] INFO - Pitch drawing completed.
+[2025-03-20 19:50:55] INFO - Pitch resized to width=667, height=444
+[2025-03-20 19:50:55] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:07:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:08:17] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:09:28] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:13:33] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:14:42] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:15:40] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:15:40] INFO - Pitch drawing completed.
+[2025-03-20 20:15:40] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:17:37] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:17:37] INFO - Pitch drawing completed.
+[2025-03-20 20:17:38] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:19:25] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:19:25] INFO - Pitch drawing completed.
+[2025-03-20 20:19:25] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:19:25] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:22:01] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:22:01] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:22:01] INFO - Pitch drawing completed.
+[2025-03-20 20:22:01] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:24:39] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:24:39] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:24:40] INFO - Pitch drawing completed.
+[2025-03-20 20:24:40] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:24:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:24:48] INFO - Pitch drawing completed.
+[2025-03-20 20:24:48] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:26:05] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:26:05] INFO - Pitch drawing completed.
+[2025-03-20 20:26:05] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:26:12] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:26:12] INFO - Pitch drawing completed.
+[2025-03-20 20:26:13] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:26:30] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:26:30] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:26:30] INFO - Pitch drawing completed.
+[2025-03-20 20:26:30] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:27:51] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:27:51] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:27:51] INFO - Pitch drawing completed.
+[2025-03-20 20:27:51] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:28:18] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:28:18] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:28:18] INFO - Pitch drawing completed.
+[2025-03-20 20:28:18] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:28:28] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:28:28] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:28:28] INFO - Pitch drawing completed.
+[2025-03-20 20:28:28] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:29:15] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:29:15] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:29:15] INFO - Pitch drawing completed.
+[2025-03-20 20:29:15] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:31:31] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:31:31] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:31:32] INFO - Pitch drawing completed.
+[2025-03-20 20:31:32] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:35:17] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:35:17] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:35:17] INFO - Pitch drawing completed.
+[2025-03-20 20:35:17] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:35:59] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:35:59] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:35:59] INFO - Pitch drawing completed.
+[2025-03-20 20:35:59] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:36:43] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:37:11] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:37:11] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:37:11] INFO - Pitch drawing completed.
+[2025-03-20 20:37:11] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:38:19] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:38:19] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:38:19] INFO - Pitch drawing completed.
+[2025-03-20 20:38:19] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:42:55] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:42:55] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:42:55] INFO - Pitch drawing completed.
+[2025-03-20 20:42:55] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:43:01] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:01] INFO - Pitch drawing completed.
+[2025-03-20 20:43:01] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:43:14] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:14] INFO - Pitch drawing completed.
+[2025-03-20 20:43:15] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:43:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:20] INFO - Pitch drawing completed.
+[2025-03-20 20:43:20] INFO - Numpy representation has shape (900, 1600, 3).
+[2025-03-20 20:43:27] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:27] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:43:27] INFO - Pitch drawing completed.
+[2025-03-20 20:43:27] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:43:40] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:40] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:43:40] INFO - Pitch drawing completed.
+[2025-03-20 20:43:40] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:43:50] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:43:50] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:43:50] INFO - Pitch drawing completed.
+[2025-03-20 20:43:50] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:44:10] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:44:10] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:44:10] INFO - Pitch drawing completed.
+[2025-03-20 20:44:10] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:44:30] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:44:30] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:44:30] INFO - Pitch drawing completed.
+[2025-03-20 20:44:30] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:44:40] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:44:40] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:44:40] INFO - Pitch drawing completed.
+[2025-03-20 20:44:40] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:44:50] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:44:50] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:44:50] INFO - Pitch drawing completed.
+[2025-03-20 20:44:50] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 20:45:02] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 20:45:02] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 20:45:02] INFO - Pitch drawing completed.
+[2025-03-20 20:45:02] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:02:20] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:02:20] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:02:20] INFO - Pitch drawing completed.
+[2025-03-20 21:02:20] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:06:00] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:06:00] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:06:00] INFO - Pitch drawing completed.
+[2025-03-20 21:06:00] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:06:25] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:06:25] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:06:25] INFO - Pitch drawing completed.
+[2025-03-20 21:06:25] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:06:35] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:06:35] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:06:35] INFO - Pitch drawing completed.
+[2025-03-20 21:06:35] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:06:48] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:06:48] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:06:48] INFO - Pitch drawing completed.
+[2025-03-20 21:06:48] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:06:56] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:06:56] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:06:56] INFO - Pitch drawing completed.
+[2025-03-20 21:06:56] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:03] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:03] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:03] INFO - Pitch drawing completed.
+[2025-03-20 21:07:03] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:12] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:12] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:12] INFO - Pitch drawing completed.
+[2025-03-20 21:07:12] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:21] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:21] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:21] INFO - Pitch drawing completed.
+[2025-03-20 21:07:21] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:36] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:36] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:36] INFO - Pitch drawing completed.
+[2025-03-20 21:07:36] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:47] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:47] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:47] INFO - Pitch drawing completed.
+[2025-03-20 21:07:47] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:07:57] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:07:57] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:07:57] INFO - Pitch drawing completed.
+[2025-03-20 21:07:57] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:08:07] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:08:07] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:08:07] INFO - Pitch drawing completed.
+[2025-03-20 21:08:07] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:08:16] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:08:16] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:08:16] INFO - Pitch drawing completed.
+[2025-03-20 21:08:16] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:08:47] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:08:47] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:08:47] INFO - Pitch drawing completed.
+[2025-03-20 21:08:47] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:08:57] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:08:57] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:08:57] INFO - Pitch drawing completed.
+[2025-03-20 21:08:57] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:13:44] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:13:44] INFO - Pitch resized to width=667, height=444, scale=0.5558333333333333
+[2025-03-20 21:13:44] INFO - Pitch drawing completed.
+[2025-03-20 21:13:44] INFO - Numpy representation has shape (444, 667, 3).
+[2025-03-20 21:34:49] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:35:56] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:39:19] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:39:25] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:39:58] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:40:06] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:40:10] INFO - HomographyPitchDrawer initialized.
+[2025-03-20 21:59:03] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 21:59:32] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 21:59:40] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 22:02:45] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 22:04:30] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 22:09:08] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 22:09:24] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 22:13:55] INFO - Pitch resized to width=667 (scale=4.98).
+[2025-03-20 23:42:35] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-20 23:49:00] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-20 23:49:16] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-20 23:59:31] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-21 00:02:33] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-21 00:03:26] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-21 17:37:14] INFO - Loaded YOLO model : yolov8_finetuned.pt
+[2025-03-21 17:37:57] INFO - Loaded YOLO model : yolov8_finetuned.pt

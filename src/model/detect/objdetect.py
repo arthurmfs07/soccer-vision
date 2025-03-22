@@ -79,7 +79,7 @@ class ObjectDetector:
 
 
 if __name__ == "__main__":
-    from src.pipeline.batch import DatasetLoader, collate_fn
+    from model.batch import DatasetLoader, collate_fn
 
     data_path = Path(__file__).resolve().parents[3] / "data"
     model_path = data_path / "10--models" / "yolov8_finetuned.pt"
