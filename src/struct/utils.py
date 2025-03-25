@@ -1,5 +1,7 @@
 
-from typing import Tuple
+from typing import Tuple, List
+from src.struct.detection import Detection
+
 
 def get_color(color_name: str) -> Tuple[int, int, int]:
     """Convert color name to BGR tuple."""
@@ -19,3 +21,25 @@ def get_color(color_name: str) -> Tuple[int, int, int]:
         "darkgray":   (50, 50, 50),    
     }
     return colors.get(color_name.lower(), (0, 0, 0))  # Default to black
+
+
+
+def annotate_frame_with_detections(
+        frame: "Frame",
+        detections: List[Detection] 
+        ) -> None:
+    """Convert YOLO detection into annotations"""
+
+    for detection in detections:
+        for i in range(len(detection.boxes)):
+            x1, y1, x2, y2 = detection.boxes[i]
+            class_id = int(detection.classes[i])
+            conf = detection.confidences[i]
+
+            label = f"{frame.data.metadata.get(class_id, str(class_id))}: {conf:.2f}"
+            color = "green" if class_id != 0 else "orange"
+
+            frame.add_rect(x1, y1, x2, y2, color=color)
+            frame.add_text(x1, y1 - 5, label, color=color)
+
+    return frame

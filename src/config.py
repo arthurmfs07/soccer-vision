@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict, Optional
+from typing import Dict, Optional, Literal
 
 @dataclass
 class BaseConfig:
@@ -14,11 +14,11 @@ class BaseConfig:
 @dataclass
 class RealTimeConfig(BaseConfig):
     """Real-time inference config"""
-    max_buffer_size: int = 100 # Visualization buffer size (in batches)
-    skip_sec: int = 100*60    # Skip first 100 minutes of video
-    target_fps: int = 10      # Target frames per second for visualization
-
-    yolo_conf : float = 0.5   # Confidence threshold for YOLO
+    max_buffer_size: int = 100                   # Visualization buffer size (in batches)
+    skip_sec: int = 100*60                       # Skip first 100 minutes of video
+    target_fps: int = 10                         # Target frames per second for visualization
+    yolo_conf : float = 0.5                      # Confidence threshold for YOLO
+    annotation_gap: Literal["-1", "int"] = 100   # pixel gap between consecutive annotations
 
 @dataclass
 class YoloFinetuneConfig(BaseConfig):

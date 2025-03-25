@@ -1,0 +1,114 @@
+# real time inference handling
+import time
+import cv2
+import queue
+import numpy as np
+from typing import Tuple, List, Literal
+
+from src.process.annotator import HomographyAnnotator
+from src.visual.visualizer import Visualizer
+from src.config import RealTimeConfig
+from src.process.process import Process
+from src.struct. frame import Frame
+
+
+class VisualizationProcess(Process):
+    """Retrieves results from the buffer and visualizes in real-time."""
+    
+    def __init__(
+            self, 
+            buffer:        queue.Queue, 
+            visualizer:    Visualizer, 
+            config:        RealTimeConfig,
+            H_field2video: np.ndarray = None
+            ):
+        self.buffer = buffer
+        self.visualizer = visualizer
+        self.max_buffer_size = config.max_buffer_size
+        self.batch_size = config.batch_size
+        self.target_fps = config.target_fps
+        self.frame_interval = 1.0 / config.target_fps
+        self.running = True
+        self.annotation_gap = config.annotation_gap
+        self.frame_counter = 0
+        self.H_field2video = H_field2video 
+
+    def process_frames(self):
+        """Continuously fetches frames and renders at 1 sec per sec."""
+        start = True
+        while self.running:
+            start_time = time.time()
+
+            required_size = int(self.max_buffer_size * (start*0.3 + 0.5))
+            if self.buffer.qsize() < required_size:
+                print(f"⏳ Buffer low ({self.buffer.qsize()}/{self.max_buffer_size}), waiting for more frames...")
+                time.sleep(2)
+                continue
+            try:
+                video_frame = self.buffer.get(timeout=0.1) 
+
+                # self.video_detection_pts =  
+                
+                self.visualizer.update(video_frame)
+                self.visualizer.render()
+            except queue.Empty:
+                print("⏳ Buffer is empty, waiting for frames...")
+                time.sleep(0.1)
+                continue
+
+            if self.H_field2video is not None:
+                projected_points = []
+                for det in video_frame.detections:
+                    for det_box in det.boxes:
+                    
+                        foot_pt = self._get_foot_pt(det_box)
+                        projected_points = self._project_foot(foot_pt)
+                
+                for pt in projected_points:
+                    self.projected_detection_pts.append((pt[0], pt[1]))
+
+            self.frame_counter += 1
+
+            if self.annotation_gap > 0 and (self.frame_counter % self.annotation_gap == 0):
+                print("⏸️  Pausing video process for annotation...")
+                current_img = self.visualizer.video_visualizer.get_image().copy()
+                annotator = HomographyAnnotator(image_np=current_img, visualizer=self.visualizer)
+                H = annotator.run()  
+                if H is not None:
+                    print("✅ Annotation completed. Updating H matrix.")
+                    self.H_field2video = H 
+                else:
+                    print("⚠️  Annotation did not produce a valid homography.")
+                    
+            self.visualizer.render()
+
+            elapsed_time = time.time() - start_time
+            remaining_time = self.frame_interval - elapsed_time
+            if remaining_time > 0:
+                time.sleep(remaining_time)
+
+        print("✅ Visualization Process Finished")
+
+    def _get_foot_pt(self, det_box: Tuple[int, int, int ,int]):
+        x1, y1, x2, y2 = det_box
+        foot_pt = np.array([[[ (x1+x2)/2, y2 ]]], dtype=np.float32)
+        return foot_pt
+
+    def _project_foot(self, foot_pt: np.ndarray) -> List[Tuple]:
+        projected_points = []
+        projected = cv2.perspectiveTransform(foot_pt, self.H_field2video)
+        projected_points.append(tuple(projected[0][0]))
+        return projected_points
+
+
+    def stop(self):
+        """Stops the visualization process."""
+        self.running = False
+
+    def on_mouse_click(self, x: int, y: int) -> None:
+        """Handles mouse click events in the visualizer."""
+        pass
+
+    def is_done(self) -> bool:
+        """Checks whether the process is completed."""
+        return False

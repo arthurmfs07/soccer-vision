@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from src.logger import setup_logger
 
 from src.struct.frame import Frame
+from src.struct.utils import annotate_frame_with_detections
 
 @dataclass
 class VideoFrame:
@@ -20,11 +21,13 @@ class VideoVisualizer:
     def __init__(
             self, 
             initial_frame: np.ndarray, 
-            class_names: Dict[int, str] = None
+            class_names: Dict[int, str] = None,
+            window_name: str = "Video Visualizer"
             ):
         super().__init__()
         
         self.class_names = class_names if class_names is not None else {}
+        self.window_name = window_name
         self.logger = setup_logger("api.log")
         
         prepared = self._prepare_frame(initial_frame)
@@ -42,9 +45,8 @@ class VideoVisualizer:
         """Updates the visualizer with a new frame and applies annotations."""
         prepared = self._prepare_frame(video_frame.image)
         self.frame = Frame(prepared, metadata={"class_names":self.class_names})
+        self.frame = annotate_frame_with_detections(self.frame, video_frame.detections)
 
-        for det in video_frame.detections:
-            self.frame.annotation_from_detection(det)
 
     def resize_to_width(self, new_width: int):
         current_width = self.frame.current_width
@@ -63,12 +65,12 @@ class VideoVisualizer:
 
     def show(self) -> None:
         """Displays the annotated frame."""
-        cv2.imshow("Video Visualizer", self.frame)
+        cv2.imshow(self.window_name, self.frame)
         cv2.waitKey(1)
 
     def get_image(self) -> np.ndarray:
         """Returns the annotated frame as a NumPy array."""
-        return self.frame.frame.image
+        return self.frame.data.image
     
 
     def _prepare_frame(self, frame: np.ndarray) -> np.ndarray:

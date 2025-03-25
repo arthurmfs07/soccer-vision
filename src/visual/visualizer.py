@@ -23,6 +23,8 @@ class Visualizer:
         self.video_visualizer = VideoVisualizer(frame, class_names)
         self.process = process
 
+        self.window_name = "Unified Visualization"
+
         self._resize_frames()
         self._create_H_matrices()
 
@@ -65,8 +67,8 @@ class Visualizer:
                 self.process.on_mouse_click(x, y)
 
         
-        cv2.namedWindow("Visualizer")
-        cv2.setMouseCallback("Visualizer", click_callback)
+        cv2.namedWindow(self.window_name)
+        cv2.setMouseCallback(self.window_name, click_callback)
 
         while True:
             if self.process:
@@ -80,15 +82,12 @@ class Visualizer:
                 )
 
                 combined_img = self.generate_combined_view()
-                cv2.imshow("Visualizer", combined_img.data.image)
+                cv2.imshow(self.window_name, combined_img.data.image)
             
-                time.sleep(.5)
-
                 key = cv2.waitKey(1)
                 if key == ord('q') or (self.process and self.process.is_done()):
                     break
 
-        cv2.destroyAllWindows()
 
     def render(self) -> None:
         """
@@ -98,13 +97,14 @@ class Visualizer:
         if self.process:
             self.video_visualizer.clear_annotations()
             self.field_visualizer.clear_annotations()
+
             self._annotate_frames(
                 self.video_visualizer.frame, 
                 self.field_visualizer.frame
             )
 
         combined_img = self.generate_combined_view()
-        cv2.imshow("visualizer", combined_img)
+        cv2.imshow(self.window_name, combined_img)
         cv2.waitKey(1)
 
 

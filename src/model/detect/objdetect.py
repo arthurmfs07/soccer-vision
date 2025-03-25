@@ -2,22 +2,13 @@
 
 import os
 import torch
-import numpy as np
 from pathlib import Path
 from ultralytics import YOLO
-from dataclasses import dataclass
 from typing import List, Dict, Any
 from torch.utils.data import DataLoader
 from src.logger import setup_logger
 
-
-@dataclass
-class Detection:
-    """Stores detection results for a single frame."""
-    boxes: np.ndarray  # Boundig boxes (x1, y1, x2, y2)
-    confidences: np.ndarray # Confidence scores
-    classes: np.ndarray # Class IDs
-
+from src.struct.detection import Detection
 
 
 

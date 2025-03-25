@@ -34,10 +34,15 @@ class FieldVisualizer:
     and are transformed at render time via Frame.scale + offsets
     """
         
-    def __init__(self, config: Optional[PitchConfig] = None):
+    def __init__(
+            self, 
+            config: Optional[PitchConfig] = None,
+            window_name: str = "Field Visualizer"
+            ):
         super().__init__()
         self.config = config or PitchConfig()
         self.logger = setup_logger("field_visualizer.log")
+        self.window_name = window_name
         
         self._initialize_params()
         
@@ -318,16 +323,14 @@ class FieldVisualizer:
 
         return np.array(out, dtype=np.float32)
     
-
-
     
     def clear_annotations(self) -> None:
         if isinstance(self.frame, Frame):
             self.frame.clear_annotations()        
 
     def show(self):
-        """Open a window with the final field image + all annotations."""
-        cv2.imshow("Football Pitch Visualization", self.frame.rendered)
+        """Standalone test."""
+        cv2.imshow(self.window_name, self.frame.rendered)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 

@@ -16,7 +16,7 @@ class FrameData:
     """
     image: np.ndarray  # (H, W, C), RGB format
     annotations: List[Annotation] = field(default_factory=list)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any]      = field(default_factory=dict)
 
     def __post_init__(self):
         assert self.image.ndim == 3 and self.image.shape[2] == 3, \
@@ -47,7 +47,7 @@ class Frame:
 
         self._original_image = self.data.image.copy()
         self._original_annotations = self.data.annotations.copy()
-        self._static_count = 0
+        self._static_count = -1
 
         self._scale = 1.0
         self._padding = (0, 0, 0, 0)  # top, bottom, left, right
@@ -115,20 +115,7 @@ class Frame:
         self._original_annotations = self._original_annotations[:self._static_count]
         self._transform_dirty = True
         
-    def annotation_from_detection(self, detection: Detection) -> None:
-        """Convert YOLO detection into annotations"""
-        for i in range(len(detection.boxes)):
-            x1, y1, x2, y2 = detection.boxes[i]
-            class_id = int(detection.classes[i])
-            conf = detection.confidences[i]
-
-            label = f"{self.data.metadata.get(class_id, str(class_id))}: {conf:.2f}"
-            color = "green" if class_id != 0 else "orange"
-
-            self.add_rect(x1, y1, x2, y2, color=color)
-            self.add_text(x1, y1 - 5, label, color=color)
-
-
+        
     def resize_to_width(self, new_width: int):
         self.update_currents()
         current_width = self.current_width
