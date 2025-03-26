@@ -9,6 +9,8 @@ from src.model.detect.objdetect import ObjectDetector
 from src.visual.visualizer import Visualizer
 from src.visual.field import PitchConfig
 
+from src.struct.shared_data import SharedAnnotations
+
 from src.config import RealTimeConfig, DataConfig
 from src.process.inference import InferenceProcess
 from src.process.visualization import VisualizationProcess
@@ -30,9 +32,7 @@ class RealTimeInference:
 
     def setup(self):
         self.data_path = Path(__file__).resolve().parents[2] / "data"
-
         self.yolo_path = self.data_path/ "10--models" / "yolov8_finetuned.pt"
-
         game_name = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
         self.example_video_path = self.data_path / "00--raw" / "videos" / game_name
         
@@ -49,8 +49,10 @@ class RealTimeInference:
         # Shared buffer (FIFO queue)
         buffer = queue.Queue(maxsize=RealTimeConfig().max_buffer_size)  # Adjust buffer size if needed
 
+        shared_data = SharedAnnotations()
+
         # Initialize processes
-        inference_process = InferenceProcess(detector, dataloader, buffer)
+        inference_process = InferenceProcess(detector, dataloader, buffer, shared_data=shared_data)
         visualizer = Visualizer(
             PitchConfig(), 
                 np.zeros(
@@ -59,7 +61,7 @@ class RealTimeInference:
                 detector.class_names,
                 process=inference_process
                 )
-        visualization = VisualizationProcess(buffer, visualizer, RealTimeConfig())
+        visualization = VisualizationProcess(buffer, visualizer, RealTimeConfig(), shared_data=shared_data)
 
         # Start threads
         inference_thread = threading.Thread(target=inference_process.process_batches)

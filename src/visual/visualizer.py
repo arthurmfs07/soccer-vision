@@ -6,7 +6,7 @@ from src.logger import setup_logger
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.visual.video import VideoVisualizer
 from src.struct.frame import Frame
-
+from src.struct.shared_data import SharedAnnotations
 
 class Visualizer:
     """Manages visualization, integraetes video and field, and interacts with a process."""
@@ -103,6 +103,8 @@ class Visualizer:
                 self.field_visualizer.frame
             )
 
+            self._clear_shared_data()
+
         combined_img = self.generate_combined_view()
         cv2.imshow(self.window_name, combined_img)
         cv2.waitKey(1)
@@ -123,40 +125,46 @@ class Visualizer:
             field_frame: Frame,
         ) -> None:
 
+        shared = self.process.shared_data if hasattr(self.process, "shared_data") else None
+        if shared is None:
+            return
+
         # video_detection_pts = NOT YET IMPLEMENTED
-        if hasattr(self.process, "video_detection_pts"):
-            for i, (x, y) in enumerate(self.process.video_detection_pts):
-                video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
-                video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
+        for i, (x, y) in enumerate(shared.video_detection_pts):
+            video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
+            video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
 
         # captured video points
-        if hasattr(self.process, "captured_video_pts"):
-            for i, (x, y) in enumerate(self.process.captured_video_pts):
-                video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
-                video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
-
+        for i, (x, y) in enumerate(shared.captured_video_pts):
+            video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
+            video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
 
         # sampled videos points
-        if hasattr(self.process, "sampled_video_pts"):
-            for i, (x, y) in enumerate(self.process.sampled_video_pts):
-                video_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1)
-                video_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.6)
+        for i, (x, y) in enumerate(shared.sampled_video_pts):
+            video_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1)
+            video_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.6)
 
 
         # projected field points
-        if hasattr(self.process, "projected_field_pts"):
-            for i, (x, y) in enumerate(self.process.projected_field_pts):
-                field_frame.add_circle(x=x, y=y, color="blue", radius=4, thickness=-1, coord_space="current")
-                field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4)
+        for i, (x, y) in enumerate(shared.projected_field_pts):
+            # print(f"shared.projected_field_pts: ({x}, {y})")
+            field_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1, coord_space="current")
+            field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4, coord_space="current")
 
         # projected_detected_pts
-        if hasattr(self.process, "projected_detection_pts"):
-            for i, (x, y) in enumerate(self.process.projected_detection_pts):
-                field_frame.add_circle(x=x, y=y, color="green", radius=4, thickness=-1, coord_space="current")
-                field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4)
+        for i, (x, y) in enumerate(shared.projected_detection_pts):
+            field_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1, coord_space="current")
+            field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4, coord_space="current")
 
         if self.process.is_done():
             video_frame.add_text(10, 20, "Homography ready", color="yellow", size=0.6)
+
+
+    def _clear_shared_data(self):
+        self.process.shared_data.captured_video_pts.clear()
+        self.process.shared_data.sampled_video_pts.clear()
+        self.process.shared_data.projected_field_pts.clear()
+        self.process.shared_data.projected_detection_pts.clear()
 
 
     def _resize_frames(self):

@@ -10,7 +10,7 @@ from src.struct.utils import *
 class Annotation(ABC):
     """Base class for all annotations"""
 
-    coord_space: Literal["model", "pixel"] = "model"
+    coord_space: Literal["model", "current"] = "model"
 
     @abstractmethod
     def transform(self, scale: float, offset_x: int, offset_y: int) -> 'Annotation':
@@ -19,7 +19,7 @@ class Annotation(ABC):
             x_t = self.x * scale + offset_x
             y_t = self.y * scale + offset_y
             r_t = int(self.radius * scale)
-        elif self.coord_space == "pixel":
+        elif self.coord_space == "current":
             x_t = self.x
             y_t = self.y
             r_t = self.radius

@@ -8,6 +8,7 @@ from src.visual.video import VideoFrame
 from src.process.process import Process
 from src.config import RealTimeConfig
 
+from src.struct.shared_data import SharedAnnotations
 from src.struct.utils import annotate_frame_with_detections
 
 class InferenceProcess(Process):
@@ -19,12 +20,14 @@ class InferenceProcess(Process):
             dataloader: DataLoader, 
             buffer: queue.Queue, 
             config: RealTimeConfig = RealTimeConfig(),
+            shared_data: SharedAnnotations = SharedAnnotations()
             ):
         self.detector = detector
         self.dataloader = dataloader
         self.buffer = buffer
         self.config = config
         self.batch_size = config.batch_size
+        self.shared_data = shared_data
         self.running = True
 
         self.video_detection_pts: List[Tuple[int, int]]

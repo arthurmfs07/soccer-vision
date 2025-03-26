@@ -9,7 +9,9 @@ from src.process.annotator import HomographyAnnotator
 from src.visual.visualizer import Visualizer
 from src.config import RealTimeConfig
 from src.process.process import Process
-from src.struct. frame import Frame
+from src.struct.frame import Frame
+from src.struct.shared_data import SharedAnnotations
+
 
 
 class VisualizationProcess(Process):
@@ -20,7 +22,8 @@ class VisualizationProcess(Process):
             buffer:        queue.Queue, 
             visualizer:    Visualizer, 
             config:        RealTimeConfig,
-            H_field2video: np.ndarray = None
+            H_field2video: np.ndarray = None,
+            shared_data: SharedAnnotations = SharedAnnotations()
             ):
         self.buffer = buffer
         self.visualizer = visualizer
@@ -32,11 +35,14 @@ class VisualizationProcess(Process):
         self.annotation_gap = config.annotation_gap
         self.frame_counter = 0
         self.H_field2video = H_field2video 
+        self.shared_data = shared_data
 
     def process_frames(self):
         """Continuously fetches frames and renders at 1 sec per sec."""
         start = True
+
         while self.running:
+
             start_time = time.time()
 
             required_size = int(self.max_buffer_size * (start*0.3 + 0.5))
@@ -46,8 +52,6 @@ class VisualizationProcess(Process):
                 continue
             try:
                 video_frame = self.buffer.get(timeout=0.1) 
-
-                # self.video_detection_pts =  
                 
                 self.visualizer.update(video_frame)
                 self.visualizer.render()
@@ -57,22 +61,19 @@ class VisualizationProcess(Process):
                 continue
 
             if self.H_field2video is not None:
-                projected_points = []
+                projected = []
                 for det in video_frame.detections:
                     for det_box in det.boxes:
-                    
                         foot_pt = self._get_foot_pt(det_box)
-                        projected_points = self._project_foot(foot_pt)
-                
-                for pt in projected_points:
-                    self.projected_detection_pts.append((pt[0], pt[1]))
+                        projected = self._project_foot(foot_pt)
+                        self.shared_data.projected_detection_pts.extend(projected)
 
             self.frame_counter += 1
 
             if self.annotation_gap > 0 and (self.frame_counter % self.annotation_gap == 0):
                 print("⏸️  Pausing video process for annotation...")
                 current_img = self.visualizer.video_visualizer.get_image().copy()
-                annotator = HomographyAnnotator(image_np=current_img, visualizer=self.visualizer)
+                annotator = HomographyAnnotator(image_np=current_img, visualizer=self.visualizer, shared_data=self.shared_data)
                 H = annotator.run()  
                 if H is not None:
                     print("✅ Annotation completed. Updating H matrix.")
@@ -95,10 +96,23 @@ class VisualizationProcess(Process):
         return foot_pt
 
     def _project_foot(self, foot_pt: np.ndarray) -> List[Tuple]:
-        projected_points = []
-        projected = cv2.perspectiveTransform(foot_pt, self.H_field2video)
-        projected_points.append(tuple(projected[0][0]))
-        return projected_points
+        """
+        foot_pt: video_pixel coordinate
+        projected: field_model coordinate
+        """
+
+        if self.H_field2video is None:
+            return []
+        
+        # print(f"foot_pt: {foot_pt}")
+
+        H_video2field = np.linalg.inv(self.H_field2video)
+        projected = cv2.perspectiveTransform(
+            foot_pt.reshape(-1, 1, 2), 
+            self.H_field2video,
+            ).reshape(-1, 2)
+
+        return [tuple(projected[0])]
 
 
     def stop(self):

@@ -4,6 +4,7 @@ from typing import List, Literal, Tuple, Optional
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.process.process import Process
 from src.visual.visualizer import Visualizer
+from src.struct.shared_data import SharedAnnotations
 
 
 class HomographyAnnotator(Process):
@@ -13,7 +14,8 @@ class HomographyAnnotator(Process):
             self, 
             image_path: Optional[str]        = None, 
             image_np:   Optional[np.ndarray] = None,
-            visualizer: Optional[Visualizer] = None
+            visualizer: Optional[Visualizer] = None,
+            shared_data: SharedAnnotations   = None
             ):
 
         """Either image_path or image_np, not both."""
@@ -38,7 +40,8 @@ class HomographyAnnotator(Process):
         self.field = FieldVisualizer()
         self.field.frame.resize_to_width(self.image.shape[1])
 
-        self.reference_field_pts = self.field.get_template_pixel_points()
+        self.shared_data = shared_data
+        self.shared_data.reference_field_pts = self.field.get_template_pixel_points()
 
         self.n_points: int = 4
         self.H: np.ndarray = None
@@ -46,14 +49,15 @@ class HomographyAnnotator(Process):
         self.phase: Literal["collect_video", "collect_template", "done"] = "collect_video"
         self.active_input_index: int = 0
 
+
     def on_mouse_click(self, x: int, y: int) -> None:
         """Captures image points on click during the annotation phase."""
         if self.phase == "collect_video":
-            if len(self.captured_video_pts) < self.n_points:
-                self.captured_video_pts.append((x, y))
-                print(f"Captured image point {len(self.captured_video_pts)}: ({x}, {y})")
+            if len(self.shared_data.captured_video_pts) < self.n_points:
+                self.shared_data.captured_video_pts.append((x, y))
+                print(f"Captured image point {len(self.shared_data.captured_video_pts)}: ({x}, {y})")
 
-            if len(self.captured_video_pts) == 4:
+            if len(self.shared_data.captured_video_pts) == 4:
                 print("\nAll 4 image points captured.")
                 self.phase = "collect_indices"
 
@@ -64,21 +68,21 @@ class HomographyAnnotator(Process):
         indices = []
         for i in range(self.n_points):
             idx = int(input(f"Enter template index for image point {i+1}: "))
-            assert type(idx) == int and 0 <= idx < len(self.reference_field_pts)
+            assert type(idx) == int and 0 <= idx < len(self.shared_data.reference_field_pts)
             indices.append(int(idx))
         
-        self.reference_field_indices = indices
+        self.shared_data.reference_field_indices = indices
         print("Template indices received. Now computing homography...")        
         return self.compute_homography()
 
 
     def compute_homography(self) -> bool:
-        if len(self.captured_video_pts) != 4 or len(self.reference_field_indices) != 4:
+        if len(self.shared_data.captured_video_pts) != 4 or len(self.shared_data.reference_field_indices) != 4:
             print("Cannot compute homography. 4 points and 4 indices are required.")
             return False
 
-        captured_pts = np.array(self.captured_video_pts, dtype=np.float32)
-        reference_pts = self.reference_field_pts[self.reference_field_indices, :]
+        captured_pts = np.array(self.shared_data.captured_video_pts, dtype=np.float32)
+        reference_pts = self.shared_data.reference_field_pts[self.shared_data.reference_field_indices, :]
 
         self.H_video2field, status = cv2.findHomography(captured_pts, reference_pts, cv2.RANSAC)
         self.H_field2video = np.linalg.inv(self.H_video2field)
@@ -140,12 +144,12 @@ class HomographyAnnotator(Process):
             key = cv2.waitKey(1) & 0xFF
             if key == ord('q') or self.is_done():
                 break
-            elif len(self.captured_video_pts) >= self.n_points:
+            elif len(self.shared_data.captured_video_pts) >= self.n_points:
                 self.prompt_for_template_indices()
 
         self._generate_projection(self.visualizer)
 
-        self.captured_video_pts = []
+        self.shared_data.captured_video_pts = []
         self.visualizer.video_visualizer.clear_annotations()
         return self.H_video2field
 
@@ -163,16 +167,16 @@ class HomographyAnnotator(Process):
         mean = [img_w / 2, img_h / 2]
         std_dev = [img_w / 8, img_h / 8]
 
-
         sampled_video_pts = np.random.normal(loc=mean, scale=std_dev, size=(6,2)).astype(np.float32)
 
+        # print(f"sampled_video_pts: {sampled_video_pts}")
         field_projected_pts = cv2.perspectiveTransform(
             sampled_video_pts.reshape(-1, 1, 2),
             self.H_video2field,
         ).reshape(-1, 2)
 
-        self.sampled_video_pts = sampled_video_pts
-        self.projected_field_pts = field_projected_pts
+        self.shared_data.sampled_video_pts = sampled_video_pts.tolist()
+        self.shared_data.projected_field_pts = [tuple(pt) for pt in field_projected_pts]
 
         while True:
             visualizer.video_visualizer.clear_annotations()
