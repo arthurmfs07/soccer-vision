@@ -1,4 +1,8 @@
 /venv/*
+
+
+/data/*
+
 /data/00--raw/*
 /yolo_training/*
 /YOLOv8/*

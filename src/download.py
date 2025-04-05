@@ -1,4 +1,5 @@
 import subprocess
+from typing import Optional
 from pathlib import Path
 from src.config import DownloadConfig
 
@@ -13,11 +14,28 @@ class YouTubeDL:
         n_to_download = DownloadConfig.numbers_to_download
         command = [
             "yt-dlp",
+            "--cookies", "data/cookies.txt",
             "--playlist-end", n_to_download, # Limits to first 3 videos (remove if not needed)
             "-f", "best[ext=mp4]",           # Forces MP4 format
             "--merge-output-format", "mp4",  # Ensures the final file is MP4
             "-o", f"{self.output_folder}/%(title)s.%(ext)s",
             playlist_url
+        ]
+        subprocess.run(command, check=True)
+
+    def download_single_video(self, video_url: str, output_path: Optional[Path] = None):
+        """Downloads a single YouTube video as MP4 named by videoID"""
+        if output_path is None:
+            output_path = self.output_folder / "%(id)s.%(ext)s"
+        else:
+            output_path = output_path.with_suffix(".%(ext)s")
+        command = [
+        "yt-dlp",
+        "--cookies", "data/cookies.txt",
+        "-f", "best[ext=mp4]",
+        "--merge-output-format", "mp4",
+        "-o", str(output_path),
+        video_url
         ]
         subprocess.run(command, check=True)
 

@@ -130,9 +130,9 @@ class Visualizer:
             return
 
         # video_detection_pts = NOT YET IMPLEMENTED
-        for i, (x, y) in enumerate(shared.video_detection_pts):
-            video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
-            video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
+        # for i, (x, y) in enumerate(shared.video_detection_pts):
+        #     video_frame.add_circle(x=x, y=y, color="red", radius=6, thickness=-1)
+        #     video_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.6)
 
         # captured video points
         for i, (x, y) in enumerate(shared.captured_video_pts):
@@ -144,17 +144,25 @@ class Visualizer:
             video_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1)
             video_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.6)
 
+        # projected_detected_model_pts
+        for i, (x, y) in enumerate(shared.projected_detection_model_pts):
+            field_frame.add_circle(x=x, y=y, color="blue", radius=2, thickness=-1, coord_space="model")
+            # field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.1, coord_space="model")
+
+        # ground truth points
+        for i, (x, y) in enumerate(shared.ground_truth_pts):
+            field_frame.add_circle(x=x, y=y, color="red", radius=1, thickness=-1, coord_space="model")
+            # field_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.4, coord_space="model")
 
         # projected field points
         for i, (x, y) in enumerate(shared.projected_field_pts):
-            # print(f"shared.projected_field_pts: ({x}, {y})")
-            field_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1, coord_space="current")
-            field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4, coord_space="current")
+            field_frame.add_circle(x=x, y=y, color="red", radius=4, thickness=-1, coord_space="current")
+            # field_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.4, coord_space="current")
 
         # projected_detected_pts
         for i, (x, y) in enumerate(shared.projected_detection_pts):
-            field_frame.add_circle(x=x, y=y, color="blue", radius=6, thickness=-1, coord_space="current")
-            field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.4, coord_space="current")
+            field_frame.add_circle(x=x, y=y, color="red", radius=4, thickness=-1, coord_space="current")
+            field_frame.add_text(x + 5, y - 5, f"{i+1}", color="red", size=0.4, coord_space="current")
 
         if self.process.is_done():
             video_frame.add_text(10, 20, "Homography ready", color="yellow", size=0.6)

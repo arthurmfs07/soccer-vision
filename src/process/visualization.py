@@ -52,9 +52,8 @@ class VisualizationProcess(Process):
                 continue
             try:
                 video_frame = self.buffer.get(timeout=0.1) 
-                
                 self.visualizer.update(video_frame)
-                self.visualizer.render()
+
             except queue.Empty:
                 print("⏳ Buffer is empty, waiting for frames...")
                 time.sleep(0.1)
@@ -74,7 +73,7 @@ class VisualizationProcess(Process):
                 print("⏸️  Pausing video process for annotation...")
                 current_img = self.visualizer.video_visualizer.get_image().copy()
                 annotator = HomographyAnnotator(image_np=current_img, visualizer=self.visualizer, shared_data=self.shared_data)
-                H = annotator.run()  
+                H = annotator.run() 
                 if H is not None:
                     print("✅ Annotation completed. Updating H matrix.")
                     self.H_field2video = H 
