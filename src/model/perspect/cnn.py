@@ -62,13 +62,13 @@ class CNN(nn.Module):
             dummy_output = self.conv_layers(dummy_input)
         self._flattened_size = dummy_output.view(1, -1).shape[1]
 
-        self.fc = nn.Linear(self._flattened_size, 9)
+        self.fc = nn.Linear(self._flattened_size, 8)
         self._initialize_weights()
 
     def forward(self, X: torch.Tensor) -> torch.Tensor:
         X = self.conv_layers(X)
         X = self.flatten(X)
-        X = self.fc(X)
+        X = self.fc(X)  # shape [B, 8] (-1, 1)
         return X
     
     def _initialize_weights(self) -> None:
@@ -78,6 +78,12 @@ class CNN(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.Linear):
+                nn.init.uniform_(self.fc.weight, a=-1e-3, b=1e-3)
+                nn.init.constant_(self.fc.bias, 0.0)
+        nn.init.zeros_(self.fc.weight)
+        nn.init.zeros_(self.fc.bias)
+
 
 
 if __name__ == "__main__":

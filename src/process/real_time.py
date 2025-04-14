@@ -61,7 +61,9 @@ class RealTimeInference:
                 detector.class_names,
                 process=inference_process
                 )
-        visualization = VisualizationProcess(buffer, visualizer, RealTimeConfig(), shared_data=shared_data)
+        visualization = VisualizationProcess(
+            buffer, visualizer, RealTimeConfig(), 
+            shared_data=shared_data, output_dir="data/annotated_homographies")
 
         # Start threads
         inference_thread = threading.Thread(target=inference_process.process_batches)

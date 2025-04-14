@@ -3,7 +3,8 @@ import time
 import cv2
 import queue
 import numpy as np
-from typing import Tuple, List, Literal
+from pathlib import Path
+from typing import Tuple, List, Literal, Optional
 
 from src.process.annotator import HomographyAnnotator
 from src.visual.visualizer import Visualizer
@@ -22,8 +23,9 @@ class VisualizationProcess(Process):
             buffer:        queue.Queue, 
             visualizer:    Visualizer, 
             config:        RealTimeConfig,
-            H_field2video: np.ndarray = None,
-            shared_data: SharedAnnotations = SharedAnnotations()
+            H_video2field: np.ndarray = None,
+            shared_data: SharedAnnotations = SharedAnnotations(),
+            output_dir:  Optional[str] = None
             ):
         self.buffer = buffer
         self.visualizer = visualizer
@@ -34,8 +36,13 @@ class VisualizationProcess(Process):
         self.running = True
         self.annotation_gap = config.annotation_gap
         self.frame_counter = 0
-        self.H_field2video = H_field2video 
+        self.H_video2field = H_video2field
         self.shared_data = shared_data
+
+        self.output_dir = Path(output_dir)
+        if self.output_dir:
+            self.output_dir.mkdir(parents=True, exist_ok=True)
+            self.annot_count = 0
 
     def process_frames(self):
         """Continuously fetches frames and renders at 1 sec per sec."""
@@ -59,7 +66,7 @@ class VisualizationProcess(Process):
                 time.sleep(0.1)
                 continue
 
-            if self.H_field2video is not None:
+            if self.H_video2field is not None:
                 projected = []
                 for det in video_frame.detections:
                     for det_box in det.boxes:
@@ -72,11 +79,21 @@ class VisualizationProcess(Process):
             if self.annotation_gap > 0 and (self.frame_counter % self.annotation_gap == 0):
                 print("⏸️  Pausing video process for annotation...")
                 current_img = self.visualizer.video_visualizer.get_image().copy()
-                annotator = HomographyAnnotator(image_np=current_img, visualizer=self.visualizer, shared_data=self.shared_data)
-                H = annotator.run() 
+                annotator = HomographyAnnotator(
+                    image_np=current_img, 
+                    visualizer=self.visualizer, 
+                    shared_data=self.shared_data,
+                    )
+                annotator.run() 
+
+                if self.output_dir:
+                    annotator.save_results(count=self.annot_count, output_dir=self.output_dir)
+                    self.annot_count += 1
+
+                H = self.shared_data.H_video2field
                 if H is not None:
                     print("✅ Annotation completed. Updating H matrix.")
-                    self.H_field2video = H 
+                    self.H_video2field = H 
                 else:
                     print("⚠️  Annotation did not produce a valid homography.")
                     
@@ -100,15 +117,14 @@ class VisualizationProcess(Process):
         projected: field_model coordinate
         """
 
-        if self.H_field2video is None:
+        if self.H_video2field is None:
             return []
         
         # print(f"foot_pt: {foot_pt}")
 
-        H_video2field = np.linalg.inv(self.H_field2video)
         projected = cv2.perspectiveTransform(
             foot_pt.reshape(-1, 1, 2), 
-            self.H_field2video,
+            self.H_video2field,
             ).reshape(-1, 2)
 
         return [tuple(projected[0])]

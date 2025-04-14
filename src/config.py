@@ -18,7 +18,7 @@ class RealTimeConfig(BaseConfig):
     skip_sec: int = 100*60                       # Skip first 100 minutes of video
     target_fps: int = 10                         # Target frames per second for visualization
     yolo_conf : float = 0.5                      # Confidence threshold for YOLO
-    annotation_gap: Literal["-1", "int"] = 100   # pixel gap between consecutive annotations
+    annotation_gap: Literal["-1", "int"] = 300   # pixel gap between consecutive annotations
 
 @dataclass
 class YoloFinetuneConfig(BaseConfig):

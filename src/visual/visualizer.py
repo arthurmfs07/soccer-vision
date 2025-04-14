@@ -146,7 +146,7 @@ class Visualizer:
 
         # projected_detected_model_pts
         for i, (x, y) in enumerate(shared.projected_detection_model_pts):
-            field_frame.add_circle(x=x, y=y, color="blue", radius=2, thickness=-1, coord_space="model")
+            field_frame.add_circle(x=x, y=y, color="blue", radius=1, thickness=-1, coord_space="model")
             # field_frame.add_text(x + 5, y - 5, f"{i+1}", color="blue", size=0.1, coord_space="model")
 
         # ground truth points

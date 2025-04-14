@@ -1,26 +1,38 @@
 import cv2
 import numpy as np
+import os
+from pathlib import Path
+
 from typing import List, Literal, Tuple, Optional
+from src.utils import get_data_path
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.process.process import Process
 from src.visual.visualizer import Visualizer
 from src.struct.shared_data import SharedAnnotations
+from src.logger import setup_logger
 
 
 class HomographyAnnotator(Process):
-    """Handles manual annotation of homography points without visualization logic."""
+
+    """
+    Handles manual annotation of homography points.
+    Intended to work over a single image.
+    """
 
     def __init__(
             self, 
             image_path: Optional[str]        = None, 
             image_np:   Optional[np.ndarray] = None,
             visualizer: Optional[Visualizer] = None,
-            shared_data: SharedAnnotations   = None
+            shared_data: SharedAnnotations   = None,
+            output_dir: Optional[str]        = None
             ):
 
         """Either image_path or image_np, not both."""
 
         self.visualizer = visualizer
+        self.logger = setup_logger("annotator.log")
+        self.output_dir = output_dir
 
         if visualizer is not None:
             self.window_name = self.visualizer.window_name 
@@ -44,10 +56,7 @@ class HomographyAnnotator(Process):
         self.shared_data.reference_field_pts = self.field.get_template_pixel_points()
 
         self.n_points: int = 4
-        self.H: np.ndarray = None
-
         self.phase: Literal["collect_video", "collect_template", "done"] = "collect_video"
-        self.active_input_index: int = 0
 
 
     def on_mouse_click(self, x: int, y: int) -> None:
@@ -55,10 +64,10 @@ class HomographyAnnotator(Process):
         if self.phase == "collect_video":
             if len(self.shared_data.captured_video_pts) < self.n_points:
                 self.shared_data.captured_video_pts.append((x, y))
-                print(f"Captured image point {len(self.shared_data.captured_video_pts)}: ({x}, {y})")
+                self.logger.info(f"Captured image point {len(self.shared_data.captured_video_pts)}: ({x}, {y})")
 
             if len(self.shared_data.captured_video_pts) == 4:
-                print("\nAll 4 image points captured.")
+                self.logger.info("\nAll 4 image points captured.")
                 self.phase = "collect_indices"
 
     def prompt_for_template_indices(self) -> bool:
@@ -72,13 +81,13 @@ class HomographyAnnotator(Process):
             indices.append(int(idx))
         
         self.shared_data.reference_field_indices = indices
-        print("Template indices received. Now computing homography...")        
+        self.logger.info("Template indices received. Now computing homography...")        
         return self.compute_homography()
 
 
     def compute_homography(self) -> bool:
         if len(self.shared_data.captured_video_pts) != 4 or len(self.shared_data.reference_field_indices) != 4:
-            print("Cannot compute homography. 4 points and 4 indices are required.")
+            self.logger.info("Cannot compute homography. 4 points and 4 indices are required.")
             return False
 
         captured_pts = np.array(self.shared_data.captured_video_pts, dtype=np.float32)
@@ -88,32 +97,15 @@ class HomographyAnnotator(Process):
         self.H_field2video = np.linalg.inv(self.H_video2field)
 
         if self.H_video2field is None:
-            print("❌ Homography computation failed.")
+            self.logger.info("❌ Homography computation failed.")
             return False
 
-        print("Homography computed successfully:")
-        print(self.H_video2field)
+        self.logger.info("Homography computed successfully:")
+        self.logger.info(f"\n{self.H_video2field}")
 
         self.phase = "done"
 
         return True
-
-    def save_homography(self, path: str = "homography_video2field_matrix.npy") -> None:
-        if self.H_video2field is not None:
-            np.save(path, self.H_video2field)
-            print(f"💾 Saved homography matrix to {path}")
-        else:
-            print("⚠️ No homography to save.")
-
-    def load_homography(self, path: str = "homography_video2field_matrix.npy") -> bool:
-        try:
-            self.H_video2field = np.load(path)
-            print(f"✅ Loaded homography matrix from {path}")
-            self.phase = "done"
-            return True
-        except Exception as e:
-            print(f"Failed to load homography: {e}")
-            return False
 
     def is_done(self) -> bool:
         return self.phase == "done"
@@ -142,16 +134,37 @@ class HomographyAnnotator(Process):
             cv2.imshow(self.visualizer.window_name, combined_img)
 
             key = cv2.waitKey(1) & 0xFF
-            if key == ord('q') or self.is_done():
+            if self.output_dir is None and key == ord('q'):
                 break
             elif len(self.shared_data.captured_video_pts) >= self.n_points:
                 self.prompt_for_template_indices()
 
-        self._generate_projection(self.visualizer)
+        if self.output_dir is not None:
+            answer = input("Do you want to save this annotated frame? (Y/N): ").strip().lower()
+            if answer == "y":
+                self.save_results(output_dir=self.output_dir)
+                self.logger.info("Annotated frame saved.")
+            else:
+                self.logger.info("Annotated frame not saved.")
+            cv2.destroyAllWindows()
+        else:
+            self._generate_projection(self.visualizer)
+
 
         self.shared_data.captured_video_pts = []
         self.visualizer.video_visualizer.clear_annotations()
-        return self.H_video2field
+        self.shared_data.H_video2field = self.H_video2field
+
+
+    def save_results(self, count: int = 0, output_dir: str = "results"):
+        output_dir = Path(output_dir)
+        if self.H_video2field is not None:
+            out_img_path = output_dir / f"annot_frame_{count}.png"
+            out_h_path   = output_dir / f"annot_frame_{count}_H.npy"
+
+            cv2.imwrite(str(out_img_path), self.image)
+            np.save(str(out_h_path), self.H_video2field)
+            self.logger.info(f"✅ Wrote annotated frame + homography to:\n  {out_img_path}\n  {out_h_path}")
 
 
     def _generate_projection(self, visualizer):
@@ -160,7 +173,7 @@ class HomographyAnnotator(Process):
         projects using homography, and draw both set of points."""
         
         if self.H_video2field is None:
-            print("Cannot visualize projection: Homography is None")
+            self.logger.info("Cannot visualize projection: Homography is None")
             return
         
         img_h, img_w = self.image.shape[:2]
@@ -169,7 +182,7 @@ class HomographyAnnotator(Process):
 
         sampled_video_pts = np.random.normal(loc=mean, scale=std_dev, size=(6,2)).astype(np.float32)
 
-        # print(f"sampled_video_pts: {sampled_video_pts}")
+        # self.logger.info(f"sampled_video_pts: {sampled_video_pts}")
         field_projected_pts = cv2.perspectiveTransform(
             sampled_video_pts.reshape(-1, 1, 2),
             self.H_video2field,
@@ -199,9 +212,42 @@ class HomographyAnnotator(Process):
 
 
 if __name__ == "__main__":
-    frame_path = "reports/screenshot_2025-03-18.png"
-    annotator = HomographyAnnotator(frame_path)
-    annotator.run()
+    import random
+    frames_dir = Path("data/frames")
+    output_dir = "data/annotated_homographies"
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    if annotator.H is not None:
-        annotator.save_homography("homography_matrix.npy")
+    if not any(frames_dir.iterdir()):
+        import subprocess
+        print(f"Frames folder is empty. Running frames extraction script...")
+        subprocess.run(["python3", "-m", "src.model.perspect.get_frames"], check=True)
+
+    else:
+        print("Frames folder is not empty. Proceeding with annotation.")
+
+    match_folders = sorted([f for f in frames_dir.iterdir() if f.is_dir()])
+    
+    MATCH = 0
+    frame_files = match_folders[MATCH].glob("*.jpg")
+
+    n = 20
+    random.seed(32)
+    
+    sampled_frames = random.sample(frame_files, min(n, len(frame_files)))
+
+    for idx, frame_path in enumerate(sampled_frames):
+        print(f"\n Processing frame: {frame_path}")
+
+        annotator = HomographyAnnotator(
+            image_path=str(frame_path),
+            shared_data=SharedAnnotations(),
+            output_dir=output_dir
+            )
+        
+        annotator.run()
+
+        print(f"Frame {frame_path.name} processed.")
+
+    print("All frames processed.")
+
+

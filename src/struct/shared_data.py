@@ -18,3 +18,7 @@ class SharedAnnotations:
     
     reference_field_pts:     List[int] = field(default_factory=list)
     reference_field_indices: List[int] = field(default_factory=list)
+
+    H_video2field : np.ndarray = np.eye(3)
+    H_field2video : np.ndarray = np.eye(3)
+    

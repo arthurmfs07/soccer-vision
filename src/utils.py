@@ -10,7 +10,7 @@ def get_data_path() -> Path:
     return load_abs_path() / "data"
 
 def get_csv_path() -> Path:
-    return get_data_path() / "00--raw" / "df_on_360.csv"
+    return get_data_path() / "00--raw" / "df_padronizado.csv"
 
 def get_actual_yolo() -> Path:
     return get_data_path() / "10--models" / "yolov8_finetuned.pt"

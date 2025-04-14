@@ -1,25 +1,17 @@
-
-# YOLO:
-# Observation -> detection
-
-# CNN:
-# Observation -> Homography entries
-
-# CNN Loss:
-# detection @ homography vs real frame position
-
+import cv2
 import torch
 from torch.nn import functional as F
 from pathlib import Path
-from dataclasses import dataclass, field
-from typing import List, Any
+from dataclasses import dataclass
+from typing import List, Optional, Tuple
+from scipy.optimize import linear_sum_assignment
 
 from src.logger import setup_logger
 from src.model.detect.objdetect import ObjectDetector
 from src.model.perspect.cnn import CNN
 from src.struct.detection import Detection
 from src.utils import get_actual_yolo, get_csv_path, get_data_path
-from src.model.perspect.batch import Batch, BatchData
+from src.model.perspect.batch import Batch
 from src.visual.field import PitchConfig
 
 @dataclass
@@ -27,10 +19,8 @@ class TrainConfig:
     save_path: Path = None # field(default_factory=load_abs_path() / "perspect_cnn.pth")
     epochs: int = 50
     batch_size: int = 16
-    lr: float = 1e-3
+    lr: float = 6e-7
     device: str = "cuda"
-
-
 
 
 class PerspectTrainer:
@@ -60,17 +50,112 @@ class PerspectTrainer:
         self.cnn = CNN().to(self.device)
         self.optimizer = torch.optim.Adam(self.cnn.parameters(), lr=self.config.lr)
 
+        self.current_image_shape: Optional[Tuple[int]] = None
 
-    def loss_fn(self, predictions: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
-        """Compute MSE loss between homography-transformed detections and ground truth."""
-        mask = targets != -1
-        mask = mask.all(dim=2) # [B, N]
-        masked_preds = predictions[mask]
-        masked_targets = targets[mask]
-        if masked_preds.numel() == 0:
-            return torch.tensor(0.0, device=predictions.device)
-        return F.mse_loss(masked_preds, masked_targets)
+
+    def hungarian_loss(self, yhat: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
+        """
+        Hungarian-matched MSE loss.
+        yhat:   [B, N, 2] - predicted positions
+        labels: [B, N, 2] - ground truth positions
+        """
+        B, N, _ = yhat.shape
+        total_loss = 0.0
+        for b in range(B):
+            pred = yhat[b]
+            target = labels[b]
+
+            # Filter out padding (-1 markers)
+            pred = pred[(pred != -1).all(dim=1)]
+            target = target[(target != -1).all(dim=1)]
+
+            if pred.size(0) == 0 or target.size(0) == 0:
+                continue
+
+            cost = torch.cdist(pred.unsqueeze(0), target.unsqueeze(0)).squeeze(0) # [M, N]
+            row_ind, col_ind = linear_sum_assignment(cost.detach().cpu().numpy())
+
+            matched_pred = pred[row_ind]
+            matched_target = target[col_ind]
+
+            total_loss += F.mse_loss(matched_pred, matched_target)
+
+        return total_loss / B
+
+
+    def normalize_points(self, points: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        centroid = points.mean(dim=0)
+        diff = points - centroid
+        dists = torch.norm(diff, dim=1)
+        mean_dist = dists.mean()
+        scale = torch.sqrt(torch.tensor(2.0, device=points.device)) / (mean_dist + 1e-8)
+        T = torch.tensor([[scale, 0, -scale * centroid[0]],
+                          [0, scale, -scale * centroid[1]],
+                          [0, 0, 1]], dtype=torch.float32, device=points.device)
+        ones = torch.ones((points.shape[0], 1), device=points.device)
+        points_h = torch.cat([points, ones], dim=1)  # [4,3]
+        points_norm_h = (T @ points_h.t()).t()  # [4,3]
+        points_norm = points_norm_h[:, :2] / points_norm_h[:, 2:3]
+        return T, points_norm
+
+
+    def solve_homography(self, predicted_square: torch.Tensor) -> torch.Tensor:
+        """
+        predicted_square: [B, 8], CNN output
+        returns H : [B, 3, 3]
+        """
+        if self.current_image_shape is None:
+            raise ValueError("Current image shape not set. Call this method after a forward pass.")
+        B, C, H_img, W_img = self.current_image_shape
+        s = H_img / 3.0
+        center_x = W_img / 2.0
+        center_y = 2 * H_img / 3.0
+        # Create the base square in video space (assume same for entire batch)
+        base_square = torch.tensor([
+            [center_x - s / 2.0, center_y - s / 2.0],  # top-left
+            [center_x + s / 2.0, center_y - s / 2.0],  # top-right
+            [center_x + s / 2.0, center_y + s / 2.0],  # bottom-right
+            [center_x - s / 2.0, center_y + s / 2.0]   # bottom-left
+        ], dtype=torch.float32, device=self.device)  # [4, 2]
+        base_square = base_square.unsqueeze(0).expand(B, -1, -1)  # [B, 4, 2]
         
+        dst = predicted_square.view(B, 4, 2)
+        
+        H_matrices = []
+        for b in range(B):
+            src = base_square[b]    # [4,2]
+            dst_b = dst[b]          # [4,2]
+            T_src, src_norm = self.normalize_points(src)
+            T_dst, dst_norm = self.normalize_points(dst_b)
+            A_rows = []
+            b_rows = []
+            for i in range(4):
+                x, y = src_norm[i]
+                x_dst, y_dst = dst_norm[i]
+                row1 = torch.tensor([x, y, 1, 0, 0, 0, -x * x_dst, -y * x_dst], 
+                                      dtype=torch.float32, device=self.device)
+                row2 = torch.tensor([0, 0, 0, x, y, 1, -x * y_dst, -y * y_dst],
+                                      dtype=torch.float32, device=self.device)
+                A_rows.append(row1)
+                A_rows.append(row2)
+                b_rows.append(x_dst)
+                b_rows.append(y_dst)
+            A = torch.stack(A_rows, dim=0)  # [8,8]
+            b_vec = torch.stack(b_rows, dim=0)  # [8]
+            
+            reg = 1e-4
+            I = torch.eye(A.size(-1), dtype=A.dtype, device=A.device)
+            A_reg = A + reg * I.expand_as(A)
+            h_norm = torch.linalg.solve(A_reg, b_vec)
+            H_norm = torch.zeros((3,3), dtype=torch.float32, device=self.device)
+            H_norm[0, :3] = h_norm[0:3]
+            H_norm[1, :3] = h_norm[3:6]
+            H_norm[2, :2] = h_norm[6:8]
+            H_norm[2,2] = 1.0
+            H_b = torch.linalg.inv(T_dst) @ H_norm @ T_src
+            H_matrices.append(H_b)
+        H_matrix = torch.stack(H_matrices, dim=0)  # [B, 3, 3]
+        return H_matrix
 
     def apply_homography(self, H: torch.Tensor, points: torch.Tensor) -> torch.Tensor:
         """
@@ -86,6 +171,7 @@ class PerspectTrainer:
         points_transformed = points_transformed[:, :, :2] / points_transformed[:, :, 2:]
         return points_transformed[:, :, :2] # [B, N, 2]
     
+
     def extract_detection_points(self, detections: List[Detection], max_points: int = 30) -> torch.Tensor:
         batch_points = []
         for det in detections:
@@ -111,7 +197,6 @@ class PerspectTrainer:
 
     def train_batches(self, epochs: int = -1):
         """
-        
         Train the CNN on the dataset using batches. for n epochs 
         (use config if epochs = -1)
 
@@ -135,18 +220,22 @@ class PerspectTrainer:
                 images = batch.image.to(self.device)
                 labels = batch.label.to(self.device)
 
+                self.current_image_shape = images.shape
+
                 detections = self.object_detect.detect(images)
                 detections_pts = self.extract_detection_points(detections, max_points=labels.shape[1])
                 
-                h_flat = self.cnn(images)
-                H = h_flat.view(-1, 3, 3)
+                predicted_square = self.cnn(images)
+                H = self.solve_homography(predicted_square)
 
                 yhat_norm = self.apply_homography(H, detections_pts)
                 labels_norm = self._field_norm(labels)
 
                 yhat_field_model = self._field_denorm(yhat_norm)
 
-                loss = self.loss_fn(yhat_norm, labels_norm)
+                # loss_main = self.hungarian_loss(yhat_norm, labels_norm)
+                loss = F.mse_loss(yhat_norm, labels_norm)
+
                 
                 self.optimizer.zero_grad()
                 loss.backward()
@@ -166,7 +255,7 @@ class PerspectTrainer:
                 self.logger.info(f"Model saved to {self.save_path}")
 
 
-    def train(self, epochs: int =1):
+    def train(self, epochs: int = 1):
         """
         Standard training method that uses the train_batches() generator
         but does not yield.
@@ -196,8 +285,8 @@ class PerspectTrainer:
                 detections = self.object_detect.detect(images)
                 detections_pts = self.extract_detection_points(detections, max_points=labels.shape[1])
 
-                h_flat = self.cnn(images)
-                H = h_flat.view(-1, 3, 3)
+                predicted_square = self.cnn(images)
+                H = self.solve_homography(predicted_square)
 
                 yhat = self.apply_homography(H, detections_pts)
 

@@ -21,7 +21,7 @@ class TrainerProcess(Process):
             trainer: PerspectTrainer,
             visualizer: Visualizer, 
             dispaly_scale: float = 0.5, 
-            shared_data: Optional[SharedAnnotations] = SharedAnnotations()
+            shared_data: Optional[SharedAnnotations] = SharedAnnotations(),
             ):
         self.trainer = trainer
         self.display_scale = dispaly_scale
