@@ -110,7 +110,7 @@ class HomographyAnnotator(Process):
     def is_done(self) -> bool:
         return self.phase == "done"
 
-    def run(self):
+    def run(self, idx: int = 0) -> None:
         """Runs the interactive visualizer with homography annotation logic."""
         if self.visualizer is None:
             self.visualizer = Visualizer(PitchConfig(), self.image, process=self)
@@ -144,7 +144,7 @@ class HomographyAnnotator(Process):
         if self.output_dir is not None:
             answer = input("Do you want to save this annotated frame? (Y/N): ").strip().lower()
             if answer == "y":
-                self.save_results(output_dir=self.output_dir)
+                self.save_results(count=idx, output_dir=self.output_dir)
                 self.logger.info("Annotated frame saved.")
             else:
                 self.logger.info("Annotated frame not saved.")
@@ -225,7 +225,7 @@ if __name__ == "__main__":
 
     match_folders = sorted([f for f in frames_dir.iterdir() if f.is_dir()])
     
-    MATCH = 0
+    MATCH = 4
     frame_files = list(match_folders[MATCH].glob("*.jpg"))
 
     n = 20
@@ -242,7 +242,7 @@ if __name__ == "__main__":
             output_dir=output_dir
             )
         
-        annotator.run()
+        annotator.run(idx)
 
         print(f"Frame {frame_path.name} processed.")
 

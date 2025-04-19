@@ -24,7 +24,6 @@ class CNNConfig:
     paddings:        List[int] = field(default_factory=lambda: [  1,   1,   1])
     use_batchnorm: bool        = True
     activation_fn: nn.Module   = nn.ReLU()
-    image_size: tuple          = (416, 416)
 
 
 class CNN(nn.Module):
@@ -55,20 +54,17 @@ class CNN(nn.Module):
             in_channels = out_channels
 
         self.conv_layers = nn.Sequential(*layers)
-        self.flatten = nn.Flatten()
-
-        dummy_input = torch.zeros(1, input_channels, *self.config.image_size)
-        with torch.no_grad():
-            dummy_output = self.conv_layers(dummy_input)
-        self._flattened_size = dummy_output.view(1, -1).shape[1]
-
-        self.fc = nn.Linear(self._flattened_size, 8)
+        self.adaptive_pool = nn.AdaptiveAvgPool2d((1, 1))
+        last_channels = hidden_channels[-1]
+        self.fc = nn.Linear(last_channels, 8)
         self._initialize_weights()
+
 
     def forward(self, X: torch.Tensor) -> torch.Tensor:
         X = self.conv_layers(X)
-        X = self.flatten(X)
-        X = self.fc(X)  # shape [B, 8] (-1, 1)
+        X = self.adaptive_pool(X)
+        X = X.view(X.size(0), -1)
+        X = self.fc(X)  # shape [B, 8]
         return X
     
     def _initialize_weights(self) -> None:

@@ -42275,3 +42275,948 @@
 [2025-04-11 13:10:47] INFO - [EPOCH 0] - Batch 108 Loss: 4.6780
 [2025-04-11 13:10:48] INFO - [EPOCH 0] - Batch 109 Loss: 6.5774
 [2025-04-11 13:10:49] INFO - [EPOCH 0] - Batch 110 Loss: 4.6892
+[2025-04-15 15:42:46] INFO - Epoch 1/10
+[2025-04-15 15:45:16] INFO - Epoch 1/10
+[2025-04-15 15:45:31] INFO - Epoch 1/10
+[2025-04-15 15:53:19] INFO - Epoch 1/10
+[2025-04-15 15:53:19] INFO - [Epoch 1 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:38] INFO - Epoch 1/10
+[2025-04-15 15:56:39] INFO - [Epoch 1 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:39] INFO - Epoch 2/10
+[2025-04-15 15:56:39] INFO - [Epoch 2 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:39] INFO - Epoch 3/10
+[2025-04-15 15:56:40] INFO - [Epoch 3 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 4/10
+[2025-04-15 15:56:40] INFO - [Epoch 4 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 5/10
+[2025-04-15 15:56:40] INFO - [Epoch 5 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 6/10
+[2025-04-15 15:56:40] INFO - [Epoch 6 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 7/10
+[2025-04-15 15:56:40] INFO - [Epoch 7 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 8/10
+[2025-04-15 15:56:40] INFO - [Epoch 8 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 9/10
+[2025-04-15 15:56:40] INFO - [Epoch 9 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 10/10
+[2025-04-15 15:56:40] INFO - [Epoch 10 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:40] INFO - Epoch 11/10
+[2025-04-15 15:56:41] INFO - [Epoch 11 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 12/10
+[2025-04-15 15:56:41] INFO - [Epoch 12 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 13/10
+[2025-04-15 15:56:41] INFO - [Epoch 13 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 14/10
+[2025-04-15 15:56:41] INFO - [Epoch 14 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 15/10
+[2025-04-15 15:56:41] INFO - [Epoch 15 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 16/10
+[2025-04-15 15:56:41] INFO - [Epoch 16 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 17/10
+[2025-04-15 15:56:41] INFO - [Epoch 17 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 18/10
+[2025-04-15 15:56:41] INFO - [Epoch 18 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:41] INFO - Epoch 19/10
+[2025-04-15 15:56:42] INFO - [Epoch 19 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 20/10
+[2025-04-15 15:56:42] INFO - [Epoch 20 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 21/10
+[2025-04-15 15:56:42] INFO - [Epoch 21 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 22/10
+[2025-04-15 15:56:42] INFO - [Epoch 22 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 23/10
+[2025-04-15 15:56:42] INFO - [Epoch 23 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 24/10
+[2025-04-15 15:56:42] INFO - [Epoch 24 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 25/10
+[2025-04-15 15:56:42] INFO - [Epoch 25 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 26/10
+[2025-04-15 15:56:42] INFO - [Epoch 26 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:42] INFO - Epoch 27/10
+[2025-04-15 15:56:43] INFO - [Epoch 27 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:43] INFO - Epoch 28/10
+[2025-04-15 15:56:43] INFO - [Epoch 28 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:56:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:56:43] INFO - Epoch 29/10
+[2025-04-15 15:57:19] INFO - Epoch 1/10
+[2025-04-15 15:57:19] INFO - [Epoch 1 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:19] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:19] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:19] INFO - Epoch 2/10
+[2025-04-15 15:57:19] INFO - [Epoch 2 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:19] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:19] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:19] INFO - Epoch 3/10
+[2025-04-15 15:57:20] INFO - [Epoch 3 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 4/10
+[2025-04-15 15:57:20] INFO - [Epoch 4 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 5/10
+[2025-04-15 15:57:20] INFO - [Epoch 5 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 6/10
+[2025-04-15 15:57:20] INFO - [Epoch 6 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 7/10
+[2025-04-15 15:57:20] INFO - [Epoch 7 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 8/10
+[2025-04-15 15:57:20] INFO - [Epoch 8 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 9/10
+[2025-04-15 15:57:20] INFO - [Epoch 9 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:20] INFO - Epoch 10/10
+[2025-04-15 15:57:21] INFO - [Epoch 10 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 11/10
+[2025-04-15 15:57:21] INFO - [Epoch 11 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 12/10
+[2025-04-15 15:57:21] INFO - [Epoch 12 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 13/10
+[2025-04-15 15:57:21] INFO - [Epoch 13 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 14/10
+[2025-04-15 15:57:21] INFO - [Epoch 14 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 15/10
+[2025-04-15 15:57:21] INFO - [Epoch 15 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 16/10
+[2025-04-15 15:57:21] INFO - [Epoch 16 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 17/10
+[2025-04-15 15:57:21] INFO - [Epoch 17 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:21] INFO - Epoch 18/10
+[2025-04-15 15:57:22] INFO - [Epoch 18 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 19/10
+[2025-04-15 15:57:22] INFO - [Epoch 19 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 20/10
+[2025-04-15 15:57:22] INFO - [Epoch 20 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 21/10
+[2025-04-15 15:57:22] INFO - [Epoch 21 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 22/10
+[2025-04-15 15:57:22] INFO - [Epoch 22 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 23/10
+[2025-04-15 15:57:22] INFO - [Epoch 23 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 24/10
+[2025-04-15 15:57:22] INFO - [Epoch 24 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 25/10
+[2025-04-15 15:57:22] INFO - [Epoch 25 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:22] INFO - Epoch 26/10
+[2025-04-15 15:57:22] INFO - [Epoch 26 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 27/10
+[2025-04-15 15:57:23] INFO - [Epoch 27 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 28/10
+[2025-04-15 15:57:23] INFO - [Epoch 28 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 29/10
+[2025-04-15 15:57:23] INFO - [Epoch 29 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 30/10
+[2025-04-15 15:57:23] INFO - [Epoch 30 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 31/10
+[2025-04-15 15:57:23] INFO - [Epoch 31 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 32/10
+[2025-04-15 15:57:23] INFO - [Epoch 32 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 33/10
+[2025-04-15 15:57:23] INFO - [Epoch 33 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 34/10
+[2025-04-15 15:57:23] INFO - [Epoch 34 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:23] INFO - Epoch 35/10
+[2025-04-15 15:57:24] INFO - [Epoch 35 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 36/10
+[2025-04-15 15:57:24] INFO - [Epoch 36 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 37/10
+[2025-04-15 15:57:24] INFO - [Epoch 37 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 38/10
+[2025-04-15 15:57:24] INFO - [Epoch 38 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 39/10
+[2025-04-15 15:57:24] INFO - [Epoch 39 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 40/10
+[2025-04-15 15:57:24] INFO - [Epoch 40 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 41/10
+[2025-04-15 15:57:24] INFO - [Epoch 41 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:24] INFO - Epoch 42/10
+[2025-04-15 15:57:24] INFO - [Epoch 42 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Epoch 43/10
+[2025-04-15 15:57:25] INFO - [Epoch 43 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Epoch 44/10
+[2025-04-15 15:57:25] INFO - [Epoch 44 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 15:57:25] INFO - Epoch 45/10
+[2025-04-15 16:08:19] INFO - Epoch 1/10
+[2025-04-15 16:08:19] INFO - [Epoch 1 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:38] INFO - Epoch 1/10
+[2025-04-15 16:08:39] INFO - [Epoch 1 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Epoch 2/10
+[2025-04-15 16:08:39] INFO - [Epoch 2 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Epoch 3/10
+[2025-04-15 16:08:39] INFO - [Epoch 3 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Epoch 4/10
+[2025-04-15 16:08:39] INFO - [Epoch 4 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Epoch 5/10
+[2025-04-15 16:08:39] INFO - [Epoch 5 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:39] INFO - Epoch 6/10
+[2025-04-15 16:08:39] INFO - [Epoch 6 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 7/10
+[2025-04-15 16:08:40] INFO - [Epoch 7 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 8/10
+[2025-04-15 16:08:40] INFO - [Epoch 8 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 9/10
+[2025-04-15 16:08:40] INFO - [Epoch 9 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 10/10
+[2025-04-15 16:08:40] INFO - [Epoch 10 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 11/10
+[2025-04-15 16:08:40] INFO - [Epoch 11 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 12/10
+[2025-04-15 16:08:40] INFO - [Epoch 12 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 13/10
+[2025-04-15 16:08:40] INFO - [Epoch 13 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 14/10
+[2025-04-15 16:08:40] INFO - [Epoch 14 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 15/10
+[2025-04-15 16:08:40] INFO - [Epoch 15 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:40] INFO - Epoch 16/10
+[2025-04-15 16:08:41] INFO - [Epoch 16 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 17/10
+[2025-04-15 16:08:41] INFO - [Epoch 17 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 18/10
+[2025-04-15 16:08:41] INFO - [Epoch 18 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 19/10
+[2025-04-15 16:08:41] INFO - [Epoch 19 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 20/10
+[2025-04-15 16:08:41] INFO - [Epoch 20 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 21/10
+[2025-04-15 16:08:41] INFO - [Epoch 21 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 22/10
+[2025-04-15 16:08:41] INFO - [Epoch 22 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 23/10
+[2025-04-15 16:08:41] INFO - [Epoch 23 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 24/10
+[2025-04-15 16:08:41] INFO - [Epoch 24 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:41] INFO - Epoch 25/10
+[2025-04-15 16:08:42] INFO - [Epoch 25 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 26/10
+[2025-04-15 16:08:42] INFO - [Epoch 26 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 27/10
+[2025-04-15 16:08:42] INFO - [Epoch 27 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 28/10
+[2025-04-15 16:08:42] INFO - [Epoch 28 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 29/10
+[2025-04-15 16:08:42] INFO - [Epoch 29 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 30/10
+[2025-04-15 16:08:42] INFO - [Epoch 30 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 31/10
+[2025-04-15 16:08:42] INFO - [Epoch 31 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 32/10
+[2025-04-15 16:08:42] INFO - [Epoch 32 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 33/10
+[2025-04-15 16:08:42] INFO - [Epoch 33 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:42] INFO - Epoch 34/10
+[2025-04-15 16:08:43] INFO - [Epoch 34 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 35/10
+[2025-04-15 16:08:43] INFO - [Epoch 35 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 36/10
+[2025-04-15 16:08:43] INFO - [Epoch 36 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 37/10
+[2025-04-15 16:08:43] INFO - [Epoch 37 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 38/10
+[2025-04-15 16:08:43] INFO - [Epoch 38 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 39/10
+[2025-04-15 16:08:43] INFO - [Epoch 39 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 40/10
+[2025-04-15 16:08:43] INFO - [Epoch 40 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 41/10
+[2025-04-15 16:08:43] INFO - [Epoch 41 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:43] INFO - Epoch 42/10
+[2025-04-15 16:08:43] INFO - [Epoch 42 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 43/10
+[2025-04-15 16:08:44] INFO - [Epoch 43 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 44/10
+[2025-04-15 16:08:44] INFO - [Epoch 44 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 45/10
+[2025-04-15 16:08:44] INFO - [Epoch 45 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 46/10
+[2025-04-15 16:08:44] INFO - [Epoch 46 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 47/10
+[2025-04-15 16:08:44] INFO - [Epoch 47 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 48/10
+[2025-04-15 16:08:44] INFO - [Epoch 48 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 49/10
+[2025-04-15 16:08:44] INFO - [Epoch 49 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 50/10
+[2025-04-15 16:08:44] INFO - [Epoch 50 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:44] INFO - Epoch 51/10
+[2025-04-15 16:08:45] INFO - [Epoch 51 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 52/10
+[2025-04-15 16:08:45] INFO - [Epoch 52 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 53/10
+[2025-04-15 16:08:45] INFO - [Epoch 53 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 54/10
+[2025-04-15 16:08:45] INFO - [Epoch 54 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 55/10
+[2025-04-15 16:08:45] INFO - [Epoch 55 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 56/10
+[2025-04-15 16:08:45] INFO - [Epoch 56 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 57/10
+[2025-04-15 16:08:45] INFO - [Epoch 57 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 58/10
+[2025-04-15 16:08:45] INFO - [Epoch 58 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:45] INFO - Epoch 59/10
+[2025-04-15 16:08:45] INFO - [Epoch 59 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 60/10
+[2025-04-15 16:08:46] INFO - [Epoch 60 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 61/10
+[2025-04-15 16:08:46] INFO - [Epoch 61 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 62/10
+[2025-04-15 16:08:46] INFO - [Epoch 62 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 63/10
+[2025-04-15 16:08:46] INFO - [Epoch 63 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 64/10
+[2025-04-15 16:08:46] INFO - [Epoch 64 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 65/10
+[2025-04-15 16:08:46] INFO - [Epoch 65 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 66/10
+[2025-04-15 16:08:46] INFO - [Epoch 66 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 67/10
+[2025-04-15 16:08:46] INFO - [Epoch 67 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:46] INFO - Epoch 68/10
+[2025-04-15 16:08:47] INFO - [Epoch 68 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 69/10
+[2025-04-15 16:08:47] INFO - [Epoch 69 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 70/10
+[2025-04-15 16:08:47] INFO - [Epoch 70 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 71/10
+[2025-04-15 16:08:47] INFO - [Epoch 71 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 72/10
+[2025-04-15 16:08:47] INFO - [Epoch 72 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 73/10
+[2025-04-15 16:08:47] INFO - [Epoch 73 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 74/10
+[2025-04-15 16:08:47] INFO - [Epoch 74 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 75/10
+[2025-04-15 16:08:47] INFO - [Epoch 75 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 76/10
+[2025-04-15 16:08:47] INFO - [Epoch 76 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:47] INFO - Epoch 77/10
+[2025-04-15 16:08:48] INFO - [Epoch 77 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 78/10
+[2025-04-15 16:08:48] INFO - [Epoch 78 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 79/10
+[2025-04-15 16:08:48] INFO - [Epoch 79 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 80/10
+[2025-04-15 16:08:48] INFO - [Epoch 80 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 81/10
+[2025-04-15 16:08:48] INFO - [Epoch 81 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 82/10
+[2025-04-15 16:08:48] INFO - [Epoch 82 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 83/10
+[2025-04-15 16:08:48] INFO - [Epoch 83 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 84/10
+[2025-04-15 16:08:48] INFO - [Epoch 84 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 85/10
+[2025-04-15 16:08:48] INFO - [Epoch 85 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:48] INFO - Epoch 86/10
+[2025-04-15 16:08:49] INFO - [Epoch 86 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 87/10
+[2025-04-15 16:08:49] INFO - [Epoch 87 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 88/10
+[2025-04-15 16:08:49] INFO - [Epoch 88 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 89/10
+[2025-04-15 16:08:49] INFO - [Epoch 89 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 90/10
+[2025-04-15 16:08:49] INFO - [Epoch 90 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 91/10
+[2025-04-15 16:08:49] INFO - [Epoch 91 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 92/10
+[2025-04-15 16:08:49] INFO - [Epoch 92 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 93/10
+[2025-04-15 16:08:49] INFO - [Epoch 93 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 94/10
+[2025-04-15 16:08:49] INFO - [Epoch 94 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:49] INFO - Epoch 95/10
+[2025-04-15 16:08:50] INFO - [Epoch 95 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 96/10
+[2025-04-15 16:08:50] INFO - [Epoch 96 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 97/10
+[2025-04-15 16:08:50] INFO - [Epoch 97 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 98/10
+[2025-04-15 16:08:50] INFO - [Epoch 98 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 99/10
+[2025-04-15 16:08:50] INFO - [Epoch 99 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 100/10
+[2025-04-15 16:08:50] INFO - [Epoch 100 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 101/10
+[2025-04-15 16:08:50] INFO - [Epoch 101 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 102/10
+[2025-04-15 16:08:50] INFO - [Epoch 102 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:50] INFO - Epoch 103/10
+[2025-04-15 16:08:50] INFO - [Epoch 103 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Epoch 104/10
+[2025-04-15 16:08:51] INFO - [Epoch 104 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Epoch 105/10
+[2025-04-15 16:08:51] INFO - [Epoch 105 Homography Batch 0] Loss: 37103837775214696988672.0000
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:08:51] INFO - Epoch 106/10
+[2025-04-15 16:11:26] INFO - Epoch 1/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 2/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 3/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 4/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 5/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 6/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 7/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:27] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:27] INFO - Epoch 8/10
+[2025-04-15 16:11:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 9/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 10/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 11/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 12/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 13/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 14/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 15/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 16/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 17/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:28] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:28] INFO - Epoch 18/10
+[2025-04-15 16:11:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 19/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 20/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 21/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 22/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 23/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 24/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 25/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 26/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 27/10
+[2025-04-15 16:11:29] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:29] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:29] INFO - Epoch 28/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 29/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 30/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 31/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 32/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 33/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 34/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 35/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 36/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 37/10
+[2025-04-15 16:11:30] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:30] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:30] INFO - Epoch 38/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 39/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 40/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 41/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 42/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 43/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 44/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 45/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 46/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 47/10
+[2025-04-15 16:11:31] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:31] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:31] INFO - Epoch 48/10
+[2025-04-15 16:11:32] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:32] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:32] INFO - Epoch 49/10
+[2025-04-15 16:11:32] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:32] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:32] INFO - Epoch 50/10
+[2025-04-15 16:11:32] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:32] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:32] INFO - Epoch 51/10
+[2025-04-15 16:11:32] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:11:32] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:11:32] INFO - Epoch 52/10
+[2025-04-15 16:11:32] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:11] INFO - Epoch 1/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 2/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 3/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 4/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 5/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 6/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 7/10
+[2025-04-15 16:12:12] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:12] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:12] INFO - Epoch 8/10
+[2025-04-15 16:12:13] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:13] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:13] INFO - Epoch 9/10
+[2025-04-15 16:12:13] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:13] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:12:13] INFO - Epoch 10/10
+[2025-04-15 16:12:13] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:12:13] INFO - Model saved to data/10--models/perspect_cnn.pth
+[2025-04-15 16:34:26] INFO - Epoch 1/10
+[2025-04-15 16:34:26] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 2/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 3/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 4/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 5/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 6/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 7/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 8/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 9/10
+[2025-04-15 16:34:27] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:34:27] INFO - Epoch 10/10
+[2025-04-15 16:34:28] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:37:25] INFO - Epoch 1/10
+[2025-04-15 16:37:26] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:03] INFO - Epoch 1/10
+[2025-04-15 16:39:03] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:03] INFO - Epoch 2/10
+[2025-04-15 16:39:03] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:03] INFO - Epoch 3/10
+[2025-04-15 16:39:03] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:03] INFO - Epoch 4/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 5/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 6/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 7/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 8/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 9/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000
+[2025-04-15 16:39:04] INFO - Epoch 10/10
+[2025-04-15 16:39:04] INFO - Homography Batch 0 Loss: 37103837775214696988672.0000

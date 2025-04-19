@@ -23,6 +23,8 @@ class Visualizer:
         self.video_visualizer = VideoVisualizer(frame, class_names)
         self.process = process
 
+        self.total_width: int = 0 # NOT WORKING
+
         self.window_name = "Unified Visualization"
 
         self._resize_frames()
@@ -40,10 +42,10 @@ class Visualizer:
     def generate_combined_view(self) -> np.ndarray:
         """Generates a combined visualization with the video on top and field below."""
 
+        self._resize_frames()
+
         self.video_visualizer.frame.update_currents()
         self.field_visualizer.frame.update_currents()
-
-        self._resize_frames()
 
         video_img = self.video_visualizer.frame.rendered
         field_img = self.field_visualizer.frame.rendered
@@ -178,11 +180,13 @@ class Visualizer:
     def _resize_frames(self):
         max_width = max(
             self.video_visualizer.frame.current_width, 
-            self.field_visualizer.frame.current_width
+            self.field_visualizer.frame.current_width,
+            self.total_width
             )
         
         self.video_visualizer.frame.resize_to_width(max_width)
         self.field_visualizer.frame.resize_to_width(max_width)
+
 
     def _create_H_matrices(self):
         self.video_visualizer.frame.update_currents()
