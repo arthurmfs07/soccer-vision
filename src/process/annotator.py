@@ -213,8 +213,10 @@ class HomographyAnnotator(Process):
 if __name__ == "__main__":
     import random
     frames_dir = Path("data/frames")
-    output_dir = "data/annotated_homographies"
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    output_dir = Path("data/annotated_homographies")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    last_count = len([img for img in output_dir.rglob("annot_frame_*.png")])
 
     if not any(frames_dir.iterdir()):
         import subprocess
@@ -228,13 +230,15 @@ if __name__ == "__main__":
     MATCH = 4
     frame_files = list(match_folders[MATCH].glob("*.jpg"))
 
-    n = 20
-    random.seed(32 * n)
+    n = 12
+    random.seed(last_count)
     
     sampled_frames = random.sample(frame_files, min(n, len(frame_files)))
 
     for idx, frame_path in enumerate(sampled_frames):
         print(f"\n Processing frame: {frame_path}")
+
+        idx = idx + last_count
 
         annotator = HomographyAnnotator(
             image_path=str(frame_path),
