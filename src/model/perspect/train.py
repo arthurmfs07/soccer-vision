@@ -100,6 +100,10 @@ class PerspectTrainer:
         self.csv_path = get_csv_path()
         self.yolo_path = get_actual_yolo()
 
+
+        self.tpl_w = PitchConfig().length
+        self.tpl_h = PitchConfig().width
+
         # Create the player positions dataset loader using the existing Batch class.
         self.batches = Batch(
             self.data_dir, self.csv_path, 
@@ -206,19 +210,23 @@ class PerspectTrainer:
         H[2, 2] = 1.0
         return H
 
-    def solve_homography(self, predicted_square: torch.Tensor) -> torch.Tensor:
+    def solve_homography(self, pred_norm: torch.Tensor) -> torch.Tensor:
         """
         Compute homography H for each element in the batch using the predicted square.
         predicted_square: [B, 8] from CNN output (reshaped to [B, 4, 2]).
         Returns H: [B, 3, 3].
         """
-        B = predicted_square.size(0)
-        dst = predicted_square.view(B, 4, 2)
+        B, _, H_img, W_img = self.current_image_shape
+        corners = pred_norm.view(B, 4, 2)
+        corners_px = corners.clone()
+        corners_px[..., 0] *= self.tpl_w
+        corners_px[..., 1] *= self.tpl_h
+        
         base_square = self._create_base_square((B, 3, 0, 0))  # Shape will be fixed for each batch element.
         # We ignore image dimensions here since base_square is computed directly from predicted square dimensions.
         H_list = []
         for b in range(B):
-            H_b = self._compute_homography_from_points(base_square[b], dst[b])
+            H_b = self._compute_homography_from_points(base_square[b], corners_px[b])
             H_list.append(H_b)
         return torch.stack(H_list, dim=0)
 
@@ -269,13 +277,18 @@ class PerspectTrainer:
         gt_H: [B, 3, 3] ground truth homographies.
         Returns loss, predicted_square and target_square.
         """
-        B = images.size(0)
+        B, C, H_img, W_img = images.shape
         base_square = self._create_base_square(images.shape)
-        target_square = self.apply_homography(gt_H, base_square)
-        pred = self.cnn(images)  # Output shape: [B, 8]
-        predicted_square = pred.view(B, 4, 2)
-        loss = F.mse_loss(predicted_square, target_square)
-        return loss, predicted_square, target_square
+        target_px   = self.apply_homography(gt_H, base_square)
+
+        target_norm = target_px.clone()
+        target_norm[..., 0] /= self.tpl_w
+        target_norm[..., 1] /= self.tpl_h
+
+        raw_pred = self.cnn(images)  # Output shape: [B, 8]
+        pred_norm = torch.sigmoid(raw_pred).view(B, 4, 2)
+        loss = F.mse_loss(pred_norm, target_norm)
+        return loss, pred_norm, target_norm
 
     def _train_on_player_positions(self, images: torch.Tensor, labels: torch.Tensor, detections: List[Detection]) -> Tuple[torch.Tensor, torch.Tensor]:
         """
@@ -312,9 +325,12 @@ class PerspectTrainer:
                     images = images.to(self.device)
                     gt_H = gt_H.to(self.device)
                     loss, pred_sq, target_sq = self._train_on_homography(images, gt_H)
+
                     self.optimizer.zero_grad()
                     loss.backward()
+                    torch.nn.utils.clip_grad_norm_(self.cnn.parameters(), max_norm=1.0)
                     self.optimizer.step()
+
                     self.logger.info(f"Homography Batch {batch_idx} Loss: {loss.item():.4f}")
                     yield (epoch, "homography", batch_idx, images.cpu(), pred_sq.cpu(), loss.item())
                     batch_idx += 1

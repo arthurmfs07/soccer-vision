@@ -4,6 +4,7 @@ from time import sleep
 import os
 from pathlib import Path
 
+from src.struct.transforms import TransformUtils
 from typing import List, Literal, Tuple, Optional
 from src.utils import get_data_path
 from src.visual.field import FieldVisualizer, PitchConfig
@@ -50,11 +51,19 @@ class HomographyAnnotator(Process):
         if image_path is not None:
             self.image = cv2.imread(image_path)
         
+        self.h_px : int = self.image.shape[0]
+        self.w_px : int = self.image.shape[1]
+
         self.field = FieldVisualizer()
-        self.field.frame.resize_to_width(self.image.shape[1])
+        self.field.frame.resize_to_width(self.w_px)
 
         self.shared_data = shared_data
         self.shared_data.reference_field_pts = self.field.get_template_pixel_points()
+
+        self.reference_field_meter = TransformUtils.px_to_metre(
+            self.shared_data.reference_field_pts, 
+            (self.h_px, self.w_px)
+        )
 
         self.n_points: int = 4
         self.phase: Literal["collect_video", "collect_template", "done"] = "collect_video"
@@ -79,7 +88,7 @@ class HomographyAnnotator(Process):
         indices = []
         for i in range(self.n_points):
             idx = int(input(f"Enter template index for image point {i+1}: "))
-            assert type(idx) == int and 0 <= idx < len(self.shared_data.reference_field_pts)
+            assert type(idx) == int and 0 <= idx < len(self.reference_field_meter)
             indices.append(idx)
         
         self.shared_data.reference_field_indices = indices
@@ -93,10 +102,17 @@ class HomographyAnnotator(Process):
             return False
 
         captured_pts = np.array(self.shared_data.captured_video_pts, dtype=np.float32)
-        reference_pts = self.shared_data.reference_field_pts[self.shared_data.reference_field_indices, :]
+        reference_pts = self.reference_field_meter[self.shared_data.reference_field_indices, :]
+        frame_shape = self.image.shape[:2]
 
-        self.H_video2field, _ = cv2.findHomography(captured_pts, reference_pts, cv2.RANSAC)
-        self.H_field2video = np.linalg.inv(self.H_video2field)
+        # video_px to field_metre
+        self.H_video2field, _ = cv2.findHomography(
+            captured_pts, reference_pts, cv2.RANSAC)
+        
+        
+        self.H_field2video = np.linalg.inv(
+            self.H_video2field + 1e-8 * np.eye(self.H_video2field.shape[0])
+            )
 
         if self.H_video2field is None:
             self.logger.info("❌ Homography computation failed.")
@@ -211,12 +227,21 @@ class HomographyAnnotator(Process):
 
 
 if __name__ == "__main__":
+    import re
     import random
+    import itertools
     frames_dir = Path("data/frames")
     output_dir = Path("data/annotated_homographies")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    last_count = len([img for img in output_dir.rglob("annot_frame_*.png")])
+    def next_annot_index() -> int:
+        used = {
+            int(m.group(1))
+            for f in Path(output_dir).glob("annot_frame_*.png")
+            if (m := re.match(r"annot_frame_(\d+)\.png$", f.name))
+        }
+        return next(i for i in itertools.count(1) if i not in used)
+
 
     if not any(frames_dir.iterdir()):
         import subprocess
@@ -231,14 +256,14 @@ if __name__ == "__main__":
     frame_files = list(match_folders[MATCH].glob("*.jpg"))
 
     n = 12
-    random.seed(last_count)
+    random.seed(next_annot_index())
     
     sampled_frames = random.sample(frame_files, min(n, len(frame_files)))
 
-    for idx, frame_path in enumerate(sampled_frames):
+    for frame_path in sampled_frames:
         print(f"\n Processing frame: {frame_path}")
 
-        idx = idx + last_count
+        idx = next_annot_index()
 
         annotator = HomographyAnnotator(
             image_path=str(frame_path),

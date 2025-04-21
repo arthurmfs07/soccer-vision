@@ -103,9 +103,9 @@ if __name__ == "__main__":
 
     config = TrainConfig(
         dataset_folder=Path("data/annotated_homographies"),
-        epochs=10,
+        epochs=100,
         batch_size=16,
-        lr=1e-4,
+        lr=1e-5,
         device="cuda",
         save_path=Path("data/10--models/perspect_cnn.pth"),
         train_on_homography=True,

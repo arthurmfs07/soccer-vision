@@ -1,9 +1,7 @@
 import torch
 from torch import nn
-from torch.nn import functional as F
 from dataclasses import dataclass, field
-
-from typing import List, Optional
+from typing import List
 
 @dataclass
 class CNNConfig:
@@ -45,27 +43,27 @@ class CNN(nn.Module):
         assert len(self.config.hidden_channels) == len(self.config.paddings),     "paddings must match hidden_channels in size"
 
         layers = []
-        in_channels = input_channels
-        for (out_channels, kernel_size, stride, padding) in zip(hidden_channels, kernel_sizes, strides, paddings):
-            layers.append(nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding))
+        in_ch = input_channels
+        for (out_ch,k,s,p) in zip(hidden_channels, kernel_sizes, strides, paddings):
+            layers.append(nn.Conv2d(in_ch, out_ch, k, s, p))
             if use_batchnorm:
-                layers.append(nn.BatchNorm2d(out_channels))
+                layers.append(nn.BatchNorm2d(out_ch))
             layers.append(activation_fn)
-            in_channels = out_channels
+            in_ch = out_ch
 
         self.conv_layers = nn.Sequential(*layers)
         self.adaptive_pool = nn.AdaptiveAvgPool2d((1, 1))
-        last_channels = hidden_channels[-1]
-        self.fc = nn.Linear(last_channels, 8)
-        self._initialize_weights()
+        self.fc = nn.Linear(in_ch, 8)
+        self._init_weights()
 
 
     def forward(self, X: torch.Tensor) -> torch.Tensor:
         X = self.conv_layers(X)
-        X = self.adaptive_pool(X)
-        X = X.view(X.size(0), -1)
-        X = self.fc(X)  # shape [B, 8]
-        return X
+        X = self.adaptive_pool(X).flatten(1)    # [B, C]
+        X = self.fc(X)                          # [B, 8]
+        X = torch.sigmoid(X)                    # normalize to [0..1]
+        return X.view(-1, 4, 2)             # [B, 4, 2] as (x_norm, y_norm)
+
     
     def _initialize_weights(self) -> None:
         for m in self.modules():
@@ -75,10 +73,8 @@ class CNN(nn.Module):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                nn.init.uniform_(self.fc.weight, a=-1e-3, b=1e-3)
-                nn.init.constant_(self.fc.bias, 0.0)
-        nn.init.zeros_(self.fc.weight)
-        nn.init.zeros_(self.fc.bias)
+                nn.init.uniform_(m.weight, a=-1e-3, b=1e-3)
+                nn.init.constant_(m.bias, 0.0)
 
 
 
