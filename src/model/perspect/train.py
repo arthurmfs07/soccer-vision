@@ -18,6 +18,7 @@ from src.struct.detection import Detection
 from src.utils import get_actual_yolo, get_csv_path, get_data_path
 from src.model.perspect.batch import Batch
 from src.visual.field import PitchConfig
+from src.struct.utils import create_base_square
 
 
 @dataclass
@@ -151,28 +152,7 @@ class PerspectTrainer:
             total_loss += F.mse_loss(matched_pred, matched_target)
         return total_loss / B
 
-    def _create_base_square(self, image_shape: Tuple[int, int, int, int], as_tensor: bool = True) -> torch.Tensor:
-        """
-        Compute the base square from image dimensions.
-        image_shape: [B, C, H, W]
-        Returns a tensor of shape [B, 4, 2].
-        """
-        B, C, H_img, W_img = image_shape
-        s = H_img / 3.0
-        center_x = W_img / 2.0
-        center_y = 2 * H_img / 3.0
-        base_square = [
-            [center_x - s / 2.0, center_y - s / 2.0],
-            [center_x + s / 2.0, center_y - s / 2.0],
-            [center_x + s / 2.0, center_y + s / 2.0],
-            [center_x - s / 2.0, center_y + s / 2.0]
-        ]
-        if as_tensor:
-            base_square = torch.tensor(
-                base_square, dtype=torch.float32, device=self.device
-                ).unsqueeze(0).expand(B, -1, -1)
-        
-        return base_square
+
 
     def _compute_homography_from_points(
         self, src: torch.Tensor, dst: torch.Tensor
@@ -222,7 +202,7 @@ class PerspectTrainer:
         corners_px[..., 0] *= self.tpl_w
         corners_px[..., 1] *= self.tpl_h
         
-        base_square = self._create_base_square((B, 3, 0, 0))  # Shape will be fixed for each batch element.
+        base_square = create_base_square((B, 3, 0, 0), as_tensor=True)  # Shape will be fixed for each batch element.
         # We ignore image dimensions here since base_square is computed directly from predicted square dimensions.
         H_list = []
         for b in range(B):
@@ -278,17 +258,19 @@ class PerspectTrainer:
         Returns loss, predicted_square and target_square.
         """
         B, C, H_img, W_img = images.shape
-        base_square = self._create_base_square(images.shape)
+        base_square = create_base_square(images.shape, as_tensor=True)
         target_px   = self.apply_homography(gt_H, base_square)
 
         target_norm = target_px.clone()
         target_norm[..., 0] /= self.tpl_w
         target_norm[..., 1] /= self.tpl_h
 
-        raw_pred = self.cnn(images)  # Output shape: [B, 8]
-        pred_norm = torch.sigmoid(raw_pred).view(B, 4, 2)
+        pred_norm = self.cnn(images)  # Output shape: [B, 8]
         loss = F.mse_loss(pred_norm, target_norm)
-        return loss, pred_norm, target_norm
+        pred_field = pred_norm.clone()
+        pred_field[..., 0] *= self.tpl_w
+        pred_field[..., 1] *= self.tpl_h
+        return loss, pred_field, target_norm
 
     def _train_on_player_positions(self, images: torch.Tensor, labels: torch.Tensor, detections: List[Detection]) -> Tuple[torch.Tensor, torch.Tensor]:
         """

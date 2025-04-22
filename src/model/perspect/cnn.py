@@ -54,7 +54,7 @@ class CNN(nn.Module):
         self.conv_layers = nn.Sequential(*layers)
         self.adaptive_pool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(in_ch, 8)
-        self._init_weights()
+        self._initialize_weights()
 
 
     def forward(self, X: torch.Tensor) -> torch.Tensor:

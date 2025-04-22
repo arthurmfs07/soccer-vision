@@ -1,16 +1,16 @@
 import cv2
 import numpy as np
 from time import sleep
-import os
 from pathlib import Path
+from typing import Literal, Optional
 
-from src.struct.transforms import TransformUtils
-from typing import List, Literal, Tuple, Optional
 from src.utils import get_data_path
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.process.process import Process
 from src.visual.visualizer import Visualizer
 from src.struct.shared_data import SharedAnnotations
+from src.struct.transform import TransformUtils
+from src.struct.utils import create_base_square
 from src.logger import setup_logger
 
 
@@ -56,13 +56,17 @@ class HomographyAnnotator(Process):
 
         self.field = FieldVisualizer()
         self.field.frame.resize_to_width(self.w_px)
+        self.field.frame.update_currents()
+
+        self.tpl_h_px = self.field.frame.current_height
+        self.tpl_w_px = self.field.frame.current_width
 
         self.shared_data = shared_data
         self.shared_data.reference_field_pts = self.field.get_template_pixel_points()
 
         self.reference_field_meter = TransformUtils.px_to_metre(
             self.shared_data.reference_field_pts, 
-            (self.h_px, self.w_px)
+            (self.tpl_h_px, self.tpl_w_px)
         )
 
         self.n_points: int = 4
@@ -83,6 +87,7 @@ class HomographyAnnotator(Process):
                 self.logger.info("\nAll 4 image points captured.")
                 self.phase = "collect_indices"
 
+
     def prompt_for_template_indices(self) -> bool:
         """Prompts the user to input template point indices for homography."""
         indices = []
@@ -95,6 +100,36 @@ class HomographyAnnotator(Process):
         self.logger.info("Template indices received. Now computing homography...")        
         return self.compute_homography()
 
+    def health_check(self, H:np.ndarray) -> bool:
+
+        # 1) normalize so H[2,2]==1
+        if abs(H[2,2]) < 1e-8:
+            self.logger.info("❌ health_check: H[2,2] is too small to normalize.")
+            return False
+        H = H / H[2,2]
+
+        # 2) determinant must be far from zero
+        det = float(np.linalg.det(H))
+        if abs(det) < 1e-6:
+            self.logger.info(f"❌ health_check: det(H) is too small: {det:.2e}")
+            return False
+        
+        # 3) poject four image corners into field-met coords
+        square = create_base_square((1, 3, self.h_px, self.w_px), as_tensor=False)
+        square = square.reshape(-1, 1, 2) # (4,1,2)
+        proj = cv2.perspectiveTransform(square, H).reshape(-1,2)
+
+        # 4) how many lie inside [0,120]×[0,80]? require at least 3/4
+        L, W = PitchConfig().length, PitchConfig().width
+        inside = ((proj[:,0] >= -1e-3) & (proj[:,0] <= L+1e-3) &
+                  (proj[:,1] >= -1e-3) & (proj[:,1] <= W+1e-3))
+        good = int(inside.sum())
+        if good < 3:
+            self.logger.info(f"❌ health_check: only {good}/4 corners in field.")
+            return False
+
+        return True
+
 
     def compute_homography(self) -> bool:
         if len(self.shared_data.captured_video_pts) != 4 or len(self.shared_data.reference_field_indices) != 4:
@@ -103,24 +138,26 @@ class HomographyAnnotator(Process):
 
         captured_pts = np.array(self.shared_data.captured_video_pts, dtype=np.float32)
         reference_pts = self.reference_field_meter[self.shared_data.reference_field_indices, :]
-        frame_shape = self.image.shape[:2]
+
 
         # video_px to field_metre
-        self.H_video2field, _ = cv2.findHomography(
+        H, _ = cv2.findHomography(
             captured_pts, reference_pts, cv2.RANSAC)
-        
-        
-        self.H_field2video = np.linalg.inv(
-            self.H_video2field + 1e-8 * np.eye(self.H_video2field.shape[0])
-            )
-
-        if self.H_video2field is None:
+        if H is None:
             self.logger.info("❌ Homography computation failed.")
             return False
         
-        self.logger.info("Homography computed successfully:")
-        self.logger.info(f"\n{self.H_video2field}")
+        if not self.health_check(H):
+            self.logger.info("❌ Homography failed health check.")
+            return False
+        
+        self.H_video2field = H        
+        self.H_field2video = np.linalg.inv(
+            self.H_video2field + 1e-8 * np.eye(self.H_video2field.shape[0])
+            )
+        self.health_ok = True
         self.phase = "done"
+        self.logger.info("Homography computed and passed health_check.")
         return True
 
     def is_done(self) -> bool:
@@ -158,16 +195,16 @@ class HomographyAnnotator(Process):
             self._generate_projection(self.visualizer)
 
         if self.output_dir is not None:
-            answer = input("Do you want to save this annotated frame? (Y/N): ").strip().lower()
-            if answer == "y":
-                self.save_results(count=idx, output_dir=self.output_dir)
-                self.logger.info("Annotated frame saved.")
+            if not self.health_ok:
+                self.logger.info("Homography failed health check. Not saving.")
             else:
-                self.logger.info("Annotated frame not saved.")
+                answer = input("Do you want to save this annotated frame? (Y/N): ").strip().lower()
+                if answer == "y":
+                    self.save_results(count=idx, output_dir=self.output_dir)
+                    self.logger.info("Annotated frame saved.")
         else:
             self._generate_projection(self.visualizer)
 
-        cv2.destroyAllWindows()
         self.shared_data.captured_video_pts = []
         self.visualizer.video_visualizer.clear_annotations()
         self.shared_data.H_video2field = self.H_video2field
@@ -201,6 +238,11 @@ class HomographyAnnotator(Process):
             sampled_video_pts.reshape(-1, 1, 2),
             self.H_video2field,
         ).reshape(-1, 2)
+
+        field_projected_pts = TransformUtils.metre_to_px(
+            field_projected_pts, 
+            (self.tpl_h_px, self.tpl_w_px)
+        )
 
         self.shared_data.sampled_video_pts = sampled_video_pts.tolist()
         self.shared_data.projected_field_pts = [tuple(pt) for pt in field_projected_pts]

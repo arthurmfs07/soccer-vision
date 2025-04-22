@@ -50,7 +50,7 @@ class TrainerProcess(Process):
         for (epoch_idx, phase, batch_idx, images, predictions, loss_val) in train_iter:
             if phase == "homography":
                 # For homography training, predictions contains the predicted square (as 4 corner points).
-                self.shared_data.projected_field_pts = predictions[0].tolist()
+                self.shared_data.projected_detection_model_pts = predictions[0].tolist()
                 self.shared_data.sampled_video_pts = self.trainer._create_base_square(images.shape, as_tensor=False)
             elif phase == "player":
                 # For player position training, predictions contains the projected player positions.
@@ -103,9 +103,9 @@ if __name__ == "__main__":
 
     config = TrainConfig(
         dataset_folder=Path("data/annotated_homographies"),
-        epochs=100,
+        epochs=10000,
         batch_size=16,
-        lr=1e-5,
+        lr=5e-5,
         device="cuda",
         save_path=Path("data/10--models/perspect_cnn.pth"),
         train_on_homography=True,

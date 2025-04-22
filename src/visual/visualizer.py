@@ -116,7 +116,7 @@ class Visualizer:
         """
         Apply H (3, 3) matrix in (N, 2) points (x, y)
         """
-        pts_reshaped = points.reshape(-1, 1, 2). astype(np.float32)
+        pts_reshaped = points.reshape(-1, 1, 2).astype(np.float32)
         transformed = cv2.perspectiveTransform(pts_reshaped, H)
         return transformed.reshape(-1, 2)
 
@@ -175,6 +175,7 @@ class Visualizer:
         self.process.shared_data.sampled_video_pts.clear()
         self.process.shared_data.projected_field_pts.clear()
         self.process.shared_data.projected_detection_pts.clear()
+        self.process.shared_data.projected_detection_model_pts.clear()
 
 
     def _resize_frames(self):

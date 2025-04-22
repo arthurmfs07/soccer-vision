@@ -11,6 +11,7 @@ from src.visual.visualizer import Visualizer
 from src.config import RealTimeConfig
 from src.process.process import Process
 from src.struct.frame import Frame
+from src.struct.transform import TransformUtils
 from src.struct.shared_data import SharedAnnotations
 
 
@@ -72,7 +73,7 @@ class VisualizationProcess(Process):
                     for det_box in det.boxes:
                         foot_pt = self._get_foot_pt(det_box)
                         projected = self._project_foot(foot_pt)
-                        self.shared_data.projected_detection_pts.extend(projected)
+                        self.shared_data.projected_detection_model_pts.extend(projected)
 
             self.frame_counter += 1
 

@@ -11,9 +11,9 @@ class SharedAnnotations:
     video_detection_pts:     List[Tuple[int, int]] = field(default_factory=list)
 
     # points presented in field
-    projected_field_pts:     List[Tuple[int, int]] = field(default_factory=list)
-    ground_truth_pts:        List[Tuple[int, int]] = field(default_factory=list)
-    projected_detection_pts: List[Tuple[int, int]] = field(default_factory=list)
+    projected_field_pts:           List[Tuple[int, int]] = field(default_factory=list)
+    ground_truth_pts:              List[Tuple[int, int]] = field(default_factory=list)
+    projected_detection_pts:       List[Tuple[int, int]] = field(default_factory=list)
     projected_detection_model_pts: List[Tuple[int, int]] = field(default_factory=list)
     
     reference_field_pts:     List[int] = field(default_factory=list)
