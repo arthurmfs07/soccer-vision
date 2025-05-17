@@ -4378,3 +4378,1044 @@ All 4 image points captured.
 All 4 image points captured.
 [2025-04-22 13:58:46] INFO - Template indices received. Now computing homography...
 [2025-04-22 13:58:46] INFO - Homography computed and passed health_check.
+[2025-04-22 14:01:18] INFO - Captured image point 1: (405, 59)
+[2025-04-22 14:01:19] INFO - Captured image point 2: (476, 83)
+[2025-04-22 14:01:21] INFO - Captured image point 3: (311, 99)
+[2025-04-22 14:01:23] INFO - Captured image point 4: (505, 109)
+[2025-04-22 14:01:23] INFO - 
+All 4 image points captured.
+[2025-04-22 14:01:28] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:01:28] INFO - Homography computed and passed health_check.
+[2025-04-22 14:01:32] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_0.png
+  data/annotated_homographies/annot_frame_0_H.npy
+[2025-04-22 14:01:52] INFO - Captured image point 1: (382, 47)
+[2025-04-22 14:01:54] INFO - Captured image point 2: (465, 76)
+[2025-04-22 14:01:56] INFO - Captured image point 3: (275, 91)
+[2025-04-22 14:01:57] INFO - Captured image point 4: (483, 105)
+[2025-04-22 14:01:57] INFO - 
+All 4 image points captured.
+[2025-04-22 14:02:00] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:02:00] INFO - Homography computed and passed health_check.
+[2025-04-22 14:02:32] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_1.png
+  data/annotated_homographies/annot_frame_1_H.npy
+[2025-04-22 14:06:45] INFO - Captured image point 1: (313, 97)
+[2025-04-22 14:06:47] INFO - Captured image point 2: (382, 116)
+[2025-04-22 14:06:49] INFO - Captured image point 3: (218, 132)
+[2025-04-22 14:06:51] INFO - Captured image point 4: (396, 146)
+[2025-04-22 14:06:51] INFO - 
+All 4 image points captured.
+[2025-04-22 14:06:55] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:06:55] INFO - Homography computed and passed health_check.
+[2025-04-22 14:07:00] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_1.png
+  data/annotated_homographies/annot_frame_1_H.npy
+[2025-04-22 14:07:00] INFO - Annotated frame saved.
+[2025-04-22 14:07:03] INFO - Captured image point 1: (220, 86)
+[2025-04-22 14:07:05] INFO - Captured image point 2: (72, 134)
+[2025-04-22 14:07:06] INFO - Captured image point 3: (10, 265)
+[2025-04-22 14:07:08] INFO - Captured image point 4: (320, 121)
+[2025-04-22 14:07:08] INFO - 
+All 4 image points captured.
+[2025-04-22 14:07:17] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:07:17] INFO - ❌ health_check: only 1/4 corners in field.
+[2025-04-22 14:07:17] INFO - ❌ Homography failed health check.
+[2025-04-22 14:07:24] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:07:24] INFO - ❌ health_check: det(H) is too small: -1.59e-10
+[2025-04-22 14:07:24] INFO - ❌ Homography failed health check.
+[2025-04-22 14:10:09] INFO - Captured image point 1: (172, 85)
+[2025-04-22 14:10:11] INFO - Captured image point 2: (101, 196)
+[2025-04-22 14:10:12] INFO - Captured image point 3: (270, 121)
+[2025-04-22 14:10:15] INFO - Captured image point 4: (82, 137)
+[2025-04-22 14:10:15] INFO - 
+All 4 image points captured.
+[2025-04-22 14:10:25] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:10:25] INFO - Homography computed and passed health_check.
+[2025-04-22 14:10:29] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_2.png
+  data/annotated_homographies/annot_frame_2_H.npy
+[2025-04-22 14:10:29] INFO - Annotated frame saved.
+[2025-04-22 14:10:33] INFO - Captured image point 1: (52, 128)
+[2025-04-22 14:10:35] INFO - Captured image point 2: (548, 117)
+[2025-04-22 14:10:37] INFO - Captured image point 3: (539, 272)
+[2025-04-22 14:10:40] INFO - Captured image point 4: (374, 212)
+[2025-04-22 14:10:40] INFO - 
+All 4 image points captured.
+[2025-04-22 14:10:46] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:10:46] INFO - Homography computed and passed health_check.
+[2025-04-22 14:10:50] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_3.png
+  data/annotated_homographies/annot_frame_3_H.npy
+[2025-04-22 14:10:50] INFO - Annotated frame saved.
+[2025-04-22 14:12:32] INFO - Captured image point 1: (312, 98)
+[2025-04-22 14:12:33] INFO - Captured image point 2: (383, 118)
+[2025-04-22 14:12:35] INFO - Captured image point 3: (217, 131)
+[2025-04-22 14:12:37] INFO - Captured image point 4: (497, 257)
+[2025-04-22 14:12:37] INFO - 
+All 4 image points captured.
+[2025-04-22 14:12:40] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:12:40] INFO - Homography computed and passed health_check.
+[2025-04-22 14:12:44] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_1.png
+  data/annotated_homographies/annot_frame_1_H.npy
+[2025-04-22 14:12:44] INFO - Annotated frame saved.
+[2025-04-22 14:12:46] INFO - Captured image point 1: (222, 85)
+[2025-04-22 14:12:50] INFO - Captured image point 2: (144, 203)
+[2025-04-22 14:12:53] INFO - Captured image point 3: (129, 140)
+[2025-04-22 14:12:55] INFO - Captured image point 4: (323, 127)
+[2025-04-22 14:12:55] INFO - 
+All 4 image points captured.
+[2025-04-22 14:13:02] INFO - Template indices received. Now computing homography...
+[2025-04-22 14:13:02] INFO - Homography computed and passed health_check.
+[2025-04-22 14:13:05] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_2.png
+  data/annotated_homographies/annot_frame_2_H.npy
+[2025-04-22 14:13:05] INFO - Annotated frame saved.
+[2025-04-25 16:17:15] INFO - Captured image point 1: (458, 90)
+[2025-04-25 16:17:18] INFO - Captured image point 2: (528, 110)
+[2025-04-25 16:17:20] INFO - Captured image point 3: (357, 124)
+[2025-04-25 16:17:26] INFO - Captured image point 4: (521, 202)
+[2025-04-25 16:17:26] INFO - 
+All 4 image points captured.
+[2025-04-25 16:17:30] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:17:30] INFO - Homography computed and passed health_check.
+[2025-04-25 16:17:40] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_3.png
+  data/annotated_homographies/annot_frame_3_H.npy
+[2025-04-25 16:17:40] INFO - Annotated frame saved.
+[2025-04-25 16:17:46] INFO - Captured image point 1: (438, 133)
+[2025-04-25 16:17:48] INFO - Captured image point 2: (434, 348)
+[2025-04-25 16:17:52] INFO - Captured image point 3: (290, 259)
+[2025-04-25 16:17:53] INFO - Captured image point 4: (391, 249)
+[2025-04-25 16:17:53] INFO - 
+All 4 image points captured.
+[2025-04-25 16:17:56] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:17:56] INFO - ❌ health_check: det(H) is too small: -5.43e-10
+[2025-04-25 16:17:56] INFO - ❌ Homography failed health check.
+[2025-04-25 16:19:02] INFO - Captured image point 1: (144, 132)
+[2025-04-25 16:19:07] INFO - Captured image point 2: (22, 317)
+[2025-04-25 16:19:09] INFO - Captured image point 3: (304, 187)
+[2025-04-25 16:19:12] INFO - Captured image point 4: (24, 170)
+[2025-04-25 16:19:12] INFO - 
+All 4 image points captured.
+[2025-04-25 16:19:19] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:19:19] INFO - Homography computed and passed health_check.
+[2025-04-25 16:19:23] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_4.png
+  data/annotated_homographies/annot_frame_4_H.npy
+[2025-04-25 16:19:23] INFO - Annotated frame saved.
+[2025-04-25 16:19:25] INFO - Captured image point 1: (302, 72)
+[2025-04-25 16:19:28] INFO - Captured image point 2: (197, 108)
+[2025-04-25 16:19:30] INFO - Captured image point 3: (502, 244)
+[2025-04-25 16:19:33] INFO - Captured image point 4: (614, 167)
+[2025-04-25 16:19:33] INFO - 
+All 4 image points captured.
+[2025-04-25 16:19:38] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:19:38] INFO - ❌ health_check: only 0/4 corners in field.
+[2025-04-25 16:19:38] INFO - ❌ Homography failed health check.
+[2025-04-25 16:19:41] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:19:46] INFO - Captured image point 1: (196, 102)
+[2025-04-25 16:19:47] INFO - Captured image point 2: (90, 270)
+[2025-04-25 16:19:49] INFO - Captured image point 3: (346, 154)
+[2025-04-25 16:19:50] INFO - Captured image point 4: (67, 175)
+[2025-04-25 16:19:50] INFO - 
+All 4 image points captured.
+[2025-04-25 16:20:00] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:20:00] INFO - Homography computed and passed health_check.
+[2025-04-25 16:20:05] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_5.png
+  data/annotated_homographies/annot_frame_5_H.npy
+[2025-04-25 16:20:05] INFO - Annotated frame saved.
+[2025-04-25 16:20:08] INFO - Captured image point 1: (101, 93)
+[2025-04-25 16:20:10] INFO - Captured image point 2: (105, 215)
+[2025-04-25 16:20:13] INFO - Captured image point 3: (574, 76)
+[2025-04-25 16:20:16] INFO - Captured image point 4: (539, 134)
+[2025-04-25 16:20:16] INFO - 
+All 4 image points captured.
+[2025-04-25 16:20:26] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:20:26] INFO - Homography computed and passed health_check.
+[2025-04-25 16:20:30] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_6.png
+  data/annotated_homographies/annot_frame_6_H.npy
+[2025-04-25 16:20:30] INFO - Annotated frame saved.
+[2025-04-25 16:20:36] INFO - Captured image point 1: (372, 252)
+[2025-04-25 16:20:36] INFO - Captured image point 2: (441, 249)
+[2025-04-25 16:20:37] INFO - Captured image point 3: (477, 279)
+[2025-04-25 16:20:38] INFO - Captured image point 4: (501, 306)
+[2025-04-25 16:20:38] INFO - 
+All 4 image points captured.
+[2025-04-25 16:20:40] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:20:40] INFO - ❌ health_check: det(H) is too small: -2.69e-10
+[2025-04-25 16:20:40] INFO - ❌ Homography failed health check.
+[2025-04-25 16:20:42] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:20:46] INFO - Captured image point 1: (390, 82)
+[2025-04-25 16:20:47] INFO - Captured image point 2: (290, 115)
+[2025-04-25 16:20:49] INFO - Captured image point 3: (588, 257)
+[2025-04-25 16:20:51] INFO - Captured image point 4: (479, 136)
+[2025-04-25 16:20:51] INFO - 
+All 4 image points captured.
+[2025-04-25 16:21:00] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:21:00] INFO - Homography computed and passed health_check.
+[2025-04-25 16:21:02] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_7.png
+  data/annotated_homographies/annot_frame_7_H.npy
+[2025-04-25 16:21:02] INFO - Annotated frame saved.
+[2025-04-25 16:21:06] INFO - Captured image point 1: (411, 77)
+[2025-04-25 16:21:08] INFO - Captured image point 2: (557, 208)
+[2025-04-25 16:21:10] INFO - Captured image point 3: (338, 104)
+[2025-04-25 16:21:13] INFO - Captured image point 4: (588, 156)
+[2025-04-25 16:21:13] INFO - 
+All 4 image points captured.
+[2025-04-25 16:21:20] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:21:20] INFO - Homography computed and passed health_check.
+[2025-04-25 16:21:22] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_8.png
+  data/annotated_homographies/annot_frame_8_H.npy
+[2025-04-25 16:21:22] INFO - Annotated frame saved.
+[2025-04-25 16:21:26] INFO - Captured image point 1: (375, 202)
+[2025-04-25 16:21:26] INFO - Captured image point 2: (450, 214)
+[2025-04-25 16:21:27] INFO - Captured image point 3: (196, 207)
+[2025-04-25 16:21:27] INFO - Captured image point 4: (218, 266)
+[2025-04-25 16:21:27] INFO - 
+All 4 image points captured.
+[2025-04-25 16:21:30] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:21:30] INFO - ❌ health_check: det(H) is too small: 1.87e-12
+[2025-04-25 16:21:30] INFO - ❌ Homography failed health check.
+[2025-04-25 16:21:32] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:21:35] INFO - Captured image point 1: (607, 111)
+[2025-04-25 16:21:37] INFO - Captured image point 2: (457, 162)
+[2025-04-25 16:21:39] INFO - Captured image point 3: (553, 207)
+[2025-04-25 16:21:47] INFO - Captured image point 4: (21, 275)
+[2025-04-25 16:21:47] INFO - 
+All 4 image points captured.
+[2025-04-25 16:21:55] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:21:55] INFO - Homography computed and passed health_check.
+[2025-04-25 16:22:03] INFO - Captured image point 1: (425, 87)
+[2025-04-25 16:22:04] INFO - Captured image point 2: (419, 260)
+[2025-04-25 16:22:08] INFO - Captured image point 3: (233, 197)
+[2025-04-25 16:22:10] INFO - Captured image point 4: (623, 215)
+[2025-04-25 16:22:10] INFO - 
+All 4 image points captured.
+[2025-04-25 16:22:16] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:22:16] INFO - Homography computed and passed health_check.
+[2025-04-25 16:22:20] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_9.png
+  data/annotated_homographies/annot_frame_9_H.npy
+[2025-04-25 16:22:20] INFO - Annotated frame saved.
+[2025-04-25 16:22:23] INFO - Captured image point 1: (418, 44)
+[2025-04-25 16:22:24] INFO - Captured image point 2: (255, 173)
+[2025-04-25 16:22:27] INFO - Captured image point 3: (501, 80)
+[2025-04-25 16:22:28] INFO - Captured image point 4: (230, 122)
+[2025-04-25 16:22:28] INFO - 
+All 4 image points captured.
+[2025-04-25 16:22:38] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:22:38] INFO - Homography computed and passed health_check.
+[2025-04-25 16:22:43] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_10.png
+  data/annotated_homographies/annot_frame_10_H.npy
+[2025-04-25 16:22:43] INFO - Annotated frame saved.
+[2025-04-25 16:24:38] INFO - Captured image point 1: (246, 179)
+[2025-04-25 16:24:38] INFO - Captured image point 2: (394, 171)
+[2025-04-25 16:24:38] INFO - Captured image point 3: (434, 258)
+[2025-04-25 16:24:39] INFO - Captured image point 4: (295, 253)
+[2025-04-25 16:24:39] INFO - 
+All 4 image points captured.
+[2025-04-25 16:24:41] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:24:41] INFO - ❌ health_check: det(H) is too small: -1.95e-08
+[2025-04-25 16:24:41] INFO - ❌ Homography failed health check.
+[2025-04-25 16:24:43] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:24:45] INFO - Captured image point 1: (415, 144)
+[2025-04-25 16:24:45] INFO - Captured image point 2: (311, 160)
+[2025-04-25 16:24:46] INFO - Captured image point 3: (353, 246)
+[2025-04-25 16:24:46] INFO - Captured image point 4: (508, 232)
+[2025-04-25 16:24:46] INFO - 
+All 4 image points captured.
+[2025-04-25 16:24:49] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:24:49] INFO - ❌ health_check: det(H) is too small: -3.89e-11
+[2025-04-25 16:24:49] INFO - ❌ Homography failed health check.
+[2025-04-25 16:24:50] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:24:52] INFO - Captured image point 1: (240, 94)
+[2025-04-25 16:24:54] INFO - Captured image point 2: (159, 221)
+[2025-04-25 16:24:56] INFO - Captured image point 3: (360, 136)
+[2025-04-25 16:24:59] INFO - Captured image point 4: (76, 143)
+[2025-04-25 16:24:59] INFO - 
+All 4 image points captured.
+[2025-04-25 16:25:05] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:25:05] INFO - Homography computed and passed health_check.
+[2025-04-25 16:25:09] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_11.png
+  data/annotated_homographies/annot_frame_11_H.npy
+[2025-04-25 16:25:09] INFO - Annotated frame saved.
+[2025-04-25 16:25:11] INFO - Captured image point 1: (375, 122)
+[2025-04-25 16:25:13] INFO - Captured image point 2: (373, 289)
+[2025-04-25 16:25:17] INFO - Captured image point 3: (564, 236)
+[2025-04-25 16:25:19] INFO - Captured image point 4: (193, 229)
+[2025-04-25 16:25:19] INFO - 
+All 4 image points captured.
+[2025-04-25 16:25:25] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:25:25] INFO - Homography computed and passed health_check.
+[2025-04-25 16:25:28] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_12.png
+  data/annotated_homographies/annot_frame_12_H.npy
+[2025-04-25 16:25:28] INFO - Annotated frame saved.
+[2025-04-25 16:25:36] INFO - Captured image point 1: (419, 38)
+[2025-04-25 16:25:40] INFO - Captured image point 2: (581, 184)
+[2025-04-25 16:25:44] INFO - Captured image point 3: (621, 127)
+[2025-04-25 16:25:47] INFO - Captured image point 4: (336, 68)
+[2025-04-25 16:25:47] INFO - 
+All 4 image points captured.
+[2025-04-25 16:25:52] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:25:52] INFO - Homography computed and passed health_check.
+[2025-04-25 16:25:55] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_13.png
+  data/annotated_homographies/annot_frame_13_H.npy
+[2025-04-25 16:25:55] INFO - Annotated frame saved.
+[2025-04-25 16:25:59] INFO - Captured image point 1: (514, 108)
+[2025-04-25 16:26:00] INFO - Captured image point 2: (575, 211)
+[2025-04-25 16:26:05] INFO - Captured image point 3: (416, 139)
+[2025-04-25 16:26:08] INFO - Captured image point 4: (598, 155)
+[2025-04-25 16:26:08] INFO - 
+All 4 image points captured.
+[2025-04-25 16:26:15] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:26:15] INFO - Homography computed and passed health_check.
+[2025-04-25 16:26:18] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_14.png
+  data/annotated_homographies/annot_frame_14_H.npy
+[2025-04-25 16:26:18] INFO - Annotated frame saved.
+[2025-04-25 16:26:20] INFO - Captured image point 1: (309, 240)
+[2025-04-25 16:26:20] INFO - Captured image point 2: (428, 252)
+[2025-04-25 16:26:21] INFO - Captured image point 3: (326, 278)
+[2025-04-25 16:26:21] INFO - Captured image point 4: (497, 300)
+[2025-04-25 16:26:21] INFO - 
+All 4 image points captured.
+[2025-04-25 16:26:25] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:26:25] INFO - ❌ health_check: det(H) is too small: 3.24e-11
+[2025-04-25 16:26:25] INFO - ❌ Homography failed health check.
+[2025-04-25 16:26:27] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:26:29] INFO - Captured image point 1: (397, 88)
+[2025-04-25 16:26:31] INFO - Captured image point 2: (191, 257)
+[2025-04-25 16:26:34] INFO - Captured image point 3: (505, 128)
+[2025-04-25 16:26:37] INFO - Captured image point 4: (158, 189)
+[2025-04-25 16:26:37] INFO - 
+All 4 image points captured.
+[2025-04-25 16:26:42] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:26:42] INFO - Homography computed and passed health_check.
+[2025-04-25 16:26:45] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_15.png
+  data/annotated_homographies/annot_frame_15_H.npy
+[2025-04-25 16:26:45] INFO - Annotated frame saved.
+[2025-04-25 16:26:48] INFO - Captured image point 1: (490, 96)
+[2025-04-25 16:26:50] INFO - Captured image point 2: (244, 297)
+[2025-04-25 16:26:52] INFO - Captured image point 3: (618, 146)
+[2025-04-25 16:26:55] INFO - Captured image point 4: (208, 215)
+[2025-04-25 16:26:55] INFO - 
+All 4 image points captured.
+[2025-04-25 16:26:59] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:26:59] INFO - Homography computed and passed health_check.
+[2025-04-25 16:27:01] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_16.png
+  data/annotated_homographies/annot_frame_16_H.npy
+[2025-04-25 16:27:01] INFO - Annotated frame saved.
+[2025-04-25 16:27:09] INFO - Captured image point 1: (353, 61)
+[2025-04-25 16:27:12] INFO - Captured image point 2: (349, 168)
+[2025-04-25 16:27:15] INFO - Captured image point 3: (237, 131)
+[2025-04-25 16:27:17] INFO - Captured image point 4: (467, 135)
+[2025-04-25 16:27:17] INFO - 
+All 4 image points captured.
+[2025-04-25 16:27:23] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:27:23] INFO - Homography computed and passed health_check.
+[2025-04-25 16:27:25] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_17.png
+  data/annotated_homographies/annot_frame_17_H.npy
+[2025-04-25 16:27:25] INFO - Annotated frame saved.
+[2025-04-25 16:27:28] INFO - Captured image point 1: (368, 89)
+[2025-04-25 16:27:29] INFO - Captured image point 2: (89, 319)
+[2025-04-25 16:27:31] INFO - Captured image point 3: (508, 141)
+[2025-04-25 16:27:33] INFO - Captured image point 4: (38, 225)
+[2025-04-25 16:27:33] INFO - 
+All 4 image points captured.
+[2025-04-25 16:27:42] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:27:42] INFO - ❌ health_check: only 2/4 corners in field.
+[2025-04-25 16:27:42] INFO - ❌ Homography failed health check.
+[2025-04-25 16:27:44] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:27:46] INFO - Captured image point 1: (351, 107)
+[2025-04-25 16:27:48] INFO - Captured image point 2: (591, 315)
+[2025-04-25 16:27:50] INFO - Captured image point 3: (229, 152)
+[2025-04-25 16:27:52] INFO - Captured image point 4: (458, 164)
+[2025-04-25 16:27:52] INFO - 
+All 4 image points captured.
+[2025-04-25 16:27:58] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:27:58] INFO - Homography computed and passed health_check.
+[2025-04-25 16:28:00] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_18.png
+  data/annotated_homographies/annot_frame_18_H.npy
+[2025-04-25 16:28:00] INFO - Annotated frame saved.
+[2025-04-25 16:28:48] INFO - Captured image point 1: (294, 57)
+[2025-04-25 16:28:49] INFO - Captured image point 2: (292, 167)
+[2025-04-25 16:28:53] INFO - Captured image point 3: (171, 133)
+[2025-04-25 16:28:55] INFO - Captured image point 4: (413, 132)
+[2025-04-25 16:28:55] INFO - 
+All 4 image points captured.
+[2025-04-25 16:29:00] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:29:00] INFO - Homography computed and passed health_check.
+[2025-04-25 16:29:02] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_19.png
+  data/annotated_homographies/annot_frame_19_H.npy
+[2025-04-25 16:29:02] INFO - Annotated frame saved.
+[2025-04-25 16:29:05] INFO - Captured image point 1: (566, 112)
+[2025-04-25 16:29:06] INFO - Captured image point 2: (558, 270)
+[2025-04-25 16:29:09] INFO - Captured image point 3: (385, 212)
+[2025-04-25 16:29:11] INFO - Captured image point 4: (69, 129)
+[2025-04-25 16:29:11] INFO - 
+All 4 image points captured.
+[2025-04-25 16:29:18] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:29:18] INFO - Homography computed and passed health_check.
+[2025-04-25 16:29:20] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_20.png
+  data/annotated_homographies/annot_frame_20_H.npy
+[2025-04-25 16:29:20] INFO - Annotated frame saved.
+[2025-04-25 16:29:23] INFO - Captured image point 1: (398, 82)
+[2025-04-25 16:29:24] INFO - Captured image point 2: (392, 185)
+[2025-04-25 16:29:26] INFO - Captured image point 3: (71, 95)
+[2025-04-25 16:29:29] INFO - Captured image point 4: (19, 117)
+[2025-04-25 16:29:29] INFO - 
+All 4 image points captured.
+[2025-04-25 16:29:35] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:29:35] INFO - Homography computed and passed health_check.
+[2025-04-25 16:29:38] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_21.png
+  data/annotated_homographies/annot_frame_21_H.npy
+[2025-04-25 16:29:38] INFO - Annotated frame saved.
+[2025-04-25 16:29:45] INFO - Captured image point 1: (108, 100)
+[2025-04-25 16:29:47] INFO - Captured image point 2: (114, 237)
+[2025-04-25 16:29:49] INFO - Captured image point 3: (551, 114)
+[2025-04-25 16:29:50] INFO - Captured image point 4: (614, 149)
+[2025-04-25 16:29:50] INFO - 
+All 4 image points captured.
+[2025-04-25 16:29:59] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:29:59] INFO - Homography computed and passed health_check.
+[2025-04-25 16:30:01] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_22.png
+  data/annotated_homographies/annot_frame_22_H.npy
+[2025-04-25 16:30:01] INFO - Annotated frame saved.
+[2025-04-25 16:30:06] INFO - Captured image point 1: (299, 72)
+[2025-04-25 16:30:08] INFO - Captured image point 2: (296, 199)
+[2025-04-25 16:30:12] INFO - Captured image point 3: (154, 163)
+[2025-04-25 16:30:13] INFO - Captured image point 4: (442, 165)
+[2025-04-25 16:30:13] INFO - 
+All 4 image points captured.
+[2025-04-25 16:30:19] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:30:19] INFO - Homography computed and passed health_check.
+[2025-04-25 16:30:21] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_23.png
+  data/annotated_homographies/annot_frame_23_H.npy
+[2025-04-25 16:30:21] INFO - Annotated frame saved.
+[2025-04-25 16:30:24] INFO - Captured image point 1: (185, 69)
+[2025-04-25 16:30:25] INFO - Captured image point 2: (86, 228)
+[2025-04-25 16:30:27] INFO - Captured image point 3: (326, 120)
+[2025-04-25 16:30:29] INFO - Captured image point 4: (60, 141)
+[2025-04-25 16:30:29] INFO - 
+All 4 image points captured.
+[2025-04-25 16:30:38] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:30:38] INFO - Homography computed and passed health_check.
+[2025-04-25 16:30:43] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_24.png
+  data/annotated_homographies/annot_frame_24_H.npy
+[2025-04-25 16:30:43] INFO - Annotated frame saved.
+[2025-04-25 16:30:46] INFO - Captured image point 1: (326, 53)
+[2025-04-25 16:30:47] INFO - Captured image point 2: (125, 222)
+[2025-04-25 16:30:49] INFO - Captured image point 3: (425, 91)
+[2025-04-25 16:30:51] INFO - Captured image point 4: (88, 155)
+[2025-04-25 16:30:51] INFO - 
+All 4 image points captured.
+[2025-04-25 16:30:59] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:30:59] INFO - ❌ health_check: only 1/4 corners in field.
+[2025-04-25 16:30:59] INFO - ❌ Homography failed health check.
+[2025-04-25 16:31:03] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:31:06] INFO - Captured image point 1: (363, 214)
+[2025-04-25 16:31:06] INFO - Captured image point 2: (431, 239)
+[2025-04-25 16:31:07] INFO - Captured image point 3: (518, 261)
+[2025-04-25 16:31:07] INFO - Captured image point 4: (613, 255)
+[2025-04-25 16:31:07] INFO - 
+All 4 image points captured.
+[2025-04-25 16:31:10] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:31:10] INFO - ❌ health_check: det(H) is too small: 2.59e-12
+[2025-04-25 16:31:10] INFO - ❌ Homography failed health check.
+[2025-04-25 16:31:11] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:31:13] INFO - Captured image point 1: (72, 81)
+[2025-04-25 16:31:15] INFO - Captured image point 2: (118, 162)
+[2025-04-25 16:31:16] INFO - Captured image point 3: (197, 122)
+[2025-04-25 16:31:23] INFO - Captured image point 4: (532, 225)
+[2025-04-25 16:31:23] INFO - 
+All 4 image points captured.
+[2025-04-25 16:31:30] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:31:30] INFO - Homography computed and passed health_check.
+[2025-04-25 16:31:40] INFO - Captured image point 1: (163, 88)
+[2025-04-25 16:31:41] INFO - Captured image point 2: (158, 226)
+[2025-04-25 16:31:45] INFO - Captured image point 3: (4, 184)
+[2025-04-25 16:31:46] INFO - Captured image point 4: (312, 178)
+[2025-04-25 16:31:46] INFO - 
+All 4 image points captured.
+[2025-04-25 16:31:55] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:31:55] INFO - Homography computed and passed health_check.
+[2025-04-25 16:31:57] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_25.png
+  data/annotated_homographies/annot_frame_25_H.npy
+[2025-04-25 16:31:57] INFO - Annotated frame saved.
+[2025-04-25 16:32:03] INFO - Captured image point 1: (335, 160)
+[2025-04-25 16:32:04] INFO - Captured image point 2: (391, 223)
+[2025-04-25 16:32:04] INFO - Captured image point 3: (301, 227)
+[2025-04-25 16:32:04] INFO - Captured image point 4: (456, 177)
+[2025-04-25 16:32:04] INFO - 
+All 4 image points captured.
+[2025-04-25 16:32:07] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:32:07] INFO - ❌ health_check: det(H) is too small: -1.25e-09
+[2025-04-25 16:32:07] INFO - ❌ Homography failed health check.
+[2025-04-25 16:32:08] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:32:11] INFO - Captured image point 1: (528, 101)
+[2025-04-25 16:32:12] INFO - Captured image point 2: (407, 140)
+[2025-04-25 16:32:13] INFO - Captured image point 3: (610, 237)
+[2025-04-25 16:32:18] INFO - Captured image point 4: (53, 242)
+[2025-04-25 16:32:18] INFO - 
+All 4 image points captured.
+[2025-04-25 16:32:25] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:32:25] INFO - Homography computed and passed health_check.
+[2025-04-25 16:32:36] INFO - Captured image point 1: (528, 85)
+[2025-04-25 16:32:38] INFO - Captured image point 2: (517, 215)
+[2025-04-25 16:32:40] INFO - Captured image point 3: (118, 99)
+[2025-04-25 16:32:43] INFO - Captured image point 4: (53, 125)
+[2025-04-25 16:32:43] INFO - 
+All 4 image points captured.
+[2025-04-25 16:32:49] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:32:49] INFO - Homography computed and passed health_check.
+[2025-04-25 16:32:52] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_26.png
+  data/annotated_homographies/annot_frame_26_H.npy
+[2025-04-25 16:32:52] INFO - Annotated frame saved.
+[2025-04-25 16:32:54] INFO - Captured image point 1: (221, 76)
+[2025-04-25 16:32:56] INFO - Captured image point 2: (220, 215)
+[2025-04-25 16:32:58] INFO - Captured image point 3: (63, 175)
+[2025-04-25 16:32:59] INFO - Captured image point 4: (371, 170)
+[2025-04-25 16:32:59] INFO - 
+All 4 image points captured.
+[2025-04-25 16:33:04] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:33:04] INFO - Homography computed and passed health_check.
+[2025-04-25 16:33:07] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_27.png
+  data/annotated_homographies/annot_frame_27_H.npy
+[2025-04-25 16:33:07] INFO - Annotated frame saved.
+[2025-04-25 16:33:10] INFO - Captured image point 1: (116, 85)
+[2025-04-25 16:33:12] INFO - Captured image point 2: (21, 236)
+[2025-04-25 16:33:13] INFO - Captured image point 3: (255, 132)
+[2025-04-25 16:33:15] INFO - Captured image point 4: (19, 118)
+[2025-04-25 16:33:15] INFO - 
+All 4 image points captured.
+[2025-04-25 16:33:23] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:33:23] INFO - Homography computed and passed health_check.
+[2025-04-25 16:33:27] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_28.png
+  data/annotated_homographies/annot_frame_28_H.npy
+[2025-04-25 16:33:27] INFO - Annotated frame saved.
+[2025-04-25 16:33:30] INFO - Captured image point 1: (296, 115)
+[2025-04-25 16:33:31] INFO - Captured image point 2: (293, 270)
+[2025-04-25 16:33:33] INFO - Captured image point 3: (119, 221)
+[2025-04-25 16:33:34] INFO - Captured image point 4: (464, 219)
+[2025-04-25 16:33:34] INFO - 
+All 4 image points captured.
+[2025-04-25 16:33:39] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:33:39] INFO - Homography computed and passed health_check.
+[2025-04-25 16:33:44] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_29.png
+  data/annotated_homographies/annot_frame_29_H.npy
+[2025-04-25 16:33:44] INFO - Annotated frame saved.
+[2025-04-25 16:33:47] INFO - Captured image point 1: (323, 177)
+[2025-04-25 16:33:47] INFO - Captured image point 2: (445, 224)
+[2025-04-25 16:33:48] INFO - Captured image point 3: (295, 248)
+[2025-04-25 16:33:48] INFO - Captured image point 4: (377, 300)
+[2025-04-25 16:33:48] INFO - 
+All 4 image points captured.
+[2025-04-25 16:33:51] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:33:51] INFO - ❌ health_check: det(H) is too small: 2.06e-11
+[2025-04-25 16:33:51] INFO - ❌ Homography failed health check.
+[2025-04-25 16:33:52] INFO - Homography failed health check. Not saving.
+[2025-04-25 16:33:55] INFO - Captured image point 1: (242, 84)
+[2025-04-25 16:33:57] INFO - Captured image point 2: (36, 256)
+[2025-04-25 16:33:58] INFO - Captured image point 3: (342, 119)
+[2025-04-25 16:33:59] INFO - Captured image point 4: (154, 135)
+[2025-04-25 16:33:59] INFO - 
+All 4 image points captured.
+[2025-04-25 16:34:08] INFO - Template indices received. Now computing homography...
+[2025-04-25 16:34:08] INFO - Homography computed and passed health_check.
+[2025-04-25 16:34:11] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_30.png
+  data/annotated_homographies/annot_frame_30_H.npy
+[2025-04-25 16:34:11] INFO - Annotated frame saved.
+[2025-04-27 15:07:51] INFO - Captured image point 1: (407, 59)
+[2025-04-27 15:07:53] INFO - Captured image point 2: (482, 82)
+[2025-04-27 15:07:54] INFO - Captured image point 3: (308, 95)
+[2025-04-27 15:07:56] INFO - Captured image point 4: (499, 112)
+[2025-04-27 15:07:56] INFO - 
+All 4 image points captured.
+[2025-04-27 15:08:33] INFO - Captured image point 1: (412, 57)
+[2025-04-27 15:08:36] INFO - Captured image point 2: (473, 79)
+[2025-04-27 15:08:37] INFO - Captured image point 3: (307, 96)
+[2025-04-27 15:08:38] INFO - Captured image point 4: (502, 111)
+[2025-04-27 15:08:38] INFO - 
+All 4 image points captured.
+[2025-04-27 15:08:44] INFO - Template indices received. Now computing homography...
+[2025-04-27 15:08:44] INFO - Homography computed and passed health_check.
+[2025-05-04 18:12:38] INFO - Captured image point 1: (464, 109)
+[2025-05-04 18:12:39] INFO - Captured image point 2: (455, 315)
+[2025-05-04 18:12:40] INFO - Captured image point 3: (312, 245)
+[2025-05-04 18:12:41] INFO - Captured image point 4: (462, 241)
+[2025-05-04 18:12:41] INFO - 
+All 4 image points captured.
+[2025-05-04 18:12:45] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:12:45] INFO - ❌ health_check: det(H) is too small: 2.51e-08
+[2025-05-04 18:12:45] INFO - ❌ Homography failed health check.
+[2025-05-04 18:12:50] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:12:54] INFO - Captured image point 1: (309, 101)
+[2025-05-04 18:12:56] INFO - Captured image point 2: (307, 233)
+[2025-05-04 18:13:00] INFO - Captured image point 3: (160, 191)
+[2025-05-04 18:13:02] INFO - Captured image point 4: (455, 190)
+[2025-05-04 18:13:02] INFO - 
+All 4 image points captured.
+[2025-05-04 18:13:08] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:13:08] INFO - Homography computed and passed health_check.
+[2025-05-04 18:13:14] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_30.png
+  data/annotated_homographies/annot_frame_30_H.npy
+[2025-05-04 18:13:14] INFO - Annotated frame saved.
+[2025-05-04 18:13:17] INFO - Captured image point 1: (365, 87)
+[2025-05-04 18:13:18] INFO - Captured image point 2: (361, 198)
+[2025-05-04 18:13:21] INFO - Captured image point 3: (237, 165)
+[2025-05-04 18:13:23] INFO - Captured image point 4: (489, 169)
+[2025-05-04 18:13:23] INFO - 
+All 4 image points captured.
+[2025-05-04 18:13:28] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:13:28] INFO - Homography computed and passed health_check.
+[2025-05-04 18:13:33] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_31.png
+  data/annotated_homographies/annot_frame_31_H.npy
+[2025-05-04 18:13:33] INFO - Annotated frame saved.
+[2025-05-04 18:13:36] INFO - Captured image point 1: (141, 72)
+[2025-05-04 18:13:38] INFO - Captured image point 2: (270, 213)
+[2025-05-04 18:13:40] INFO - Captured image point 3: (486, 168)
+[2025-05-04 18:13:44] INFO - Captured image point 4: (367, 133)
+[2025-05-04 18:13:44] INFO - 
+All 4 image points captured.
+[2025-05-04 18:13:53] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:13:53] INFO - ❌ health_check: det(H) is too small: 3.38e-15
+[2025-05-04 18:13:53] INFO - ❌ Homography failed health check.
+[2025-05-04 18:13:56] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:14:00] INFO - Captured image point 1: (353, 69)
+[2025-05-04 18:14:03] INFO - Captured image point 2: (350, 177)
+[2025-05-04 18:14:07] INFO - Captured image point 3: (236, 138)
+[2025-05-04 18:14:08] INFO - Captured image point 4: (470, 142)
+[2025-05-04 18:14:08] INFO - 
+All 4 image points captured.
+[2025-05-04 18:14:14] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:14:14] INFO - Homography computed and passed health_check.
+[2025-05-04 18:14:17] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_32.png
+  data/annotated_homographies/annot_frame_32_H.npy
+[2025-05-04 18:14:17] INFO - Annotated frame saved.
+[2025-05-04 18:14:20] INFO - Captured image point 1: (329, 47)
+[2025-05-04 18:14:22] INFO - Captured image point 2: (141, 205)
+[2025-05-04 18:14:24] INFO - Captured image point 3: (424, 84)
+[2025-05-04 18:14:27] INFO - Captured image point 4: (104, 144)
+[2025-05-04 18:14:27] INFO - 
+All 4 image points captured.
+[2025-05-04 18:14:36] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:14:36] INFO - Homography computed and passed health_check.
+[2025-05-04 18:14:40] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_33.png
+  data/annotated_homographies/annot_frame_33_H.npy
+[2025-05-04 18:14:40] INFO - Annotated frame saved.
+[2025-05-04 18:14:44] INFO - Captured image point 1: (440, 55)
+[2025-05-04 18:14:46] INFO - Captured image point 2: (132, 307)
+[2025-05-04 18:14:48] INFO - Captured image point 3: (599, 111)
+[2025-05-04 18:14:51] INFO - Captured image point 4: (77, 203)
+[2025-05-04 18:14:51] INFO - 
+All 4 image points captured.
+[2025-05-04 18:15:00] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:15:00] INFO - Homography computed and passed health_check.
+[2025-05-04 18:15:05] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_34.png
+  data/annotated_homographies/annot_frame_34_H.npy
+[2025-05-04 18:15:05] INFO - Annotated frame saved.
+[2025-05-04 18:15:08] INFO - Captured image point 1: (109, 109)
+[2025-05-04 18:15:13] INFO - Captured image point 2: (466, 120)
+[2025-05-04 18:15:16] INFO - Captured image point 3: (460, 211)
+[2025-05-04 18:15:18] INFO - Captured image point 4: (67, 182)
+[2025-05-04 18:15:18] INFO - 
+All 4 image points captured.
+[2025-05-04 18:15:32] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:15:32] INFO - Homography computed and passed health_check.
+[2025-05-04 18:15:37] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_35.png
+  data/annotated_homographies/annot_frame_35_H.npy
+[2025-05-04 18:15:37] INFO - Annotated frame saved.
+[2025-05-04 18:15:39] INFO - Captured image point 1: (606, 56)
+[2025-05-04 18:15:41] INFO - Captured image point 2: (510, 84)
+[2025-05-04 18:15:43] INFO - Captured image point 3: (120, 196)
+[2025-05-04 18:15:46] INFO - Captured image point 4: (115, 70)
+[2025-05-04 18:15:46] INFO - 
+All 4 image points captured.
+[2025-05-04 18:15:55] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:15:55] INFO - ❌ health_check: only 0/4 corners in field.
+[2025-05-04 18:15:55] INFO - ❌ Homography failed health check.
+[2025-05-04 18:16:09] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:16:14] INFO - Captured image point 1: (562, 64)
+[2025-05-04 18:16:17] INFO - Captured image point 2: (12, 79)
+[2025-05-04 18:16:19] INFO - Captured image point 3: (547, 236)
+[2025-05-04 18:16:22] INFO - Captured image point 4: (370, 172)
+[2025-05-04 18:16:22] INFO - 
+All 4 image points captured.
+[2025-05-04 18:16:32] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:16:32] INFO - Homography computed and passed health_check.
+[2025-05-04 18:16:35] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_36.png
+  data/annotated_homographies/annot_frame_36_H.npy
+[2025-05-04 18:16:35] INFO - Annotated frame saved.
+[2025-05-04 18:17:09] INFO - Captured image point 1: (315, 173)
+[2025-05-04 18:17:09] INFO - Captured image point 2: (438, 158)
+[2025-05-04 18:17:10] INFO - Captured image point 3: (446, 233)
+[2025-05-04 18:17:10] INFO - Captured image point 4: (554, 164)
+[2025-05-04 18:17:10] INFO - 
+All 4 image points captured.
+[2025-05-04 18:17:13] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:17:13] INFO - ❌ health_check: det(H) is too small: 7.12e-10
+[2025-05-04 18:17:13] INFO - ❌ Homography failed health check.
+[2025-05-04 18:17:15] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:17:18] INFO - Captured image point 1: (559, 92)
+[2025-05-04 18:17:21] INFO - Captured image point 2: (18, 73)
+[2025-05-04 18:17:23] INFO - Captured image point 3: (22, 243)
+[2025-05-04 18:17:31] INFO - Captured image point 4: (211, 180)
+[2025-05-04 18:17:31] INFO - 
+All 4 image points captured.
+[2025-05-04 18:17:39] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:17:39] INFO - Homography computed and passed health_check.
+[2025-05-04 18:17:46] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_37.png
+  data/annotated_homographies/annot_frame_37_H.npy
+[2025-05-04 18:17:46] INFO - Annotated frame saved.
+[2025-05-04 18:18:12] INFO - Captured image point 1: (480, 43)
+[2025-05-04 18:18:16] INFO - Captured image point 2: (555, 88)
+[2025-05-04 18:18:20] INFO - Captured image point 3: (394, 72)
+[2025-05-04 18:18:25] INFO - Captured image point 4: (143, 141)
+[2025-05-04 18:18:25] INFO - 
+All 4 image points captured.
+[2025-05-04 18:18:34] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:18:34] INFO - Homography computed and passed health_check.
+[2025-05-04 18:18:41] INFO - Captured image point 1: (277, 77)
+[2025-05-04 18:18:43] INFO - Captured image point 2: (274, 230)
+[2025-05-04 18:18:47] INFO - Captured image point 3: (102, 185)
+[2025-05-04 18:18:49] INFO - Captured image point 4: (444, 177)
+[2025-05-04 18:18:49] INFO - 
+All 4 image points captured.
+[2025-05-04 18:18:55] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:18:55] INFO - Homography computed and passed health_check.
+[2025-05-04 18:18:57] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_38.png
+  data/annotated_homographies/annot_frame_38_H.npy
+[2025-05-04 18:18:57] INFO - Annotated frame saved.
+[2025-05-04 18:19:02] INFO - Captured image point 1: (452, 81)
+[2025-05-04 18:19:04] INFO - Captured image point 2: (443, 200)
+[2025-05-04 18:19:06] INFO - Captured image point 3: (77, 96)
+[2025-05-04 18:19:09] INFO - Captured image point 4: (18, 121)
+[2025-05-04 18:19:09] INFO - 
+All 4 image points captured.
+[2025-05-04 18:19:16] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:19:16] INFO - Homography computed and passed health_check.
+[2025-05-04 18:19:19] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_39.png
+  data/annotated_homographies/annot_frame_39_H.npy
+[2025-05-04 18:19:19] INFO - Annotated frame saved.
+[2025-05-04 18:19:26] INFO - Captured image point 1: (307, 96)
+[2025-05-04 18:19:30] INFO - Captured image point 2: (128, 244)
+[2025-05-04 18:19:32] INFO - Captured image point 3: (397, 129)
+[2025-05-04 18:19:34] INFO - Captured image point 4: (96, 184)
+[2025-05-04 18:19:34] INFO - 
+All 4 image points captured.
+[2025-05-04 18:19:40] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:19:40] INFO - Homography computed and passed health_check.
+[2025-05-04 18:19:44] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_40.png
+  data/annotated_homographies/annot_frame_40_H.npy
+[2025-05-04 18:19:44] INFO - Annotated frame saved.
+[2025-05-04 18:19:51] INFO - Captured image point 1: (528, 113)
+[2025-05-04 18:19:53] INFO - Captured image point 2: (117, 103)
+[2025-05-04 18:19:55] INFO - Captured image point 3: (119, 231)
+[2025-05-04 18:19:59] INFO - Captured image point 4: (589, 147)
+[2025-05-04 18:19:59] INFO - 
+All 4 image points captured.
+[2025-05-04 18:20:07] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:20:07] INFO - Homography computed and passed health_check.
+[2025-05-04 18:20:28] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_41.png
+  data/annotated_homographies/annot_frame_41_H.npy
+[2025-05-04 18:20:28] INFO - Annotated frame saved.
+[2025-05-04 18:24:12] INFO - Captured image point 1: (226, 55)
+[2025-05-04 18:24:13] INFO - Captured image point 2: (226, 197)
+[2025-05-04 18:24:16] INFO - Captured image point 3: (383, 148)
+[2025-05-04 18:24:19] INFO - Captured image point 4: (70, 156)
+[2025-05-04 18:24:19] INFO - 
+All 4 image points captured.
+[2025-05-04 18:24:24] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:24:24] INFO - Homography computed and passed health_check.
+[2025-05-04 18:24:27] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_42.png
+  data/annotated_homographies/annot_frame_42_H.npy
+[2025-05-04 18:24:27] INFO - Annotated frame saved.
+[2025-05-04 18:24:31] INFO - Captured image point 1: (301, 41)
+[2025-05-04 18:24:33] INFO - Captured image point 2: (300, 158)
+[2025-05-04 18:24:36] INFO - Captured image point 3: (175, 122)
+[2025-05-04 18:24:39] INFO - Captured image point 4: (429, 121)
+[2025-05-04 18:24:39] INFO - 
+All 4 image points captured.
+[2025-05-04 18:24:44] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:24:44] INFO - Homography computed and passed health_check.
+[2025-05-04 18:24:49] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_43.png
+  data/annotated_homographies/annot_frame_43_H.npy
+[2025-05-04 18:24:49] INFO - Annotated frame saved.
+[2025-05-04 18:24:51] INFO - Captured image point 1: (473, 124)
+[2025-05-04 18:24:53] INFO - Captured image point 2: (465, 308)
+[2025-05-04 18:25:11] INFO - Captured image point 3: (247, 190)
+[2025-05-04 18:25:11] INFO - Captured image point 4: (149, 253)
+[2025-05-04 18:25:11] INFO - 
+All 4 image points captured.
+[2025-05-04 18:25:15] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:25:15] INFO - ❌ health_check: det(H) is too small: 2.95e-11
+[2025-05-04 18:25:15] INFO - ❌ Homography failed health check.
+[2025-05-04 18:25:17] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:26:58] INFO - Captured image point 1: (403, 53)
+[2025-05-04 18:27:00] INFO - Captured image point 2: (575, 211)
+[2025-05-04 18:27:06] INFO - Captured image point 3: (481, 101)
+[2025-05-04 18:27:08] INFO - Captured image point 4: (310, 87)
+[2025-05-04 18:27:08] INFO - 
+All 4 image points captured.
+[2025-05-04 18:27:13] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:27:13] INFO - Homography computed and passed health_check.
+[2025-05-04 18:27:18] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_44.png
+  data/annotated_homographies/annot_frame_44_H.npy
+[2025-05-04 18:27:18] INFO - Annotated frame saved.
+[2025-05-04 18:27:21] INFO - Captured image point 1: (94, 74)
+[2025-05-04 18:27:22] INFO - Captured image point 2: (24, 180)
+[2025-05-04 18:27:24] INFO - Captured image point 3: (197, 108)
+[2025-05-04 18:27:26] INFO - Captured image point 4: (21, 96)
+[2025-05-04 18:27:26] INFO - 
+All 4 image points captured.
+[2025-05-04 18:27:34] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:27:34] INFO - Homography computed and passed health_check.
+[2025-05-04 18:27:49] INFO - Captured image point 1: (259, 113)
+[2025-05-04 18:27:51] INFO - Captured image point 2: (260, 272)
+[2025-05-04 18:27:54] INFO - Captured image point 3: (77, 229)
+[2025-05-04 18:27:56] INFO - Captured image point 4: (436, 221)
+[2025-05-04 18:27:56] INFO - 
+All 4 image points captured.
+[2025-05-04 18:28:00] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:28:00] INFO - Homography computed and passed health_check.
+[2025-05-04 18:28:03] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_45.png
+  data/annotated_homographies/annot_frame_45_H.npy
+[2025-05-04 18:28:03] INFO - Annotated frame saved.
+[2025-05-04 18:28:20] INFO - Captured image point 1: (375, 51)
+[2025-05-04 18:28:22] INFO - Captured image point 2: (371, 128)
+[2025-05-04 18:28:25] INFO - Captured image point 3: (232, 81)
+[2025-05-04 18:28:27] INFO - Captured image point 4: (519, 85)
+[2025-05-04 18:28:27] INFO - 
+All 4 image points captured.
+[2025-05-04 18:28:33] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:28:33] INFO - Homography computed and passed health_check.
+[2025-05-04 18:28:48] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_46.png
+  data/annotated_homographies/annot_frame_46_H.npy
+[2025-05-04 18:28:48] INFO - Annotated frame saved.
+[2025-05-04 18:28:59] INFO - Captured image point 1: (268, 64)
+[2025-05-04 18:29:01] INFO - Captured image point 2: (267, 179)
+[2025-05-04 18:29:03] INFO - Captured image point 3: (140, 145)
+[2025-05-04 18:29:06] INFO - Captured image point 4: (391, 140)
+[2025-05-04 18:29:06] INFO - 
+All 4 image points captured.
+[2025-05-04 18:29:11] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:29:11] INFO - Homography computed and passed health_check.
+[2025-05-04 18:29:23] INFO - Captured image point 1: (63, 63)
+[2025-05-04 18:29:28] INFO - Captured image point 2: (214, 112)
+[2025-05-04 18:29:30] INFO - Captured image point 3: (121, 157)
+[2025-05-04 18:29:54] INFO - Captured image point 4: (416, 177)
+[2025-05-04 18:29:54] INFO - 
+All 4 image points captured.
+[2025-05-04 18:29:56] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:29:56] INFO - ❌ health_check: det(H) is too small: -1.48e-07
+[2025-05-04 18:29:56] INFO - ❌ Homography failed health check.
+[2025-05-04 18:29:58] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:30:03] INFO - Captured image point 1: (405, 22)
+[2025-05-04 18:30:06] INFO - Captured image point 2: (251, 187)
+[2025-05-04 18:30:08] INFO - Captured image point 3: (614, 42)
+[2025-05-04 18:30:10] INFO - Captured image point 4: (213, 109)
+[2025-05-04 18:30:10] INFO - 
+All 4 image points captured.
+[2025-05-04 18:30:18] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:30:18] INFO - Homography computed and passed health_check.
+[2025-05-04 18:30:44] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_47.png
+  data/annotated_homographies/annot_frame_47_H.npy
+[2025-05-04 18:30:44] INFO - Annotated frame saved.
+[2025-05-04 18:30:52] INFO - Captured image point 1: (161, 37)
+[2025-05-04 18:30:54] INFO - Captured image point 2: (346, 190)
+[2025-05-04 18:30:56] INFO - Captured image point 3: (550, 150)
+[2025-05-04 18:30:58] INFO - Captured image point 4: (66, 73)
+[2025-05-04 18:30:58] INFO - 
+All 4 image points captured.
+[2025-05-04 18:31:06] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:31:06] INFO - Homography computed and passed health_check.
+[2025-05-04 18:31:10] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_48.png
+  data/annotated_homographies/annot_frame_48_H.npy
+[2025-05-04 18:31:10] INFO - Annotated frame saved.
+[2025-05-04 18:31:47] INFO - Captured image point 1: (432, 10)
+[2025-05-04 18:31:49] INFO - Captured image point 2: (623, 183)
+[2025-05-04 18:31:52] INFO - Captured image point 3: (333, 47)
+[2025-05-04 18:31:54] INFO - Captured image point 4: (520, 62)
+[2025-05-04 18:31:54] INFO - 
+All 4 image points captured.
+[2025-05-04 18:32:00] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:32:00] INFO - Homography computed and passed health_check.
+[2025-05-04 18:32:02] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_49.png
+  data/annotated_homographies/annot_frame_49_H.npy
+[2025-05-04 18:32:02] INFO - Annotated frame saved.
+[2025-05-04 18:32:07] INFO - Captured image point 1: (132, 176)
+[2025-05-04 18:32:09] INFO - Captured image point 2: (127, 51)
+[2025-05-04 18:32:12] INFO - Captured image point 3: (520, 66)
+[2025-05-04 18:32:16] INFO - Captured image point 4: (581, 95)
+[2025-05-04 18:32:16] INFO - 
+All 4 image points captured.
+[2025-05-04 18:32:25] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:32:25] INFO - Homography computed and passed health_check.
+[2025-05-04 18:32:29] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_50.png
+  data/annotated_homographies/annot_frame_50_H.npy
+[2025-05-04 18:32:29] INFO - Annotated frame saved.
+[2025-05-04 18:32:36] INFO - Captured image point 1: (397, 10)
+[2025-05-04 18:32:37] INFO - Captured image point 2: (582, 175)
+[2025-05-04 18:32:40] INFO - Captured image point 3: (300, 44)
+[2025-05-04 18:32:47] INFO - Captured image point 4: (627, 112)
+[2025-05-04 18:32:47] INFO - 
+All 4 image points captured.
+[2025-05-04 18:32:50] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:32:50] INFO - Homography computed and passed health_check.
+[2025-05-04 18:32:54] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_51.png
+  data/annotated_homographies/annot_frame_51_H.npy
+[2025-05-04 18:32:54] INFO - Annotated frame saved.
+[2025-05-04 18:32:59] INFO - Captured image point 1: (556, 12)
+[2025-05-04 18:33:01] INFO - Captured image point 2: (538, 136)
+[2025-05-04 18:33:03] INFO - Captured image point 3: (170, 23)
+[2025-05-04 18:33:05] INFO - Captured image point 4: (24, 90)
+[2025-05-04 18:33:05] INFO - 
+All 4 image points captured.
+[2025-05-04 18:33:11] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:33:11] INFO - Homography computed and passed health_check.
+[2025-05-04 18:33:15] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_52.png
+  data/annotated_homographies/annot_frame_52_H.npy
+[2025-05-04 18:33:15] INFO - Annotated frame saved.
+[2025-05-04 18:34:02] INFO - Captured image point 1: (476, 77)
+[2025-05-04 18:34:04] INFO - Captured image point 2: (467, 206)
+[2025-05-04 18:34:07] INFO - Captured image point 3: (62, 93)
+[2025-05-04 18:34:12] INFO - Captured image point 4: (333, 162)
+[2025-05-04 18:34:12] INFO - 
+All 4 image points captured.
+[2025-05-04 18:34:18] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:34:18] INFO - Homography computed and passed health_check.
+[2025-05-04 18:34:22] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_53.png
+  data/annotated_homographies/annot_frame_53_H.npy
+[2025-05-04 18:34:22] INFO - Annotated frame saved.
+[2025-05-04 18:34:27] INFO - Captured image point 1: (333, 48)
+[2025-05-04 18:34:31] INFO - Captured image point 2: (519, 212)
+[2025-05-04 18:34:33] INFO - Captured image point 3: (235, 82)
+[2025-05-04 18:34:35] INFO - Captured image point 4: (562, 146)
+[2025-05-04 18:34:35] INFO - 
+All 4 image points captured.
+[2025-05-04 18:34:39] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:34:39] INFO - Homography computed and passed health_check.
+[2025-05-04 18:34:42] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_54.png
+  data/annotated_homographies/annot_frame_54_H.npy
+[2025-05-04 18:34:42] INFO - Annotated frame saved.
+[2025-05-04 18:34:51] INFO - Captured image point 1: (234, 130)
+[2025-05-04 18:34:52] INFO - Captured image point 2: (344, 117)
+[2025-05-04 18:34:52] INFO - Captured image point 3: (395, 148)
+[2025-05-04 18:34:53] INFO - Captured image point 4: (282, 202)
+[2025-05-04 18:34:53] INFO - 
+All 4 image points captured.
+[2025-05-04 18:34:56] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:34:56] INFO - ❌ health_check: det(H) is too small: 5.90e-09
+[2025-05-04 18:34:56] INFO - ❌ Homography failed health check.
+[2025-05-04 18:34:57] INFO - Homography failed health check. Not saving.
+[2025-05-04 18:35:01] INFO - Captured image point 1: (48, 69)
+[2025-05-04 18:35:04] INFO - Captured image point 2: (88, 133)
+[2025-05-04 18:35:08] INFO - Captured image point 3: (620, 93)
+[2025-05-04 18:35:11] INFO - Captured image point 4: (607, 237)
+[2025-05-04 18:35:11] INFO - 
+All 4 image points captured.
+[2025-05-04 18:35:19] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:35:19] INFO - Homography computed and passed health_check.
+[2025-05-04 18:35:23] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_55.png
+  data/annotated_homographies/annot_frame_55_H.npy
+[2025-05-04 18:35:23] INFO - Annotated frame saved.
+[2025-05-04 18:35:26] INFO - Captured image point 1: (605, 41)
+[2025-05-04 18:35:28] INFO - Captured image point 2: (489, 78)
+[2025-05-04 18:35:31] INFO - Captured image point 3: (562, 113)
+[2025-05-04 18:35:33] INFO - Captured image point 4: (9, 173)
+[2025-05-04 18:35:33] INFO - 
+All 4 image points captured.
+[2025-05-04 18:35:39] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:35:39] INFO - Homography computed and passed health_check.
+[2025-05-04 18:35:43] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_56.png
+  data/annotated_homographies/annot_frame_56_H.npy
+[2025-05-04 18:35:43] INFO - Annotated frame saved.
+[2025-05-04 18:35:48] INFO - Captured image point 1: (305, 96)
+[2025-05-04 18:35:50] INFO - Captured image point 2: (129, 245)
+[2025-05-04 18:35:52] INFO - Captured image point 3: (398, 132)
+[2025-05-04 18:35:54] INFO - Captured image point 4: (96, 187)
+[2025-05-04 18:35:54] INFO - 
+All 4 image points captured.
+[2025-05-04 18:35:58] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:35:58] INFO - Homography computed and passed health_check.
+[2025-05-04 18:36:01] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_57.png
+  data/annotated_homographies/annot_frame_57_H.npy
+[2025-05-04 18:36:01] INFO - Annotated frame saved.
+[2025-05-04 18:36:05] INFO - Captured image point 1: (163, 82)
+[2025-05-04 18:36:07] INFO - Captured image point 2: (346, 234)
+[2025-05-04 18:36:08] INFO - Captured image point 3: (552, 191)
+[2025-05-04 18:36:12] INFO - Captured image point 4: (64, 117)
+[2025-05-04 18:36:12] INFO - 
+All 4 image points captured.
+[2025-05-04 18:36:15] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:36:15] INFO - Homography computed and passed health_check.
+[2025-05-04 18:36:18] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_58.png
+  data/annotated_homographies/annot_frame_58_H.npy
+[2025-05-04 18:36:18] INFO - Annotated frame saved.
+[2025-05-04 18:36:22] INFO - Captured image point 1: (366, 67)
+[2025-05-04 18:36:24] INFO - Captured image point 2: (363, 195)
+[2025-05-04 18:36:30] INFO - Captured image point 3: (225, 149)
+[2025-05-04 18:36:31] INFO - Captured image point 4: (505, 152)
+[2025-05-04 18:36:31] INFO - 
+All 4 image points captured.
+[2025-05-04 18:36:39] INFO - Template indices received. Now computing homography...
+[2025-05-04 18:36:39] INFO - Homography computed and passed health_check.
+[2025-05-04 18:36:43] INFO - ✅ Wrote annotated frame + homography to:
+  data/annotated_homographies/annot_frame_59.png
+  data/annotated_homographies/annot_frame_59_H.npy
+[2025-05-04 18:36:43] INFO - Annotated frame saved.

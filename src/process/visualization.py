@@ -40,7 +40,7 @@ class VisualizationProcess(Process):
         self.H_video2field = H_video2field
         self.shared_data = shared_data
 
-        self.output_dir = Path(output_dir)
+        self.output_dir = Path(output_dir) if output_dir else None
         if self.output_dir:
             self.output_dir.mkdir(parents=True, exist_ok=True)
             self.annot_count = 0
@@ -51,6 +51,7 @@ class VisualizationProcess(Process):
 
         while self.running:
 
+            self.H_video2field = self.shared_data.H_video2field
             start_time = time.time()
 
             required_size = int(self.max_buffer_size * (start*0.3 + 0.5))
@@ -59,7 +60,7 @@ class VisualizationProcess(Process):
                 time.sleep(2)
                 continue
             try:
-                video_frame = self.buffer.get(timeout=0.1) 
+                video_frame = self.buffer.get(timeout=0.1)
                 self.visualizer.update(video_frame)
 
             except queue.Empty:
@@ -67,13 +68,30 @@ class VisualizationProcess(Process):
                 time.sleep(0.1)
                 continue
 
-            if self.H_video2field is not None:
+            H = getattr(video_frame, "H", None)
+
+            if H is not None:
                 projected = []
+                self.H_video2field = H
                 for det in video_frame.detections:
                     for det_box in det.boxes:
                         foot_pt = self._get_foot_pt(det_box)
                         projected = self._project_foot(foot_pt)
                         self.shared_data.projected_detection_model_pts.extend(projected)
+
+
+            # # DEBUG !!! PROJECTING ONLY CANONICAL SQUARE
+            # from src.struct.transform import TransformUtils
+            # h_px, w_px = video_frame.image.shape[:2]
+            # base_sq_px = TransformUtils.get_base_square_px((h_px, w_px))
+            # sq_metres = cv2.perspectiveTransform(
+            #     base_sq_px.reshape(-1,1,2).astype(np.float32),
+            #     H
+            # ).reshape(-1,2)
+            # self.shared_data.projected_detection_model_pts = [
+            #     (float(x), float(y)) for x,y in sq_metres
+            # ]
+            # # END DEBUG
 
             self.frame_counter += 1
 
@@ -94,7 +112,7 @@ class VisualizationProcess(Process):
                 H = self.shared_data.H_video2field
                 if H is not None:
                     print("✅ Annotation completed. Updating H matrix.")
-                    self.H_video2field = H 
+                    self.H_video2field = H
                 else:
                     print("⚠️  Annotation did not produce a valid homography.")
                     

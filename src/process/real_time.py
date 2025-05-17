@@ -1,7 +1,9 @@
+import torch
 import queue
 import threading
 import numpy as np
 from pathlib import Path
+from typing import Optional
 
 from src.model.batch import DatasetLoader
 from src.model.detect.objdetect import ObjectDetector
@@ -19,14 +21,15 @@ class RealTimeInference:
 
     """Real-time object detection and visualization pipeline."""
 
-    def __init__(self):
+    def __init__(self, persp_model_path: Optional[str] = None):
         
         self.config = RealTimeConfig()
+        self.persp_model_path = persp_model_path
+        if self.persp_model_path:
+            self.config.annotation_gap = -1
         self.batch_size = self.config.batch_size
         self.max_buffer_size = self.config.max_buffer_size
         self.annotation_gap = self.config.annotation_gap
-        self.h_field2video = None
-        self.config = self.config
         self.setup()
 
 
@@ -51,8 +54,25 @@ class RealTimeInference:
 
         shared_data = SharedAnnotations()
 
-        # Initialize processes
-        inference_process = InferenceProcess(detector, dataloader, buffer, shared_data=shared_data)
+        cnn_model = None
+        if self.persp_model_path:
+            from src.model.perspect.cnn import CNN
+            cnn_model = CNN().to(self.config.device)
+            cnn_model.load_state_dict(
+                torch.load(self.persp_model_path, map_location=self.config.device)
+            )
+            cnn_model.eval()
+
+        inference_process = InferenceProcess(
+            detector, 
+            dataloader, 
+            buffer,
+            config=self.config,
+            shared_data=shared_data,
+            cnn_model=cnn_model
+            )
+
+
         visualizer = Visualizer(
             PitchConfig(), 
                 np.zeros(
@@ -62,8 +82,8 @@ class RealTimeInference:
                 process=inference_process
                 )
         visualization = VisualizationProcess(
-            buffer, visualizer, RealTimeConfig(), 
-            shared_data=shared_data, output_dir="data/annotated_homographies")
+            buffer, visualizer, self.config, 
+            shared_data=shared_data)
 
         # Start threads
         inference_thread = threading.Thread(target=inference_process.process_batches)
@@ -82,5 +102,7 @@ class RealTimeInference:
 
 if __name__ == "__main__":
 
-    pipeline = RealTimeInference()
+    pipeline = RealTimeInference(
+        persp_model_path="data/10--models/perspect_cnn.pth"
+        )
     pipeline.run()

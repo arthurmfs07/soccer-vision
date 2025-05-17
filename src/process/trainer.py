@@ -8,6 +8,7 @@ from src.model.detect.finetune import YOLOTrainer
 from src.model.perspect.train import PerspectTrainer
 from src.visual.visualizer import Visualizer
 from src.struct.shared_data import SharedAnnotations
+from src.struct.utils import create_base_square
 from src.visual.video import VideoFrame
 
 class TrainerProcess(Process):
@@ -44,14 +45,24 @@ class TrainerProcess(Process):
         Each batch yields a six-tuple: (epoch, phase, batch_idx, images, predictions, loss_val).
         The phase indicator ("homography" or "player") is used to update shared data for visualization.
         """
-        train_iter = self.trainer.train_batches(epochs=epochs)
         self.running = True
 
-        for (epoch_idx, phase, batch_idx, images, predictions, loss_val) in train_iter:
+        def on_batch(
+                phase: str, 
+                batch_idx: int, 
+                images: torch.Tensor, 
+                predictions: torch.Tensor, 
+                gt_pts: torch.Tensor,
+                loss_val: float
+            ):
+            if not self.running:
+                raise StopIteration
+            
             if phase == "homography":
                 # For homography training, predictions contains the predicted square (as 4 corner points).
                 self.shared_data.projected_detection_model_pts = predictions[0].tolist()
-                self.shared_data.sampled_video_pts = self.trainer._create_base_square(images.shape, as_tensor=False)
+                self.shared_data.ground_truth_pts = [tuple(pt.tolist()) for pt in gt_pts[0]]
+                self.shared_data.sampled_video_pts = create_base_square(images.shape, as_tensor=False).tolist()
             elif phase == "player":
                 # For player position training, predictions contains the projected player positions.
                 self.shared_data.projected_detection_pts = predictions[0].tolist()
@@ -65,12 +76,13 @@ class TrainerProcess(Process):
             )
             self.visualizer.video_visualizer.update(video_frame)
             self.visualizer.render()
+        try:
+            self.trainer.train(epochs=epochs, on_batch=on_batch)
+        except StopIteration:
+            self.logger.info("Training interrupted by visualizer stop.")
+        finally:
+            self.running = False
 
-            if not self.running:
-                break
-
-        self.running = False
-        print("Rendered training finished.")
 
     def prepare_image(self, img: torch.Tensor) -> np.ndarray:
         """
@@ -103,11 +115,12 @@ if __name__ == "__main__":
 
     config = TrainConfig(
         dataset_folder=Path("data/annotated_homographies"),
-        epochs=10000,
         batch_size=16,
-        lr=5e-5,
+        lr=1e-5,
+        patience=100,
+        warp_alpha=0.05,
         device="cuda",
-        save_path=Path("data/10--models/perspect_cnn.pth"),
+        save_path=Path("data/10--models/perspect_cnn2.pth"),
         train_on_homography=True,
         train_on_player_position=False  # Set to True if player position labels are available
     )
@@ -123,3 +136,4 @@ if __name__ == "__main__":
     )
     visualizer.process = trainer_process
     trainer_process.run_rendered_train()#epochs=1000)
+    

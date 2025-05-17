@@ -6,7 +6,6 @@ from src.logger import setup_logger
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.visual.video import VideoVisualizer
 from src.struct.frame import Frame
-from src.struct.shared_data import SharedAnnotations
 
 class Visualizer:
     """Manages visualization, integraetes video and field, and interacts with a process."""

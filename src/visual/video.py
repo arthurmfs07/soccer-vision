@@ -1,7 +1,7 @@
 import cv2
 import torch
 import numpy as np
-from typing import List, Dict, Any
+from typing import List, Dict, Optional, Any
 from dataclasses import dataclass
 from src.logger import setup_logger
 
@@ -15,6 +15,7 @@ class VideoFrame:
     timestamp: float
     image: np.ndarray
     detections: List[Dict[str, Any]]
+    H:          Optional[np.ndarray] = None
 
 
 class VideoVisualizer:

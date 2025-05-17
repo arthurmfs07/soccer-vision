@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 from typing import Tuple, List, Union
+
+from src.config import BaseConfig
 from src.struct.detection import Detection
 
 
@@ -15,7 +17,7 @@ def create_base_square(
     or numpy array of shape [4, 2]
     """
     B, C, H_img, W_img = image_shape
-    s = H_img / 3.0
+    s = H_img / 3.5
     center_x = W_img / 2.0
     center_y = 2 * H_img / 3.0
     base_square = [
@@ -26,11 +28,13 @@ def create_base_square(
     ]
     if as_tensor:
         base_tensor = torch.tensor(
-            base_square, dtype=torch.float32, device=self.device
+            base_square, dtype=torch.float32, device=BaseConfig().device
             ).unsqueeze(0).expand(B, -1, -1)
         return base_tensor # [B,4,2]
     
     return np.array(base_square, dtype=np.float32) # [4,2]
+
+
 
 
 def get_color(color_name: str) -> Tuple[int, int, int]:

@@ -14,7 +14,7 @@ class BaseConfig:
 @dataclass
 class RealTimeConfig(BaseConfig):
     """Real-time inference config"""
-    max_buffer_size: int = 100         # Visualization buffer size (in batches)
+    max_buffer_size: int = 200         # Visualization buffer size (in batches)
     skip_sec: int = 100*60             # Skip first 100 minutes of video
     target_fps: int = 10               # Target frames per second for visualization
     yolo_conf : float = 0.5            # Confidence threshold for YOLO

@@ -16,12 +16,12 @@ class CNNConfig:
 
     """
     input_channels: int = 3
-    hidden_channels: List[int] = field(default_factory=lambda: [ 32,  64,  96])
-    kernel_sizes:    List[int] = field(default_factory=lambda: [  4,   4,   4])
-    strides:         List[int] = field(default_factory=lambda: [  2,   2,   2])
-    paddings:        List[int] = field(default_factory=lambda: [  1,   1,   1])
+    hidden_channels: List[int] = field(default_factory=lambda: [ 64, 128, 256, 512])
+    kernel_sizes:    List[int] = field(default_factory=lambda: [  4,   4,   4,   4])
+    strides:         List[int] = field(default_factory=lambda: [  2,   2,   2,   2])
+    paddings:        List[int] = field(default_factory=lambda: [  1,   1,   1,   1])
+    activation_fn: nn.Module   = nn.LeakyReLU(negative_slope=0.01)
     use_batchnorm: bool        = True
-    activation_fn: nn.Module   = nn.ReLU()
 
 
 class CNN(nn.Module):
@@ -51,9 +51,16 @@ class CNN(nn.Module):
             layers.append(activation_fn)
             in_ch = out_ch
 
+        pool_shape = (4, 4)
+        flat_dim = in_ch * pool_shape[0] * pool_shape[1]
+
         self.conv_layers = nn.Sequential(*layers)
-        self.adaptive_pool = nn.AdaptiveAvgPool2d((1, 1))
-        self.fc = nn.Linear(in_ch, 8)
+        self.adaptive_pool = nn.AdaptiveAvgPool2d(pool_shape)
+        self.fc = nn.Sequential(
+            nn.Linear(flat_dim, 1024),
+            nn.LeakyReLU(0.01),
+            nn.Linear(1024, 8)
+        )
         self._initialize_weights()
 
 
@@ -65,6 +72,8 @@ class CNN(nn.Module):
         return X.view(-1, 4, 2)             # [B, 4, 2] as (x_norm, y_norm)
 
     
+
+
     def _initialize_weights(self) -> None:
         for m in self.modules():
             if isinstance(m, nn.Conv2d):

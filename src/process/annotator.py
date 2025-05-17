@@ -40,6 +40,7 @@ class HomographyAnnotator(Process):
             self.window_name = self.visualizer.window_name 
 
         self.image_path = image_path
+        self.health_ok: bool = False
 
         if image_path is None and image_np is None:
             raise ValueError(f"No input for image_path or image_np")
@@ -141,17 +142,18 @@ class HomographyAnnotator(Process):
 
 
         # video_px to field_metre
-        H, _ = cv2.findHomography(
+        self.H_video2field, _ = cv2.findHomography(
             captured_pts, reference_pts, cv2.RANSAC)
-        if H is None:
+        if self.H_video2field is None:
+            self.phase= "done"
             self.logger.info("❌ Homography computation failed.")
             return False
         
-        if not self.health_check(H):
+        if not self.health_check(self.H_video2field):
             self.logger.info("❌ Homography failed health check.")
+            self.phase= "done"
             return False
-        
-        self.H_video2field = H        
+             
         self.H_field2video = np.linalg.inv(
             self.H_video2field + 1e-8 * np.eye(self.H_video2field.shape[0])
             )
@@ -294,10 +296,10 @@ if __name__ == "__main__":
 
     match_folders = sorted([f for f in frames_dir.iterdir() if f.is_dir()])
     
-    MATCH = 4
+    MATCH = 2
     frame_files = list(match_folders[MATCH].glob("*.jpg"))
 
-    n = 12
+    n = 20
     random.seed(next_annot_index())
     
     sampled_frames = random.sample(frame_files, min(n, len(frame_files)))
