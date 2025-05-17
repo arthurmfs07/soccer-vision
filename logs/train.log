@@ -30419,3 +30419,236 @@
 [2025-05-06 18:06:25] INFO - Epoch 484/inf - avg homography loss: 0.0040
 [2025-05-06 18:06:25] INFO - No improvement for 100 epoch (patience=100); stopping early.
 [2025-05-06 18:06:25] INFO - Training Finished.
+[2025-05-16 20:30:07] INFO - Epoch 1/10
+[2025-05-16 20:30:09] WARNING - 💥 exploding loss on frame 242: err=2.73e+17
+[2025-05-16 20:30:09] WARNING - 💥 exploding loss on frame 65: err=5.82e+17
+[2025-05-16 20:30:09] WARNING - 💥 exploding loss on frame 262: err=6.08e+17
+[2025-05-16 20:30:09] WARNING - 💥 exploding loss on frame 241: err=3.71e+17
+[2025-05-16 20:30:09] INFO -     Batch 0: Loss: 28670594622947328.0000
+[2025-05-16 20:30:10] WARNING - 💥 exploding loss on frame 245: err=3.69e+17
+[2025-05-16 20:30:10] WARNING - 💥 exploding loss on frame 69: err=4.00e+17
+[2025-05-16 20:30:10] INFO -     Batch 1: Loss: 12016375748886528.0000
+[2025-05-16 20:30:10] WARNING - 💥 exploding loss on frame 87: err=5.10e+17
+[2025-05-16 20:30:10] WARNING - 💥 exploding loss on frame 292: err=3.26e+17
+[2025-05-16 20:30:10] INFO -     Batch 2: Loss: 13064197445255168.0000
+[2025-05-16 20:30:11] INFO -     Batch 3: Loss: 0.0948
+[2025-05-16 20:30:11] WARNING - 💥 exploding loss on frame 309: err=2.81e+17
+[2025-05-16 20:30:11] WARNING - 💥 exploding loss on frame 171: err=3.89e+17
+[2025-05-16 20:30:11] WARNING - 💥 exploding loss on frame 295: err=4.44e+17
+[2025-05-16 20:30:12] INFO -     Batch 4: Loss: 17407236162715648.0000
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 100: err=4.93e+17
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 297: err=4.91e+17
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 136: err=4.18e+17
+[2025-05-16 20:30:12] INFO -     Batch 5: Loss: 21898659557801984.0000
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 85: err=4.02e+17
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 33: err=4.95e+17
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 173: err=3.40e+17
+[2025-05-16 20:30:12] WARNING - 💥 exploding loss on frame 36: err=3.52e+17
+[2025-05-16 20:30:13] INFO -     Batch 6: Loss: 24824812186632192.0000
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 206: err=3.27e+17
+[2025-05-16 20:30:13] INFO -     Batch 7: Loss: 5105403465564160.0000
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 134: err=3.99e+17
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 269: err=3.07e+17
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 240: err=4.45e+17
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 193: err=2.79e+17
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 201: err=4.36e+17
+[2025-05-16 20:30:13] WARNING - 💥 exploding loss on frame 243: err=3.23e+17
+[2025-05-16 20:30:14] INFO -     Batch 8: Loss: 34205645678837760.0000
+[2025-05-16 20:30:14] WARNING - 💥 exploding loss on frame 216: err=5.49e+17
+[2025-05-16 20:30:14] WARNING - 💥 exploding loss on frame 203: err=5.11e+17
+[2025-05-16 20:30:14] INFO -     Batch 9: Loss: 16562957261471744.0000
+[2025-05-16 20:30:15] WARNING - 💥 exploding loss on frame 178: err=2.61e+17
+[2025-05-16 20:30:15] WARNING - 💥 exploding loss on frame 306: err=3.66e+17
+[2025-05-16 20:30:15] INFO -     Batch 10: Loss: 9798863732867072.0000
+[2025-05-16 20:30:15] WARNING - 💥 exploding loss on frame 107: err=2.15e+17
+[2025-05-16 20:30:15] WARNING - 💥 exploding loss on frame 28: err=2.70e+17
+[2025-05-16 20:30:15] INFO -     Batch 11: Loss: 7582189235470336.0000
+[2025-05-16 20:30:16] WARNING - 💥 exploding loss on frame 88: err=3.78e+17
+[2025-05-16 20:30:16] WARNING - 💥 exploding loss on frame 35: err=2.18e+17
+[2025-05-16 20:30:16] WARNING - 💥 exploding loss on frame 62: err=6.79e+17
+[2025-05-16 20:30:16] WARNING - 💥 exploding loss on frame 308: err=5.55e+17
+[2025-05-16 20:30:16] INFO -     Batch 12: Loss: 28601093462163456.0000
+[2025-05-16 20:30:16] WARNING - 💥 exploding loss on frame 310: err=2.77e+17
+[2025-05-16 20:30:17] INFO -     Batch 13: Loss: 4330776048959488.0000
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 184: err=3.42e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 244: err=3.19e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 179: err=4.16e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 75: err=3.91e+17
+[2025-05-16 20:30:17] INFO -     Batch 14: Loss: 22942085355143168.0000
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 83: err=3.72e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 59: err=5.73e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 169: err=2.92e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 145: err=4.57e+17
+[2025-05-16 20:30:17] WARNING - 💥 exploding loss on frame 257: err=2.56e+17
+[2025-05-16 20:30:18] INFO -     Batch 15: Loss: 30476533881634816.0000
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 182: err=3.23e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 225: err=3.33e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 208: err=3.76e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 284: err=3.45e+17
+[2025-05-16 20:30:18] INFO -     Batch 16: Loss: 21526833501569024.0000
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 278: err=7.49e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 76: err=2.62e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 172: err=3.96e+17
+[2025-05-16 20:30:18] WARNING - 💥 exploding loss on frame 168: err=2.77e+17
+[2025-05-16 20:30:19] INFO -     Batch 17: Loss: 26308057667469312.0000
+[2025-05-16 20:30:19] WARNING - 💥 exploding loss on frame 180: err=2.62e+17
+[2025-05-16 20:30:19] WARNING - 💥 exploding loss on frame 86: err=3.38e+17
+[2025-05-16 20:30:19] WARNING - 💥 exploding loss on frame 186: err=5.08e+17
+[2025-05-16 20:30:19] INFO -     Batch 18: Loss: 17305586097979392.0000
+[2025-05-16 20:30:20] WARNING - 💥 exploding loss on frame 103: err=2.83e+17
+[2025-05-16 21:41:45] INFO - Epoch 1/10
+[2025-05-16 21:41:45] WARNING - 💥 exploding loss on frame 55: err=7.51e+19
+[2025-05-16 21:41:45] WARNING - 💥 exploding loss on frame 48: err=3.96e+19
+[2025-05-16 21:41:45] WARNING - 💥 exploding loss on frame 38: err=9.47e+19
+[2025-05-16 21:41:45] WARNING - 💥 exploding loss on frame 7: err=1.63e+18
+[2025-05-16 21:41:46] INFO -     Batch 0: Loss: 3298185238630367232.0000
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 42: err=4.94e+18
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 44: err=3.50e+19
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 40: err=6.70e+20
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 23: err=1.54e+19
+[2025-05-16 21:41:46] INFO -     Batch 1: Loss: 11329514047650398208.0000
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 6: err=2.25e+19
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 57: err=7.95e+20
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 51: err=3.81e+18
+[2025-05-16 21:41:46] WARNING - 💥 exploding loss on frame 17: err=1.67e+20
+[2025-05-16 21:41:46] INFO -     Batch 2: Loss: 15444440712648589312.0000
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 43: err=4.75e+18
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 14: err=4.41e+19
+[2025-05-16 21:41:47] INFO -     Batch 3: Loss: 762602161010900992.0000
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 3: err=2.82e+19
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 47: err=2.82e+18
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 8: err=2.07e+20
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 32: err=4.12e+19
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 25: err=1.87e+19
+[2025-05-16 21:41:47] INFO -     Batch 4: Loss: 4654915517096656896.0000
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 30: err=1.30e+20
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 19: err=2.61e+19
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 54: err=2.71e+19
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 36: err=1.25e+19
+[2025-05-16 21:41:47] WARNING - 💥 exploding loss on frame 31: err=3.12e+19
+[2025-05-16 21:41:47] INFO -     Batch 5: Loss: 3539471141200461824.0000
+[2025-05-16 21:41:48] WARNING - 💥 exploding loss on frame 33: err=4.53e+18
+[2025-05-16 21:41:48] WARNING - 💥 exploding loss on frame 37: err=4.88e+19
+[2025-05-16 21:41:48] WARNING - 💥 exploding loss on frame 16: err=1.47e+19
+[2025-05-16 21:41:48] WARNING - 💥 exploding loss on frame 35: err=1.05e+03
+[2025-05-16 21:41:48] WARNING - 💥 exploding loss on frame 50: err=2.70e+18
+[2025-05-16 21:41:48] INFO -     Batch 6: Loss: 1104458124430934016.0000
+[2025-05-16 21:41:48] INFO -     Batch 7: Loss: 0.3484
+[2025-05-16 21:41:48] INFO - Epoch 1/10 - avg homography loss: 5016698367833538560.0000
+[2025-05-16 21:41:48] INFO - Epoch 2/10
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 59: err=4.43e+19
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 47: err=1.18e+18
+[2025-05-16 21:41:49] INFO -     Batch 0: Loss: 710359896809275392.0000
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 25: err=7.80e+18
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 48: err=1.03e+18
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 34: err=7.56e+18
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 50: err=1.46e+18
+[2025-05-16 21:41:49] INFO -     Batch 1: Loss: 278854995120488448.0000
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 24: err=7.20e+18
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 21: err=3.37e+20
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 42: err=1.35e+19
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 28: err=7.30e+19
+[2025-05-16 21:41:49] WARNING - 💥 exploding loss on frame 6: err=3.09e+19
+[2025-05-16 21:41:50] INFO -     Batch 2: Loss: 7216478542651981824.0000
+[2025-05-16 21:41:50] WARNING - 💥 exploding loss on frame 53: err=5.38e+17
+[2025-05-16 21:41:50] WARNING - 💥 exploding loss on frame 9: err=9.55e+18
+[2025-05-16 21:41:50] WARNING - 💥 exploding loss on frame 40: err=1.67e+21
+[2025-05-16 21:41:50] WARNING - 💥 exploding loss on frame 23: err=5.83e+19
+[2025-05-16 21:41:50] WARNING - 💥 exploding loss on frame 17: err=6.27e+19
+[2025-05-16 21:43:35] INFO - Epoch 1/10
+[2025-05-16 21:43:37] WARNING - 💥 exploding loss on frame 20: err=6.73e+20
+[2025-05-16 21:43:37] WARNING - 💥 exploding loss on frame 202: err=1.89e+20
+[2025-05-16 21:43:37] WARNING - 💥 exploding loss on frame 86: err=1.59e+20
+[2025-05-16 21:43:37] WARNING - 💥 exploding loss on frame 295: err=8.77e+19
+[2025-05-16 21:43:38] INFO -     Batch 0: Loss: 17328093247028854784.0000
+[2025-05-16 21:43:38] WARNING - 💥 exploding loss on frame 252: err=2.35e+22
+[2025-05-16 21:43:38] INFO -     Batch 1: Loss: 367645972371460849664.0000
+[2025-05-16 21:43:38] WARNING - 💥 exploding loss on frame 62: err=1.00e+21
+[2025-05-16 21:43:38] WARNING - 💥 exploding loss on frame 289: err=1.31e+20
+[2025-05-16 21:43:39] INFO -     Batch 2: Loss: 17719004815075311616.0000
+[2025-05-16 21:43:39] WARNING - 💥 exploding loss on frame 181: err=3.63e+20
+[2025-05-16 21:43:39] WARNING - 💥 exploding loss on frame 48: err=1.78e+20
+[2025-05-16 21:43:39] WARNING - 💥 exploding loss on frame 158: err=3.67e+22
+[2025-05-16 21:43:39] WARNING - 💥 exploding loss on frame 10: err=3.98e+21
+[2025-05-16 21:43:39] INFO -     Batch 3: Loss: 644457436483602612224.0000
+[2025-05-16 21:43:39] WARNING - 💥 exploding loss on frame 211: err=3.06e+21
+[2025-05-16 21:43:40] INFO -     Batch 4: Loss: 47746389193196044288.0000
+[2025-05-16 21:43:40] WARNING - 💥 exploding loss on frame 18: err=5.22e+21
+[2025-05-16 21:43:40] WARNING - 💥 exploding loss on frame 183: err=3.93e+19
+[2025-05-16 21:43:40] WARNING - 💥 exploding loss on frame 44: err=2.13e+23
+[2025-05-16 21:43:40] WARNING - 💥 exploding loss on frame 35: err=3.16e+20
+[2025-05-16 21:43:40] WARNING - 💥 exploding loss on frame 224: err=2.45e+24
+[2025-05-16 21:43:40] INFO -     Batch 5: Loss: 41660877115763571294208.0000
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 89: err=4.16e+22
+[2025-05-16 21:43:41] INFO -     Batch 6: Loss: 649361856477809082368.0000
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 57: err=4.42e+21
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 204: err=5.44e+19
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 302: err=8.65e+21
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 182: err=2.21e+20
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 46: err=2.61e+21
+[2025-05-16 21:43:41] WARNING - 💥 exploding loss on frame 206: err=3.68e+20
+[2025-05-16 21:43:42] INFO -     Batch 7: Loss: 255048241125338906624.0000
+[2025-05-16 21:43:42] WARNING - 💥 exploding loss on frame 266: err=3.78e+21
+[2025-05-16 21:43:42] INFO -     Batch 8: Loss: 58993882971949236224.0000
+[2025-05-16 21:43:42] WARNING - 💥 exploding loss on frame 192: err=2.69e+20
+[2025-05-16 21:43:42] WARNING - 💥 exploding loss on frame 193: err=1.22e+20
+[2025-05-16 21:43:42] WARNING - 💥 exploding loss on frame 100: err=9.75e+19
+[2025-05-16 21:43:42] WARNING - 💥 exploding loss on frame 69: err=9.62e+20
+[2025-05-16 21:43:43] INFO -     Batch 9: Loss: 22666704885485928448.0000
+[2025-05-16 21:43:43] WARNING - 💥 exploding loss on frame 290: err=5.76e+20
+[2025-05-16 21:43:43] WARNING - 💥 exploding loss on frame 29: err=7.07e+20
+[2025-05-16 21:43:43] WARNING - 💥 exploding loss on frame 27: err=5.17e+19
+[2025-05-16 21:53:08] INFO - Epoch 1/10
+[2025-05-16 21:53:09] INFO -     Batch 0: Loss: 0.0558
+[2025-05-16 21:53:10] INFO -     Batch 1: Loss: 0.0421
+[2025-05-16 21:53:10] INFO -     Batch 2: Loss: 0.0535
+[2025-05-16 21:53:10] INFO -     Batch 3: Loss: 0.0339
+[2025-05-16 21:53:11] INFO -     Batch 4: Loss: 0.0350
+[2025-05-16 21:53:11] INFO -     Batch 5: Loss: 0.0415
+[2025-05-16 21:53:11] INFO -     Batch 6: Loss: 0.0424
+[2025-05-16 21:53:11] INFO -     Batch 7: Loss: 0.0191
+[2025-05-16 21:53:11] INFO - Epoch 1/10 - avg homography loss: 0.0404
+[2025-05-16 21:53:11] INFO - Epoch 2/10
+[2025-05-16 21:53:12] INFO -     Batch 0: Loss: 0.0339
+[2025-05-16 21:53:13] INFO -     Batch 1: Loss: 0.0193
+[2025-05-16 21:53:13] INFO -     Batch 2: Loss: 0.0260
+[2025-05-16 21:53:13] INFO -     Batch 3: Loss: 0.0189
+[2025-05-16 21:53:14] INFO -     Batch 4: Loss: 0.0393
+[2025-05-16 21:53:14] INFO -     Batch 5: Loss: 0.0336
+[2025-05-16 21:53:14] INFO -     Batch 6: Loss: 0.0235
+[2025-05-16 21:53:14] INFO -     Batch 7: Loss: 0.0530
+[2025-05-16 21:53:14] INFO - Epoch 2/10 - avg homography loss: 0.0309
+[2025-05-16 21:53:15] INFO - Epoch 3/10
+[2025-05-16 21:53:15] INFO -     Batch 0: Loss: 0.0311
+[2025-05-16 21:53:16] INFO -     Batch 1: Loss: 0.0225
+[2025-05-16 21:53:16] INFO -     Batch 2: Loss: 0.0379
+[2025-05-16 21:53:16] INFO -     Batch 3: Loss: 0.0129
+[2025-05-16 22:37:51] INFO - Epoch 1/inf
+[2025-05-16 22:37:53] INFO -     Batch 0: Loss: 0.0416
+[2025-05-16 22:37:54] INFO -     Batch 1: Loss: 0.0596
+[2025-05-16 22:37:54] INFO -     Batch 2: Loss: 0.0469
+[2025-05-16 22:37:55] INFO -     Batch 3: Loss: 0.0403
+[2025-05-16 22:37:55] INFO - Epoch 1/inf - avg homography loss: 0.0471
+[2025-05-16 22:37:55] INFO - Epoch 2/inf
+[2025-05-16 22:37:56] INFO -     Batch 0: Loss: 0.0511
+[2025-05-16 22:37:57] INFO -     Batch 1: Loss: 0.0448
+[2025-05-16 22:37:58] INFO -     Batch 2: Loss: 0.0473
+[2025-05-16 22:37:58] INFO -     Batch 3: Loss: 0.0472
+[2025-05-16 22:37:58] INFO - Epoch 2/inf - avg homography loss: 0.0476
+[2025-05-16 22:37:58] INFO - Epoch 3/inf
+[2025-05-16 22:38:00] INFO -     Batch 0: Loss: 0.0461
+[2025-05-16 22:38:00] INFO -     Batch 1: Loss: 0.0450
+[2025-05-16 22:38:01] INFO -     Batch 2: Loss: 0.0476
+[2025-05-16 22:38:01] INFO -     Batch 3: Loss: 0.0479
+[2025-05-16 22:38:01] INFO - Epoch 3/inf - avg homography loss: 0.0467
+[2025-05-16 22:38:02] INFO - Epoch 4/inf
+[2025-05-16 22:38:03] INFO -     Batch 0: Loss: 0.0431
+[2025-05-16 22:38:04] INFO -     Batch 1: Loss: 0.0525
+[2025-05-16 22:38:49] INFO - Epoch 1/inf
+[2025-05-16 22:39:54] INFO - Epoch 1/inf
+[2025-05-16 22:39:55] INFO -     Batch 0: Loss: 0.0392
+[2025-05-16 22:39:56] INFO -     Batch 1: Loss: 0.0483
+[2025-05-16 22:39:57] INFO -     Batch 2: Loss: 0.0540
+[2025-05-16 22:39:57] INFO -     Batch 3: Loss: 0.0479
+[2025-05-16 22:39:57] INFO - Epoch 1/inf - avg homography loss: 0.0474
+[2025-05-16 22:39:57] INFO - Epoch 2/inf

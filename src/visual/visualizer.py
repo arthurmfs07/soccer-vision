@@ -111,13 +111,28 @@ class Visualizer:
         cv2.waitKey(1)
 
 
-    def transform_points(self, points: np.ndarray, H: np.ndarray):
+    def transform_points(self, points_px: np.ndarray, H_norm: np.ndarray):
         """
+        Map image-pixel points -> field-meter points,
+        using H_norm that expect coords [u/W, v/H] -> [X/L, Y/W]
         Apply H (3, 3) matrix in (N, 2) points (x, y)
         """
-        pts_reshaped = points.reshape(-1, 1, 2).astype(np.float32)
-        transformed = cv2.perspectiveTransform(pts_reshaped, H)
-        return transformed.reshape(-1, 2)
+        h_px, w_px = self.video_visualizer.frame.data.image.shape[:2]
+        uv = points_px.astype(np.float32)
+        uv_norm = np.stack([uv[:,0]/w_px, uv[:,1]/h_px], axis=1)
+        uv_norm = uv_norm.reshape(-1, 1, 2)
+
+        fld_norm = cv2.perspectiveTransform(uv_norm, H_norm)
+        fld_norm = fld_norm.reshape(-1, 2)
+
+        tpl = self.field_visualizer.config
+        X = fld_norm[:, 0] * tpl.length
+        Y = fld_norm[:, 1] * tpl.width
+        return np.stack([X, Y], axis=1)
+
+        # pts_reshaped = points.reshape(-1, 1, 2).astype(np.float32)
+        # transformed = cv2.perspectiveTransform(pts_reshaped, H)
+        # return transformed.reshape(-1, 2)
 
 
     def _annotate_frames(

@@ -113,14 +113,17 @@ if __name__ == "__main__":
     from src.visual.visualizer import Visualizer
     from src.visual.field import PitchConfig
 
+    # dataset_folder = "data/01--clean/roboflow"
+    dataset_folder = "data/01--clean/annotated_homographies"
+    
     config = TrainConfig(
-        dataset_folder=Path("data/annotated_homographies"),
+        dataset_folder=dataset_folder,
         batch_size=16,
         lr=1e-5,
         patience=100,
         warp_alpha=0.05,
         device="cuda",
-        save_path=Path("data/10--models/perspect_cnn2.pth"),
+        save_path="data/10--models/perspect_cnn2.pth",
         train_on_homography=True,
         train_on_player_position=False  # Set to True if player position labels are available
     )

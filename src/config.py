@@ -20,11 +20,6 @@ class RealTimeConfig(BaseConfig):
     yolo_conf : float = 0.5            # Confidence threshold for YOLO
     annotation_gap: Literal[-1] = 100  # pixel gap between consecutive annotations
 
-@dataclass
-class YoloFinetuneConfig(BaseConfig):
-    """YOLO finetuning config"""
-    pass
-
 
 @dataclass
 class DataConfig(BaseConfig):

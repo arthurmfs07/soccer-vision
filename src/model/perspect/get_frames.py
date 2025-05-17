@@ -4,7 +4,7 @@ from pathlib import Path
 import urllib.parse
 from typing import Optional
 from src.utils import load_abs_path
-from src.download import YouTubeDL
+from data.download import YouTubeDL
 
 from src.utils import parse_timestamp
 

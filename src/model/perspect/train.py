@@ -20,7 +20,7 @@ from src.struct.utils import create_base_square
 
 @dataclass
 class TrainConfig:
-    dataset_folder:           Path
+    dataset_folder:           str
     train_on_homography:      bool  = True
     train_on_player_position: bool  = False
     default_epochs:           int   = -1
@@ -29,7 +29,7 @@ class TrainConfig:
     lr:                       float = 1e-4
     warp_alpha:               float = 0.05
     device:                   str   = "cuda"
-    save_path:       Optional[Path] = None
+    save_path:       Optional[str]  = None
 
 
 class HomographyDataset(Dataset):
@@ -40,19 +40,17 @@ class HomographyDataset(Dataset):
     Since the CNN is now adaptive, images are returned in full resolution.
     Returns (img_tensor, H_gt_tensor, frame_idx) so you can track the original index.
     """
-    def __init__(self, dataset_folder: Path, warp_alpha: float = 0.05) -> None:
-        self.dataset_folder = dataset_folder
+    def __init__(self, dataset_folder: str, warp_alpha: float = 0.05) -> None:
+        self.dataset_folder = Path(dataset_folder)
         self.warp_alpha = warp_alpha
         self.pairs: List[Tuple[int, Path, Path]] = []
 
         # find all image files and their matching H files
-        for img_path in sorted(dataset_folder.glob("annot_frame_*.png")):
+        for img_path in sorted(self.dataset_folder.glob("*frame_*.png")):
             base = img_path.stem  # e.g., "annot_frame_42"
             parts = base.split("_")
-            if len(parts) != 3:
-                continue
-            frame_idx = int(parts[2])
-            h_path = dataset_folder / f"annot_frame_{frame_idx}_H.npy"
+            frame_idx = int(parts[-1])
+            h_path = self.dataset_folder / f"{base}_H.npy"
             if h_path.exists():
                 self.pairs.append((frame_idx, img_path, h_path))
 
@@ -68,7 +66,7 @@ class HomographyDataset(Dataset):
         ])
 
         if not self.pairs:
-            raise ValueError(f"No valid homography pairs found in {dataset_folder}")
+            raise ValueError(f"No valid homography pairs found in {self.dataset_folder}")
 
     def __len__(self) -> int:
         return len(self.pairs)
@@ -127,7 +125,7 @@ class PerspectTrainer:
         self.logger = setup_logger("train.log")
         self.epochs = config.default_epochs
         self.batch_size = config.batch_size
-        self.save_path = config.save_path
+        self.save_path = Path(config.save_path)
         self.device = config.device
 
         self.data_dir = get_data_path()
@@ -461,12 +459,17 @@ class PerspectTrainer:
 
 
 if __name__ == "__main__":
+
+    dataset_folder = "data/01--clean/roboflow"
+    dataset_folder = "data/01--clean/annotated_homographies"
+    
+
     config = TrainConfig(
-        dataset_folder=Path("data/annotated_homographies"),
+        dataset_folder=dataset_folder,
         batch_size=8,
         lr=1e-4,
         device="cuda",
-        save_path=Path("data/10--models/perspect_cnn.pth"),
+        save_path="data/10--models/perspect_cnn_roboflow.pth",
         train_on_homography=True,
         train_on_player_position=False
     )
