@@ -7,7 +7,6 @@ from src.struct.detection import Detection
 
 
 def create_base_square(
-        image_shape: Tuple[int, int, int, int], 
         as_tensor: bool = True
         ) -> Union[np.ndarray, torch.Tensor]:
     """
@@ -16,10 +15,9 @@ def create_base_square(
     Returns a tensor of shape [B, 4, 2]
     or numpy array of shape [4, 2]
     """
-    B, C, H_img, W_img = image_shape
-    s = H_img / 3.5
-    center_x = W_img / 2.0
-    center_y = 2 * H_img / 3.0
+    s = 1./4.5
+    center_x = 1 / 2
+    center_y = 3 / 5
     base_square = [
         [center_x - s / 2.0, center_y - s / 2.0],
         [center_x + s / 2.0, center_y - s / 2.0],
@@ -29,7 +27,7 @@ def create_base_square(
     if as_tensor:
         base_tensor = torch.tensor(
             base_square, dtype=torch.float32, device=BaseConfig().device
-            ).unsqueeze(0).expand(B, -1, -1)
+            ).unsqueeze(0).expand(1, -1, -1)
         return base_tensor # [B,4,2]
     
     return np.array(base_square, dtype=np.float32) # [4,2]

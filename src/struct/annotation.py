@@ -1,193 +1,226 @@
+# file: src/struct/annotation.py
+
 import numpy as np
 import cv2
-from typing import Optional, Literal
+from typing import Optional, Tuple
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 
-from src.struct.utils import *
+from src.struct.transform import TransformUtils
+from src.struct.utils import get_color
 
 
 class Annotation(ABC):
-    """Base class for all annotations"""
-
-    coord_space: Literal["model", "current"] = "model"
+    """
+    Base class for annotations in normalized [0,1]^2 coords.
+    Must implement draw(image, disp_size) to denormalize into pixel space.
+    """
 
     @abstractmethod
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'Annotation':
-        """Apply transformation and return a new annotation"""
-        if self.coord_space == "model":
-            x_t = self.x * scale + offset_x
-            y_t = self.y * scale + offset_y
-            r_t = int(self.radius * scale)
-        elif self.coord_space == "current":
-            x_t = self.x
-            y_t = self.y
-            r_t = self.radius
-        raise NotImplementedError()
-    @abstractmethod
-    def draw(self, image: np.ndarray) -> None:
-        """Draw this annotation on the given image"""
-        raise NotImplementedError()
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        """
+        Draw this annotation on the given image.
+        :param image:    HxW BGR image to draw into
+        :param disp_size: (W_px, H_px) of that image for denormalization
+        """
+        ...
 
 
 @dataclass
 class BoxAnnotation(Annotation):
-    """Box annotation with center coordinates, width, height and optional label"""
+    """
+    Normalized box: center (x,y) in [0,1], width/height in [0,1] fraction of canvas.
+    """
     x: float
     y: float
     width: float
     height: float
     label: Optional[str] = None
     color: str = "green"
-    thickness: int = 1
-    
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'BoxAnnotation':
-        return BoxAnnotation(
-            x=self.x * scale + offset_x,
-            y=self.y * scale + offset_y,
-            width=self.width * scale,
-            height=self.height * scale,
-            label=self.label,
-            color=self.color,
-            thickness=self.thickness
+    thickness: float = 0.005  # fraction of width
+
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        # center denormalization
+        cx, cy = TransformUtils.norm_to_px(
+            np.array([[self.x, self.y]]), disp_size
+        ).flatten()
+        # size denormalization (disp_size = (W, H))
+        w_px = int(self.width  * disp_size[0])
+        h_px = int(self.height * disp_size[1])
+        # compute corners
+        pt1 = (int(cx - w_px/2), int(cy - h_px/2))
+        pt2 = (int(cx + w_px/2), int(cy + h_px/2))
+        t_px = -1 if self.thickness <= 0 else max(
+            1, int(self.thickness * disp_size[0])
         )
-    
-    def draw(self, image: np.ndarray) -> None:
-        pt1 = (int(self.x - self.width / 2), int(self.y - self.height / 2))
-        pt2 = (int(self.x + self.width / 2), int(self.y + self.height / 2))
-        cv2.rectangle(image, pt1, pt2, get_color(self.color), self.thickness)
+        cv2.rectangle(image, pt1, pt2, get_color(self.color), t_px)
+
         if self.label:
-            cv2.putText(image, self.label, (pt1[0], pt1[1] - 5), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, get_color(self.color), 1)
+            text = self.label
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            # estimate text size
+            ((tw, th), bs) = cv2.getTextSize(text, font, 0.6, 1)
+            tx = min(pt1[0] + 5, disp_size[0] - tw - 5)
+            ty = max(pt1[1] + th + 5, th + 5)
+            cv2.putText(
+                image, text,
+                (int(tx), int(ty)),
+                font, 0.5,
+                get_color(self.color), 1
+            )
 
 
 @dataclass
 class PointAnnotation(Annotation):
-    """Point annotation with x, y coordinates"""
+    """
+    Normalized point in [0,1]^2.
+    """
     x: float
     y: float
     color: str = "red"
-    radius: int = 5
-    
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'PointAnnotation':
-        return PointAnnotation(
-            x=self.x * scale + offset_x,
-            y=self.y * scale + offset_y,
-            color=self.color,
-            radius=self.radius
-        )
-    
-    def draw(self, image: np.ndarray) -> None:
-        cv2.circle(image, (int(self.x), int(self.y)), self.radius, get_color(self.color), -1)
+    radius: float = 0.01  # fraction of width
+
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        cx, cy = TransformUtils.norm_to_px(
+            np.array([[self.x, self.y]]), disp_size
+        ).flatten()
+        r_px = int(self.radius * disp_size[0])
+        cv2.circle(image, (int(cx), int(cy)), r_px, get_color(self.color), -1)
 
 
 @dataclass
 class TextAnnotation(Annotation):
-    """Text annotation with position and content"""
+    """
+    Normalized text with position and content.
+    """
     x: float
     y: float
     text: str
     color: str = "black"
-    size: float = 0.5
-    
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'TextAnnotation':
-        return TextAnnotation(
-            x=self.x * scale + offset_x,
-            y=self.y * scale + offset_y,
-            text=self.text,
-            color=self.color,
-            size=self.size
+    font_scale: float = 0.8
+    thickness: float = 1
+    margin: float = 0.01
+
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        W_px, H_px = disp_size
+        (cx, cy) = TransformUtils.norm_to_px(
+            np.array([[self.x, self.y]]), disp_size
+        ).flatten()
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        (tw, th), baseline = cv2.getTextSize(
+            self.text, font, self.font_scale, self.thickness
+            )
+        mx = int(self.margin * W_px)
+        my = int(self.margin * H_px)
+        # horizontal offset: move right if on left half, and vice versa
+        if cx < W_px * 0.5:
+            tx = int(cx + mx)
+        else:
+            tx = int(cx - tw - mx)
+        # vertical offset: move bottom if on top half, and vice versa
+        if cy < H_px * 0.5:
+            ty = int(cy + th + my)
+        else:
+            ty = int(cy - my)
+
+        cv2.putText(
+            image, self.text,
+            (tx, ty),
+            font,
+            self.font_scale,
+            get_color(self.color),
+            self.thickness,
+            cv2.LINE_AA
         )
-    
-    def draw(self, image: np.ndarray) -> None:
-        cv2.putText(image, self.text, (int(self.x), int(self.y)), 
-                   cv2.FONT_HERSHEY_SIMPLEX, self.size, get_color(self.color), 1)
 
 
 @dataclass
 class LineAnnotation(Annotation):
-    """Line annotation with start and end points"""
+    """
+    Normalized line from (x1,y1) to (x2,y2) in [0,1]^2.
+    """
     x1: float
     y1: float
     x2: float
     y2: float
     color: str = "green"
-    thickness: int = 1
-    
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'LineAnnotation':
-        return LineAnnotation(
-            x1=self.x1 * scale + offset_x,
-            y1=self.y1 * scale + offset_y,
-            x2=self.x2 * scale + offset_x,
-            y2=self.y2 * scale + offset_y,
-            color=self.color,
-            thickness=self.thickness
+    thickness: float = 0.005  # fraction of width
+
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        p1 = TransformUtils.norm_to_px(
+            np.array([[self.x1, self.y1]]), disp_size
+        ).flatten()
+        p2 = TransformUtils.norm_to_px(
+            np.array([[self.x2, self.y2]]), disp_size
+        ).flatten()
+        t_px = -1 if self.thickness <= 0 else max(
+            1, int(self.thickness * disp_size[0])
         )
-    
-    def draw(self, image: np.ndarray) -> None:
-        pt1 = (int(self.x1), int(self.y1))
-        pt2 = (int(self.x2), int(self.y2))
-        cv2.line(image, pt1, pt2, get_color(self.color), self.thickness)
+        cv2.line(
+            image,
+            (int(p1[0]), int(p1[1])),
+            (int(p2[0]), int(p2[1])),
+            get_color(self.color),
+            t_px
+        )
 
-
-# file: src/struct/annotation_ext.py
-
-import cv2
-import numpy as np
-from dataclasses import dataclass
-from typing import Optional
-from src.struct.annotation import Annotation, get_color
 
 @dataclass
 class RectTLAnnotation(Annotation):
     """
-    Draw a rectangle specified by top-left (x1, y1) and bottom-right (x2, y2).
-    Coordinates are in 'model space' (to be scaled/translated by Frame).
+    Rectangle specified by top-left (x1, y1) and bottom-right (x2, y2),
+    all normalized in [0,1]^2.
     """
     x1: float
     y1: float
     x2: float
     y2: float
     color: str = "green"
-    thickness: int = 1  # -1 => filled
+    thickness: float = 0.005  # fraction of width
 
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'RectTLAnnotation':
-        return RectTLAnnotation(
-            x1=self.x1 * scale + offset_x,
-            y1=self.y1 * scale + offset_y,
-            x2=self.x2 * scale + offset_x,
-            y2=self.y2 * scale + offset_y,
-            color=self.color,
-            thickness=self.thickness
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        p1 = TransformUtils.norm_to_px(
+            np.array([[self.x1, self.y1]]), disp_size
+        ).flatten()
+        p2 = TransformUtils.norm_to_px(
+            np.array([[self.x2, self.y2]]), disp_size
+        ).flatten()
+        t_px = -1 if self.thickness <= 0 else max(
+            1, int(self.thickness * disp_size[0])
+        )   
+        cv2.rectangle(
+            image,
+            (int(p1[0]), int(p1[1])),
+            (int(p2[0]), int(p2[1])),
+            get_color(self.color),
+            t_px
         )
-
-    def draw(self, image: np.ndarray) -> None:
-        pt1 = (int(self.x1), int(self.y1))
-        pt2 = (int(self.x2), int(self.y2))
-        cv2.rectangle(image, pt1, pt2, get_color(self.color), self.thickness)
 
 
 @dataclass
 class CircleAnnotation(Annotation):
     """
-    Draw a circle with center (x, y) in model space and radius in model units.
-    The radius is also scaled by 'scale'.
+    Circle with center (x, y) and radius in normalized units [0,1].
     """
     x: float
     y: float
     radius: float
     color: str = "red"
-    thickness: int = 1  # -1 => filled
+    thickness: float = 0  # 0 or -1 for filled
 
-    def transform(self, scale: float, offset_x: int, offset_y: int) -> 'CircleAnnotation':
-        return CircleAnnotation(
-            x=self.x * scale + offset_x,
-            y=self.y * scale + offset_y,
-            radius=self.radius * scale,
-            color=self.color,
-            thickness=self.thickness
+    def draw(self, image: np.ndarray, disp_size: Tuple[int, int]) -> None:
+        cx, cy = TransformUtils.norm_to_px(
+            np.array([[self.x, self.y]]), disp_size
+        ).flatten()
+        r_px = int(self.radius * disp_size[0])
+        t_px = -1 if self.thickness <= 0 else max(
+            1, int(self.thickness * disp_size[0])
         )
-
-    def draw(self, image: np.ndarray) -> None:
-        center = (int(self.x), int(self.y))
-        cv2.circle(image, center, int(self.radius), get_color(self.color), self.thickness)
+        cv2.circle(
+            image,
+            (int(cx), int(cy)),
+            r_px,
+            get_color(self.color),
+            t_px
+        )

@@ -1,357 +1,256 @@
+# file: src/visual/field.py
+
+# NOTE: all metric sizes now follow IFAB Law-1 exactly.
+
+
 import cv2
 import numpy as np
-from typing import Optional
+from typing import Optional, Tuple, List
 from dataclasses import dataclass
 
 from src.logger import setup_logger
-
+from src.config import VisualizationConfig
 from src.struct.frame import Frame
-from src.struct.annotation import *
+from src.struct.annotation import LineAnnotation, CircleAnnotation, RectTLAnnotation
 from src.struct.utils import get_color
-
 
 
 @dataclass
 class PitchConfig:
-    """Configuration for a football pitch."""
-    length:      float = 120.0
-    width:       float = 80.0
-    origin_x:    float = 0.0
-    origin_y:    float = 0.0
+    length:      float = 105.0          # m  – goal-line to goal-line
+    width:       float =  68.0          # m  – touch-line to touch-line
+    origin_x:    float =   0.0
+    origin_y:    float =   0.0
     line_color:  str   = "white"
-    pitch_color: tuple = "green"
-    linewidth:   int   = 1
-    margin:      float = 0.0
-    goal_offset: float = 2.0
-    draw_points: bool  = True
+    pitch_color: str   = "green"
+    linewidth:   float =   0.12         # m  – 12 cm (max)
+    margin:      float =   0.0          # extra space around model
+    goal_offset: float =   2.0          # draw goals outside field
     bgc:         str   = "gray"
+    draw_points: bool  =  True          # draw the 33 reference dots
 
 
 class FieldVisualizer:
     """
-    Visualizes a soccer field by storing all drawing as Annotations
-    in a single Frame object. Coordinates are in 'mode space',
-    and are transformed at render time via Frame.scale + offsets
+    Draw a FIFA-standard pitch in normalised [0,1] coordinates and add
+    33 fixed reference points for homography / calibration.
     """
-        
+
+    # canonical IFAB sizes (all metres)
+    PA_D, PA_W = 16.5, 40.32            # penalty area depth / width
+    GA_D, GA_W =  5.5, 18.32            # goal area    depth / width
+    SPOT_D     = 11.0                   # penalty mark distance
+    CIRCLE_R   =  9.15                  # centre circle + “D” radius
+
     def __init__(
-            self, 
-            config: Optional[PitchConfig] = None,
-            window_name: str = "Field Visualizer"
-            ):
-        super().__init__()
-        self.config = config or PitchConfig()
-        self.logger = setup_logger("field_visualizer.log")
-        self.window_name = window_name
-        
-        self._initialize_params()
-        
-    def _initialize_params(self) -> Frame:
-        """Creates the base pitch image in pixel space."""
-        c = self.config
-        self.x_min = c.origin_x - c.goal_offset - c.margin
-        self.y_min = c.origin_y - c.margin
-        self.x_max = c.origin_x + c.length + c.goal_offset + c.margin
-        self.y_max = c.origin_y + c.width + c.margin
+        self,
+        config:      Optional[PitchConfig]         = None,
+        vis_config:  Optional[VisualizationConfig] = None,
+        window_name: str                           = "Field Visualizer",
+        ):
+        self.cfg     = config or PitchConfig()
+        self.vis_cfg = vis_config or VisualizationConfig()
+        self.window  = window_name
+        self.log     = setup_logger("field_visualizer")
 
-        raw_w = max(1, int(self.x_max - self.x_min))
-        raw_h = max(1, int(self.y_max - self.y_min))
+        c = self.cfg
+        self.x_min   = c.origin_x - c.goal_offset - c.margin
+        self.y_min   = c.origin_y - c.margin
+        self.x_max   = c.origin_x + c.length + c.goal_offset + c.margin
+        self.y_max   = c.origin_y + c.width  + c.margin
+        self.w_m     = self.x_max - self.x_min         # total model width  (m)
+        self.h_m     = self.y_max - self.y_min         # total model height (m)
 
-        base_image = np.full((raw_h, raw_w, 3), get_color(self.config.bgc), dtype=np.uint8)
-        self.frame = Frame(base_image, metadata={"bgc": self.config.bgc})
-        
+        blank = np.full((1, 1, 3), get_color(c.bgc), dtype=np.uint8)
+        self.frame = Frame(blank)
 
-        offset_x = 0
-        offset_y = 0
-        if self.x_min < 0:
-            offset_x = int(-self.x_min)
-        if self.y_min < 0:
-            offset_y = int(-self.y_min)
-
-        self.frame.update_padding((offset_y, 0, offset_x, 0))
         self._draw_pitch()
+        mode = self.vis_cfg.show_reference_points
+        if mode in ('points', 'points_text'):
+            self._draw_reference_points(with_text=(mode == 'points_text'))
 
-        if self.config.draw_points:
-            self.draw_hardcoded_model_points()
+        self._static_count = len(self.frame.data.annotations)
 
-        self.frame.set_static_checkpoint()
+    def _to_norm(self, x: float, y: float) -> Tuple[float, float]:
+        """Convert model-space metres → normalised [0,1]."""
+        return ((x - self.x_min) / self.w_m,
+                (y - self.y_min) / self.h_m)
 
-    
-    def to_model_coords(self, points_px: np.ndarray) -> np.ndarray:
-        """
-        Converts pixel-space coordinates to model-space (field coordinates in meters).
-        Args:
-            points_px: np.ndarray of shape (N, 2) in pixel space.
-        
-        Returns:
-            np.ndarray of shape (N, 2) in model space.
-        """
-        scale = self.frame._scale
-        pad_top, _, pad_left, _ = self.frame._padding
+    def _add_arc(
+        self,
+        centre_u: float,
+        centre_v: float,
+        radius_m: float,
+        ang0_deg: float,
+        ang1_deg: float,
+        colour: str,
+        t_norm: float,
+        seg: int = 64,
+    ):
+        """Ellipse-aware arc (x- & y-radii scale independently)."""
+        rad_u = radius_m / self.w_m
+        rad_v = radius_m / self.h_m
+        angs  = np.linspace(np.deg2rad(ang0_deg), np.deg2rad(ang1_deg), seg+1)
 
-        return np.array([
-            ((x - pad_left) / scale, (y - pad_top) / scale)
-            for x, y in points_px
-        ], dtype=np.float32)
+        pts = [(centre_u + rad_u*np.cos(a),
+                centre_v + rad_v*np.sin(a))
+               for a in angs]
 
-    def _draw_pitch(self):
-        """
-        Add all lines/shapes for the standard soccer field layout
-        in model coordinates. The Frame will handle transformations.
-        """
-        c = self.config
+        for (u1, v1), (u2, v2) in zip(pts, pts[1:]):
+            self.frame.add_line(u1, v1, u2, v2, colour, t_norm)
 
-        top_left_x = c.origin_x
-        top_left_y = c.origin_y
-        bot_right_x = c.origin_x + c.length
-        bot_right_y = c.origin_y + c.width
-        
-        # Fill rectangle with pitch color
-        self.frame.add_rect(
-            x1=top_left_x, y1=top_left_y,
-            x2=bot_right_x, y2=bot_right_y,
-            color=c.pitch_color,
-            thickness=-1  # fill
-        )
-        # Draw the border
-        self.frame.add_rect(
-            x1=top_left_x, y1=top_left_y,
-            x2=bot_right_x, y2=bot_right_y,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+    def _draw_pitch(self) -> None:
+        c      = self.cfg
+        t_norm = c.linewidth / self.w_m   # line-width in [0,1] units
 
-        # Middle line
-        mid_x = c.origin_x + c.length / 2
-        self.frame.add_line(
-            x1=mid_x, y1=c.origin_y,
-            x2=mid_x, y2=c.origin_y + c.width,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+        u1, v1 = self._to_norm(c.origin_x,            c.origin_y)
+        u2, v2 = self._to_norm(c.origin_x + c.length, c.origin_y + c.width)
+        self.frame.add_rect(u1, v1, u2, v2, c.pitch_color, -1)
+        self.frame.add_rect(u1, v1, u2, v2, c.line_color,  t_norm)
 
-        # Center circle
-        center_x = mid_x
-        center_y = c.origin_y + c.width / 2
-        radius_m = 10.0  # radius in model units
-        self.frame.add_circle(
-            x=center_x, y=center_y,
-            radius=radius_m,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
-        # Center spot
-        self.frame.add_circle(
-            x=center_x, y=center_y,
-            radius=1.5,
-            color=c.line_color,
-            thickness=-1  # filled
-        )
+        midx = c.origin_x + c.length/2
+        self.frame.add_line(*self._to_norm(midx, c.origin_y),
+                            *self._to_norm(midx, c.origin_y + c.width),
+                            c.line_color, t_norm)
 
-        # Left penalty area
-        top_left_pen_x = c.origin_x
-        top_left_pen_y = c.origin_y + (c.width - 44) / 2
-        bot_right_pen_x = c.origin_x + 18
-        bot_right_pen_y = top_left_pen_y + 44
-        self.frame.add_rect(
-            x1=top_left_pen_x, y1=top_left_pen_y,
-            x2=bot_right_pen_x, y2=bot_right_pen_y,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
-        # Right penalty area
-        top_left_pen2_x = c.origin_x + c.length - 18
-        top_left_pen2_y = top_left_pen_y
-        bot_right_pen2_x = c.origin_x + c.length
-        bot_right_pen2_y = bot_right_pen_y
-        self.frame.add_rect(
-            x1=top_left_pen2_x, y1=top_left_pen2_y,
-            x2=bot_right_pen2_x, y2=bot_right_pen2_y,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+        cu, cv = self._to_norm(midx, c.origin_y + c.width/2)
+        self._add_arc(cu, cv, self.CIRCLE_R, 0, 360, c.line_color, t_norm)
 
-        # Smaller (goal) areas
-        top_left_goal_x = c.origin_x
-        top_left_goal_y = c.origin_y + (c.width - 20) / 2
-        bot_right_goal_x = c.origin_x + 6
-        bot_right_goal_y = top_left_goal_y + 20
-        self.frame.add_rect(
-            x1=top_left_goal_x, y1=top_left_goal_y,
-            x2=bot_right_goal_x, y2=bot_right_goal_y,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
-        # Opposite side
-        top_left_goal2_x = c.origin_x + c.length - 6
-        top_left_goal2_y = top_left_goal_y
-        bot_right_goal2_x = c.origin_x + c.length
-        bot_right_goal2_y = bot_right_goal_y
-        self.frame.add_rect(
-            x1=top_left_goal2_x, y1=top_left_goal2_y,
-            x2=bot_right_goal2_x, y2=bot_right_goal2_y,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+        self.frame.add_circle(cu, cv, 1.5/self.w_m, c.line_color, -1)
 
-        # Penalty spots
-        left_pen_spot_x = c.origin_x + 12
-        pen_spot_y = c.origin_y + c.width / 2
-        right_pen_spot_x = c.origin_x + c.length - 12
-        for spot_x in [left_pen_spot_x, right_pen_spot_x]:
-            self.frame.add_circle(
-                x=spot_x, y=pen_spot_y,
-                radius=1.5,
-                color=c.line_color,
-                thickness=-1
+        for side in (-1, 1):                         # -1 = left, +1 = right
+            gx   = c.origin_x + (0 if side == -1 else c.length)
+            mul  = 1 if side == -1 else -1
+
+            # penalty area rectangle
+            self.frame.add_rect(
+                *self._to_norm(gx + mul*self.PA_D,
+                               c.origin_y + (c.width - self.PA_W)/2),
+                *self._to_norm(gx,
+                               c.origin_y + (c.width + self.PA_W)/2),
+                c.line_color, t_norm
             )
 
-        # Goals (just outside the pitch)
-        goal_w = 8.0
-        left_goal_x1 = c.origin_x - c.goal_offset
-        left_goal_y1 = c.origin_y + c.width/2 - goal_w/2
-        left_goal_x2 = c.origin_x
-        left_goal_y2 = left_goal_y1 + goal_w
-        self.frame.add_rect(
-            x1=left_goal_x1,  y1=left_goal_y1,
-            x2=left_goal_x2,  y2=left_goal_y2,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+            # goal area rectangle
+            self.frame.add_rect(
+                *self._to_norm(gx + mul*self.GA_D,
+                               c.origin_y + (c.width - self.GA_W)/2),
+                *self._to_norm(gx,
+                               c.origin_y + (c.width + self.GA_W)/2),
+                c.line_color, t_norm
+            )
 
-        right_goal_x1 = c.origin_x + c.length
-        right_goal_y1 = left_goal_y1
-        right_goal_x2 = right_goal_x1 + c.goal_offset
-        right_goal_y2 = left_goal_y1 + goal_w
-        self.frame.add_rect(
-            x1=right_goal_x1,  y1=right_goal_y1,
-            x2=right_goal_x2,  y2=right_goal_y2,
-            color=c.line_color,
-            thickness=c.linewidth
-        )
+            # penalty mark
+            pm_u, pm_v = self._to_norm(gx + mul*self.SPOT_D,
+                                       c.origin_y + c.width/2)
+            self.frame.add_circle(pm_u, pm_v, 1.5/self.w_m, c.line_color, -1)
 
-    def get_hardcoded_model_points(self) -> np.ndarray:
-        """Returns a set of reference points in model space (original field coordinates)."""
-        c = self.config
-        
-        # Define key points in model space
-        raw_points = [
-            # Corners
-            (c.origin_x, c.origin_y),  # 0: Top-left
-            (c.origin_x + c.length, c.origin_y),  # 1: Top-right
-            (c.origin_x, c.origin_y + c.width),  # 2: Bottom-left
-            (c.origin_x + c.length, c.origin_y + c.width),  # 3: Bottom-right
-            
-            # Center
-            (c.origin_x + c.length / 2, c.origin_y + c.width / 2),  # 4: Center spot
-            
-            # Penalty spots
-            (c.origin_x + 12, c.origin_y + c.width / 2),  # 5: Left penalty spot
-            (c.origin_x + c.length - 12, c.origin_y + c.width / 2),  # 6: Right penalty spot
-            
-            # Left penalty area corners
-            (c.origin_x, c.origin_y + (c.width - 44) / 2),  # 7: Top left of left penalty area
-            (c.origin_x, c.origin_y + (c.width + 44) / 2),  # 8: Bottom left of left penalty area
-            (c.origin_x + 18, c.origin_y + (c.width - 44) / 2),  # 9: Top right of left penalty area
-            (c.origin_x + 18, c.origin_y + (c.width + 44) / 2),  # 10: Bottom right of left penalty area
-            
-            # Right penalty area corners
-            (c.origin_x + c.length, c.origin_y + (c.width - 44) / 2),  # 11: Top right of right penalty area
-            (c.origin_x + c.length, c.origin_y + (c.width + 44) / 2),  # 12: Bottom right of right penalty area
-            (c.origin_x + c.length - 18, c.origin_y + (c.width - 44) / 2),  # 13: Top left of right penalty area
-            (c.origin_x + c.length - 18, c.origin_y + (c.width + 44) / 2),  # 14: Bottom left of right penalty area
-            
-            # Left goal area corners
-            (c.origin_x, c.origin_y + (c.width - 20) / 2),  # 15: Top left of left goal area
-            (c.origin_x, c.origin_y + (c.width + 20) / 2),  # 16: Bottom left of left goal area
-            (c.origin_x + 6, c.origin_y + (c.width - 20) / 2),  # 17: Top right of left goal area
-            (c.origin_x + 6, c.origin_y + (c.width + 20) / 2),  # 18: Bottom right of left goal area
-            
-            # Right goal area corners
-            (c.origin_x + c.length, c.origin_y + (c.width - 20) / 2),  # 19: Top right of right goal area
-            (c.origin_x + c.length, c.origin_y + (c.width + 20) / 2),  # 20: Bottom right of right goal area
-            (c.origin_x + c.length - 6, c.origin_y + (c.width - 20) / 2),  # 21: Top left of right goal area
-            (c.origin_x + c.length - 6, c.origin_y + (c.width + 20) / 2),  # 22: Bottom left of right goal area
-            
-            # Midfield line endpoints
-            (c.origin_x + c.length / 2, c.origin_y),  # 23: Top of midfield line
-            (c.origin_x + c.length / 2, c.origin_y + c.width),  # 24: Bottom of midfield line
-            
-            # Center circle top & bottom
-            (c.origin_x + c.length / 2, c.origin_y + c.width / 2 - 10),  # 25: Top of center circle
-            (c.origin_x + c.length / 2, c.origin_y + c.width / 2 + 10),  # 26: Bottom of center circle
-            
-            # Additional points
-            (c.origin_x + 18, c.origin_y + 32),  # 27
-            (c.origin_x + 18, c.origin_y + 48),  # 28
-            (c.origin_x + c.length - 18, c.origin_y + 32),  # 29
-            (c.origin_x + c.length - 18, c.origin_y + 48),  # 30
-            (c.origin_x + 50, c.origin_y + 40),  # 31
-            (c.origin_x + 70, c.origin_y + 40),  # 32
+            # “D” arc (joins penalty area)
+            ang0, ang1 = (-53, 53) if side == -1 else (127, 233)
+            self._add_arc(pm_u, pm_v, self.CIRCLE_R,
+                          ang0, ang1, c.line_color, t_norm)
+
+    def _reference_model_pts(self) -> np.ndarray:
+        """Return 33 reference points in model-space (norm)."""
+        import math
+        c = self.cfg
+        mid_y   = c.origin_y + c.width/2
+        left_x  = c.origin_x + self.PA_D
+        right_x = c.origin_x + c.length - self.PA_D
+        dy = math.sqrt(self.CIRCLE_R**2 - (self.PA_D - self.SPOT_D)**2)  # ≈ 7.312 m
+        cx = c.origin_x + c.length/2          # pitch centre-x
+
+        meter_pts: List[Tuple[float, float]] = [
+            # 0–3  corners
+            (c.origin_x,            c.origin_y),
+            (c.origin_x+c.length,   c.origin_y),
+            (c.origin_x,            c.origin_y+c.width),
+            (c.origin_x+c.length,   c.origin_y+c.width),
+            # 4    centre
+            # (cx, mid_y),
+            # 5–6  penalty spots
+            (c.origin_x + self.SPOT_D,            mid_y),
+            (c.origin_x + c.length - self.SPOT_D, mid_y),
+
+            # 7–10  left PA
+            (c.origin_x,             mid_y-self.PA_W/2),
+            (c.origin_x,             mid_y+self.PA_W/2),
+            (left_x,                 mid_y-self.PA_W/2),
+            (left_x,                 mid_y+self.PA_W/2),
+
+            # 11–14 right PA
+            (c.origin_x+c.length,             mid_y-self.PA_W/2),
+            (c.origin_x+c.length,             mid_y+self.PA_W/2),
+            (right_x,                         mid_y-self.PA_W/2),
+            (right_x,                         mid_y+self.PA_W/2),
+
+            # 15–18 left GA
+            (c.origin_x,             mid_y-self.GA_W/2),
+            (c.origin_x,             mid_y+self.GA_W/2),
+            (c.origin_x+self.GA_D,   mid_y-self.GA_W/2),
+            (c.origin_x+self.GA_D,   mid_y+self.GA_W/2),
+
+            # 19–22 right GA
+            (c.origin_x+c.length,             mid_y-self.GA_W/2),
+            (c.origin_x+c.length,             mid_y+self.GA_W/2),
+            (c.origin_x+c.length-self.GA_D,   mid_y-self.GA_W/2),
+            (c.origin_x+c.length-self.GA_D,   mid_y+self.GA_W/2),
+
+            # 23–24 midfield line ends
+            (cx, c.origin_y),
+            (cx, c.origin_y+c.width),
+
+            # 25–26 circle top / bottom
+            (cx, mid_y - self.CIRCLE_R),
+            (cx, mid_y + self.CIRCLE_R),
+
+            # 27–30 “D” arc endpoints
+            (left_x,  mid_y - dy),
+            (left_x,  mid_y + dy),
+            (right_x, mid_y - dy),
+            (right_x, mid_y + dy),
+
+            # 31–32 NEW: circle left / right extrema
+            (cx - self.CIRCLE_R, mid_y),       # leftmost on circle
+            (cx + self.CIRCLE_R, mid_y),       # rightmost on circle
+
         ]
-        
-        return np.array(raw_points, dtype=np.float32)
-    
-    def draw_hardcoded_model_points(self):
-        """Draws the hardcoded reference points on the provided image."""
-        model_pts = self.get_hardcoded_model_points()
-        for i, (mx, my) in enumerate(model_pts):
-            self.frame.add_circle(
-                x=mx, y=my, radius=1.2,
-                color="black", thickness=-1
-            )
-            self.frame.add_text(
-                x=mx + 2, y=my + 2,
-                text=str(i),
-                color="white",
-                size=0.4
-            )
 
-    def get_template_pixel_points(self) -> np.ndarray:
-        """Get pixel space set of hardcoded points."""
-        model_pts = self.get_hardcoded_model_points()
+        norm_pts = [self._to_norm(x_m, y_m) for x_m, y_m in meter_pts]
+        return np.array(norm_pts, dtype=np.float32)
 
-        out = []
-        top_padding  = self.frame._padding[0]
-        left_padding = self.frame._padding[2]
-        current_scale = self.frame._scale
 
-        for mx, my in model_pts:
-            px = mx * current_scale + left_padding
-            py = my * current_scale + top_padding
-            out.append((px, py))
+    def _draw_reference_points(self, with_text: bool) -> None:
+        for idx, (u, v) in enumerate(self._reference_model_pts()):
+            self.frame.add_circle(u, v, 1.2/self.w_m, color="black", thickness=-1)
+            if with_text:
+                self.frame.add_text(x=u, y=v,
+                                    text=str(idx),
+                                    color="black",
+                                    size=0.2)
 
-        return np.array(out, dtype=np.float32)
-    
-    
     def clear_annotations(self) -> None:
-        if isinstance(self.frame, Frame):
-            self.frame.clear_annotations()        
+        """Remove dynamic annotations but keep static pitch + dots."""
+        self.frame.data.annotations = self.frame.data.annotations[: self._static_count]
 
-    def show(self):
-        """Standalone test."""
-        cv2.imshow(self.window_name, self.frame.rendered)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-
-    def save(self, filepath: str):
-        """Save the final field to an image file."""
-        cv2.imwrite(filepath, self.frame.rendered)
-        self.logger.info(f"Pitch visualization saved to {filepath}")
-
+    # ── rendering (adds 2 % gray frame) ──────────────────────────
     def get_image(self) -> np.ndarray:
-        """Return a copy of the final field as a numpy array (BGR)."""
-        return self.frame.rendered.copy()
+        W_px, H_px = self.vis_cfg.field_disp_size
+        pad        = 0.02
+        W_i        = round(W_px * (1 - 2*pad))
+        H_i        = round(H_px * (1 - 2*pad))
+        inner      = self.frame.render((W_i, H_i))
+
+        canvas = np.full((H_px, W_px, 3), get_color(self.cfg.bgc), dtype=np.uint8)
+        x0, y0 = round(W_px * pad), round(H_px * pad)
+        canvas[y0:y0+H_i, x0:x0+W_i] = inner
+        return canvas
+
+    def show(self) -> None:
+        cv2.imshow(self.window, self.get_image())
+        cv2.waitKey(0)
+        cv2.destroyWindow(self.window)
 
 
 if __name__ == "__main__":
-    field = FieldVisualizer()
-    # Add a test point in the center
-    c = field.config
-    center_x = c.origin_x + c.length / 2
-    center_y = c.origin_y + c.width / 2
-    field.frame.add_point(center_x, center_y, "blue", radius=4)
-    
-    field.draw_hardcoded_model_points()
-    # Show on screen
-    field.show()
+    FieldVisualizer().show()

@@ -1,162 +1,120 @@
-# real time inference handling
-import time
-import cv2
-import queue
+import time, warnings, queue, cv2
 import numpy as np
 from pathlib import Path
-from typing import Tuple, List, Literal, Optional
+from typing import Optional, List, Tuple
 
-from src.process.annotator import HomographyAnnotator
-from src.visual.visualizer import Visualizer
-from src.config import RealTimeConfig
-from src.process.process import Process
-from src.struct.frame import Frame
-from src.struct.transform import TransformUtils
-from src.struct.shared_data import SharedAnnotations
-
+from src.visual.visualizer   import Visualizer
+from src.process.annotator   import HomographyAnnotator
+from src.config              import RealTimeConfig
+from src.process.process     import Process
+from src.struct.shared_data  import SharedAnnotations
 
 
 class VisualizationProcess(Process):
-    """Retrieves results from the buffer and visualizes in real-time."""
-    
+    """
+    Fetch frames from `buffer`, add annotations into SharedAnnotations,
+    and render via the given `Visualizer`.
+    """
+
     def __init__(
-            self, 
-            buffer:        queue.Queue, 
-            visualizer:    Visualizer, 
-            config:        RealTimeConfig,
-            H_video2field: np.ndarray = None,
-            shared_data: SharedAnnotations = SharedAnnotations(),
-            output_dir:  Optional[str] = None
-            ):
-        self.buffer = buffer
-        self.visualizer = visualizer
-        self.max_buffer_size = config.max_buffer_size
-        self.batch_size = config.batch_size
-        self.target_fps = config.target_fps
-        self.frame_interval = 1.0 / config.target_fps
-        self.running = True
-        self.annotation_gap = config.annotation_gap
-        self.frame_counter = 0
-        self.H_video2field = H_video2field
-        self.shared_data = shared_data
+        self,
+        buffer:        queue.Queue,
+        visualizer:    Visualizer,
+        config:        RealTimeConfig,
+        shared_data:   SharedAnnotations,
+        output_dir:    Optional[str] = None,
+    ) -> None:
+        self.buffer      = buffer
+        self.vis         = visualizer
+        self.shared      = shared_data
 
-        self.output_dir = Path(output_dir) if output_dir else None
-        if self.output_dir:
-            self.output_dir.mkdir(parents=True, exist_ok=True)
-            self.annot_count = 0
+        self.target_dt   = 1.0 / config.target_fps
+        self.max_buf     = config.max_buffer_size
+        self.annot_gap   = config.annotation_gap
+        self.running     = True
+        self.frame_id    = 0            # overall frame counter
 
-    def process_frames(self):
-        """Continuously fetches frames and renders at 1 sec per sec."""
-        start = True
+        self.H_video2field = np.eye(3, dtype=np.float32)
 
+        self.out_dir = Path(output_dir) if output_dir else None
+        if self.out_dir:
+            self.out_dir.mkdir(parents=True, exist_ok=True)
+            self.snap_idx = 0
+
+    @staticmethod
+    def _centre_foot(box: Tuple[int, int, int, int]) -> Tuple[float, float]:
+        x1, y1, x2, y2 = box
+        return (x1 + x2) * 0.5, y2                       # (cx , bottom-y)
+
+    def process_frames(self) -> None:
+        print("🎬  Visualisation loop started")
         while self.running:
 
-            self.H_video2field = self.shared_data.H_video2field
-            start_time = time.time()
+            t0 = time.time()
 
-            required_size = int(self.max_buffer_size * (start*0.3 + 0.5))
-            if self.buffer.qsize() < required_size:
-                print(f"⏳ Buffer low ({self.buffer.qsize()}/{self.max_buffer_size}), waiting for more frames...")
-                time.sleep(2)
+            if self.buffer.qsize() < int(self.max_buf * 0.3):
+                print(f"⏳ Buffer low ({self.buffer.qsize():d}/{self.max_buf})")
+                time.sleep(0.5)
                 continue
+
             try:
-                video_frame = self.buffer.get(timeout=0.1)
-                self.visualizer.update(video_frame)
-
+                vf = self.buffer.get(timeout=0.1)
             except queue.Empty:
-                print("⏳ Buffer is empty, waiting for frames...")
-                time.sleep(0.1)
                 continue
 
-            H = getattr(video_frame, "H", None)
+            det_entries = []
+            foot_pts_px = []
+            for det in vf.detections:
+                for box, cls in zip(det.boxes, det.classes):
+                    det_entries.append({"bbox": tuple(map(float, box)),
+                                        "class": int(cls)})
+                    foot_pts_px.append(self._centre_foot(box))
+            self.shared.yolo_detections = det_entries
 
-            if H is not None:
-                projected = []
-                self.H_video2field = H
-                for det in video_frame.detections:
-                    for det_box in det.boxes:
-                        foot_pt = self._get_foot_pt(det_box)
-                        projected = self._project_foot(foot_pt)
-                        self.shared_data.projected_detection_model_pts.extend(projected)
+            if vf.H is not None and foot_pts_px:
+                self.H_video2field = vf.H.copy()
 
+                foot_np   = np.asarray(foot_pts_px, np.float32).reshape(-1, 1, 2)
+                proj_np   = cv2.perspectiveTransform(foot_np, self.H_video2field
+                                                     ).reshape(-1, 2)
 
-            # # DEBUG !!! PROJECTING ONLY CANONICAL SQUARE
-            # from src.struct.transform import TransformUtils
-            # h_px, w_px = video_frame.image.shape[:2]
-            # base_sq_px = TransformUtils.get_base_square_px((h_px, w_px))
-            # sq_metres = cv2.perspectiveTransform(
-            #     base_sq_px.reshape(-1,1,2).astype(np.float32),
-            #     H
-            # ).reshape(-1,2)
-            # self.shared_data.projected_detection_model_pts = [
-            #     (float(x), float(y)) for x,y in sq_metres
-            # ]
-            # # END DEBUG
+                self.shared.field_points["yellow"] = proj_np
+            else:
+                self.shared.field_points["yellow"] = np.zeros((0, 2),
+                                                              np.float32)
 
-            self.frame_counter += 1
+            self.vis.update(vf)
+            self.vis.render()
 
-            if self.annotation_gap > 0 and (self.frame_counter % self.annotation_gap == 0):
-                print("⏸️  Pausing video process for annotation...")
-                current_img = self.visualizer.video_visualizer.get_image().copy()
-                annotator = HomographyAnnotator(
-                    image_np=current_img, 
-                    visualizer=self.visualizer, 
-                    shared_data=self.shared_data,
-                    )
-                annotator.run() 
+            self.frame_id += 1
+            if self.annot_gap > 0 and self.frame_id % self.annot_gap == 0:
+                self._run_manual_annotation()
 
-                if self.output_dir:
-                    annotator.save_results(count=self.annot_count, output_dir=self.output_dir)
-                    self.annot_count += 1
+            dt = time.time() - t0
+            if dt < self.target_dt:
+                time.sleep(self.target_dt - dt)
 
-                H = self.shared_data.H_video2field
-                if H is not None:
-                    print("✅ Annotation completed. Updating H matrix.")
-                    self.H_video2field = H
-                else:
-                    print("⚠️  Annotation did not produce a valid homography.")
-                    
-            self.visualizer.render()
+        print("✅  Visualization loop finished")
 
-            elapsed_time = time.time() - start_time
-            remaining_time = self.frame_interval - elapsed_time
-            if remaining_time > 0:
-                time.sleep(remaining_time)
+    def _run_manual_annotation(self) -> None:
+        print("⏸️  Pausing for manual annotation …")
+        current_img = self.vis.video_vis.get_image().copy()
 
-        print("✅ Visualization Process Finished")
+        annot = HomographyAnnotator(
+            image_np=current_img,
+            visualizer=self.vis,
+            shared_data=self.shared,
+        )
+        annot.run()
 
-    def _get_foot_pt(self, det_box: Tuple[int, int, int ,int]):
-        x1, y1, x2, y2 = det_box
-        foot_pt = np.array([[[ (x1+x2)/2, y2 ]]], dtype=np.float32)
-        return foot_pt
+        if self.out_dir:
+            annot.save_results(self.snap_idx, self.out_dir)
+            self.snap_idx += 1
 
-    def _project_foot(self, foot_pt: np.ndarray) -> List[Tuple]:
-        """
-        foot_pt: video_pixel coordinate
-        projected: field_model coordinate
-        """
+        if self.shared.H_video2field is not None:
+            self.H_video2field = self.shared.H_video2field
+            print("↺  Updated homography from manual annot.")
 
-        if self.H_video2field is None:
-            return []
-        
-        # print(f"foot_pt: {foot_pt}")
-
-        projected = cv2.perspectiveTransform(
-            foot_pt.reshape(-1, 1, 2), 
-            self.H_video2field,
-            ).reshape(-1, 2)
-
-        return [tuple(projected[0])]
-
-
-    def stop(self):
-        """Stops the visualization process."""
-        self.running = False
-
-    def on_mouse_click(self, x: int, y: int) -> None:
-        """Handles mouse click events in the visualizer."""
-        pass
-
-    def is_done(self) -> bool:
-        """Checks whether the process is completed."""
-        return False
+    def stop(self)            -> None: self.running = False
+    def on_mouse_click(self,*_): pass
+    def is_done(self)         -> bool : return not self.running

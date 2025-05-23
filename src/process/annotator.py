@@ -4,7 +4,6 @@ from time import sleep
 from pathlib import Path
 from typing import Literal, Optional
 
-from src.utils import get_data_path
 from src.visual.field import FieldVisualizer, PitchConfig
 from src.process.process import Process
 from src.visual.visualizer import Visualizer
@@ -81,7 +80,11 @@ class HomographyAnnotator(Process):
         """Captures image points on click during the annotation phase."""
         if self.phase == "collect_video":
             if len(self.shared_data.captured_video_pts) < self.n_points:
-                self.shared_data.captured_video_pts.append((x, y))
+                norm_pt = TransformUtils.px_to_norm(
+                    np.array([x, y], dtype=np.float32), 
+                    (self.h_px, self.w_px)
+                ).flatten()
+                self.shared_data.captured_video_pts.append((float(norm_pt[0]), float(norm_pt[1])))
                 self.logger.info(f"Captured image point {len(self.shared_data.captured_video_pts)}: ({x}, {y})")
 
             if len(self.shared_data.captured_video_pts) == 4:
@@ -231,23 +234,15 @@ class HomographyAnnotator(Process):
         if self.H_video2field is None:
             return
         
-        img_h, img_w = self.image.shape[:2]
-        mean = [img_w / 2, img_h / 2]
-        std_dev = [img_w / 8, img_h / 8]
+        mean_n = [0.5, 0.5]
+        std_n = [0.125, 0.125] # 1/8 of width & height
+        samples = np.random.normal(loc=mean_n, scale=std_n, size=(6,2)).astype(np.float32)
+        samples = np.clip(samples, 0.0, 1.0)
+        proj_hom = cv2.perspectiveTransform(samples.reshape(-1, 1, 2), self.H_video2field)
+        samples_field = proj_hom.reshape(-1, 2)
+        self.shared_data.sampled_video_pts   = [tuple(pt) for pt in samples]
+        self.shared_data.projected_field_pts = [tuple(pt) for pt in samples_field]
 
-        sampled_video_pts = np.random.normal(loc=mean, scale=std_dev, size=(6,2)).astype(np.float32)
-        field_projected_pts = cv2.perspectiveTransform(
-            sampled_video_pts.reshape(-1, 1, 2),
-            self.H_video2field,
-        ).reshape(-1, 2)
-
-        field_projected_pts = TransformUtils.metre_to_px(
-            field_projected_pts, 
-            (self.tpl_h_px, self.tpl_w_px)
-        )
-
-        self.shared_data.sampled_video_pts = sampled_video_pts.tolist()
-        self.shared_data.projected_field_pts = [tuple(pt) for pt in field_projected_pts]
 
         while True:
             visualizer.video_visualizer.clear_annotations()

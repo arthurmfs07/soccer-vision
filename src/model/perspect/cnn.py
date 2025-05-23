@@ -13,13 +13,12 @@ class CNNConfig:
     - paddings:     (size n)
     - use_batchnorm: if true, add BatchNorm2d
     - activation_fn: activation function after each conv
-
     """
     input_channels: int = 3
-    hidden_channels: List[int] = field(default_factory=lambda: [ 64, 128, 256, 512])
-    kernel_sizes:    List[int] = field(default_factory=lambda: [  4,   4,   4,   4])
-    strides:         List[int] = field(default_factory=lambda: [  2,   2,   2,   2])
-    paddings:        List[int] = field(default_factory=lambda: [  1,   1,   1,   1])
+    hidden_channels: List[int] = field(default_factory=lambda:  [ 32,  64, 128, 256])
+    kernel_sizes:    List[int] = field(default_factory= lambda: [  4,   4,   4,   4])
+    strides:         List[int] = field(default_factory=lambda:  [  2,   2,   2,   2])
+    paddings:        List[int] = field(default_factory=lambda:  [  1,   1,   1,   1])
     activation_fn: nn.Module   = nn.LeakyReLU(negative_slope=0.01)
     use_batchnorm: bool        = True
 
@@ -44,32 +43,36 @@ class CNN(nn.Module):
 
         layers = []
         in_ch = input_channels
-        for (out_ch,k,s,p) in zip(hidden_channels, kernel_sizes, strides, paddings):
+        for (out_ch,k,s,p) in zip(
+            hidden_channels, 
+            kernel_sizes, 
+            strides, 
+            paddings
+        ):
             layers.append(nn.Conv2d(in_ch, out_ch, k, s, p))
             if use_batchnorm:
                 layers.append(nn.BatchNorm2d(out_ch))
             layers.append(activation_fn)
             in_ch = out_ch
 
-        pool_shape = (4, 4)
-        flat_dim = in_ch * pool_shape[0] * pool_shape[1]
-
         self.conv_layers = nn.Sequential(*layers)
+        pool_shape = (4, 4)
         self.adaptive_pool = nn.AdaptiveAvgPool2d(pool_shape)
-        self.fc = nn.Sequential(
-            nn.Linear(flat_dim, 1024),
-            nn.LeakyReLU(0.01),
-            nn.Linear(1024, 8)
-        )
+
+        self.feature_dim = in_ch * pool_shape[0] * pool_shape[1]
+
         self._initialize_weights()
 
 
     def forward(self, X: torch.Tensor) -> torch.Tensor:
+        """
+        x: [B, C, H, W]
+        returns: [B, feature_dim]
+        """
         X = self.conv_layers(X)
-        X = self.adaptive_pool(X).flatten(1)    # [B, C]
-        X = self.fc(X)                          # [B, 8]
-        X = torch.sigmoid(X)                    # normalize to [0..1]
-        return X.view(-1, 4, 2)             # [B, 4, 2] as (x_norm, y_norm)
+        X = self.adaptive_pool(X)
+        return X.flatten(1) # [B, feature_dim]
+
 
     
 
@@ -81,9 +84,6 @@ class CNN(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.Linear):
-                nn.init.uniform_(m.weight, a=-1e-3, b=1e-3)
-                nn.init.constant_(m.bias, 0.0)
 
 
 

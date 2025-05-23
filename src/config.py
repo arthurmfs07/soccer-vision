@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
-from typing import Dict, Optional, Literal
+from typing import *
 
-@dataclass
+
 class BaseConfig:
     device: str = "cuda"
     batch_size: int = 4       # Size of a single inference batch
@@ -19,6 +19,17 @@ class RealTimeConfig(BaseConfig):
     target_fps: int = 10               # Target frames per second for visualization
     yolo_conf : float = 0.5            # Confidence threshold for YOLO
     annotation_gap: Literal[-1] = 100  # pixel gap between consecutive annotations
+
+@dataclass
+class VisualizationConfig(BaseConfig):
+    """All display sizes; used only for denormalization at render time.
+    All in (W,H) format"""
+    video_disp_size: Tuple[int, int] = (640, 360)
+    field_disp_size: Tuple[int, int] = (640, 360)
+    # 'none'        -> don't draw them
+    # 'points'      -> only black dots
+    # 'points_text' -> black dots + index labels
+    show_reference_points: Literal['none', 'points', 'points_text'] = 'points'
 
 
 @dataclass

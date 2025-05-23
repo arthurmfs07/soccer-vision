@@ -4,13 +4,10 @@ import os
 import torch
 from pathlib import Path
 from ultralytics import YOLO
-from typing import List, Dict, Any
+from typing import List
 from torch.utils.data import DataLoader
 from src.logger import setup_logger
-
 from src.struct.detection import Detection
-
-
 
 class ObjectDetector:
     MODEL_PATH = Path(__file__).resolve().parent / "data" / "03--models" / "yolov8.pt"
@@ -51,9 +48,16 @@ class ObjectDetector:
         results = self.model(images, verbose=False, conf=self.conf)
         detections = []
 
+        _, _, H, W = images.shape
+
         for result in results:
+            boxes_px = result.boxes.xyxy.cpu().numpy()
+            boxes = boxes_px.copy()
+            boxes[:, [0, 2]] /= float(W)
+            boxes[:, [1, 3]] /= float(H)
+
             detections.append(Detection(
-                boxes=result.boxes.xyxy.cpu().numpy(),       # Bounding box (x1, y1, x2, y2)
+                boxes=boxes,                                 # Bounding box (x1, y1, x2, y2)
                 confidences=result.boxes.conf.cpu().numpy(), # Confidence scores
                 classes=result.boxes.cls.cpu().numpy()       # Class
             ))
