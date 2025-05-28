@@ -4,8 +4,8 @@ from typing import *
 
 class BaseConfig:
     device: str = "cuda"
-    batch_size: int = 4       # Size of a single inference batch
-    target_fps: int = 10
+    batch_size: int = 16       # Size of a single inference batch
+    target_fps: int = 12
 
     video_name: str = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
     video_dir: str = "data/00--raw/videos"
@@ -35,8 +35,8 @@ class VisualizationConfig(BaseConfig):
 @dataclass
 class DataConfig(BaseConfig):
     """Data processing config"""
-    width : int = 640
-    height : int = 352
+    width:  int = 320  # 640
+    height: int = 320  # 640
     shuffle: bool = False
 
 @dataclass

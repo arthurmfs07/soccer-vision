@@ -11,7 +11,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 
 from src.logger import setup_logger
 from src.model.detect.objdetect import ObjectDetector
-from src.model.perspect.model import PerspectModel
+from src.model.perspect.model import build_model, BasePerspectModel
 from src.utils import get_actual_yolo, get_csv_path, get_data_path
 from src.model.perspect.batch import Batch
 from src.struct.utils import create_base_square
@@ -29,22 +29,6 @@ class SquareTrainConfig:
     area_edge_weight:         float = 0.1
     save_path:       Optional[str]  = None
 
-
-class AddCoords:
-    """Given img: Tensor[C,H,W], return Tensor[C+2,H,W] with two extra channels:
-    - channels C: x indices lineatly spaced 0-1
-    - channels C+1: y indices linearly spaces 0-1
-    """
-    def __call__(self, img: torch.Tensor) -> torch.Tensor:
-        _, H, W = img.shape
-        device = img.device
-
-        xs = torch.linspace(0, 1, W, device=device) \
-            .view(1, 1, W).expand(1, H, W)
-        ys = torch.linspace(0, 1, H, device=device) \
-            .view(1, H, 1).expand(1, H, W)
-        
-        return torch.cat([img, xs, ys], dim=0)
 
 
 class HomographyDataset(Dataset):
@@ -73,6 +57,7 @@ class HomographyDataset(Dataset):
 
         self.transform = transforms.Compose([
             transforms.ToPILImage(),
+            transforms.Resize((320, 320)),
             transforms.ColorJitter(
                 brightness=0.2,
                 contrast=0.2,
@@ -81,7 +66,7 @@ class HomographyDataset(Dataset):
             transforms.RandomGrayscale(0.05),
             # transforms.GaussianBlur(5,(0.1,2.0)),
             transforms.ToTensor(),
-            # AddCoords(),
+            AddCoords(),
         ])
 
     def __len__(self) -> int:
@@ -170,14 +155,9 @@ class PerspectSquareTrainer:
         )
 
         # PerspectModel
-        self.model     = PerspectModel(device=self.device, train_type="square")
+        self.model = build_model(model_type="square", device=self.device)
+        self.model.to(self.device)
         
-        if cfg.save_path:
-            ckpt = Path(cfg.save_path)
-            if ckpt.is_file():
-                print(f"→ loading checkpoint from {cfg.save_path}")
-                self.model.load(cfg.save_path)
-
         
         self.optimizer = torch.optim.Adam(
             self.model.parameters(), lr=cfg.lr
@@ -189,6 +169,21 @@ class PerspectSquareTrainer:
             patience=self.cfg.patience,
             threshold=1e-4
         )
+        
+
+        if cfg.save_path and Path(cfg.save_path).is_file():
+            self.model, meta = BasePerspectModel.load_checkpoint(
+                cfg.save_path,
+                device=cfg.device,
+                optimizer=self.optimizer,
+                scheduler=self.lr_scheduler,
+            )
+            self.best_val    = meta.get("best_val", float("inf"))
+            self.start_epoch = meta.get("epoch",    0)
+            print(f"→ resumed from epoch {self.start_epoch}, best_val={self.best_val:.4f}")
+        else:
+            self.best_val, self.start_epoch = float("inf"), 0
+
     
     def _polygon_area(self, pts: torch.Tensor) -> torch.Tensor:
         """Shoelace formula on [B,4,2] -> [B]"""
@@ -209,7 +204,7 @@ class PerspectSquareTrainer:
             flips: torch.Tensor):
         B = images.size(0)
         
-        pred_sq = self.model(images)[0]        # [B,4,2]
+        pred_sq = self.model(images)        # [B,4,2]
         base_sq = create_base_square(as_tensor=True)       # [1,4,2]
         base_sq = base_sq.to(self.device).expand(B, -1, -1)
         target_sq = self.model.warp_points(H_gt, base_sq)  # [B,4,2]
@@ -267,7 +262,6 @@ class PerspectSquareTrainer:
             loss.backward()
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
             self.optimizer.step()
-            self.logger.info(f"Batch {b_idx}: H‐loss={loss.item():.4f}")
 
             yield "homography", b_idx, imgs.cpu(), pred.cpu(), target.cpu(), loss.item()
 
@@ -301,12 +295,18 @@ class PerspectSquareTrainer:
                     n_val+=1
                 avg_val_loss = val_loss / max(1, n_val)
                 self.logger.info(f"    val loss: {avg_val_loss:.4f}")
-                # self.lr_scheduler.step(avg_val_loss)
+                self.lr_scheduler.step(avg_val_loss)
 
-                if avg_val_loss < best_val:
-                    best_val, wait = avg_val_loss, 0
+                if avg_val_loss < self.best_val:
+                    self.best_val, wait = avg_val_loss, 0
                     if self.cfg.save_path:
-                        self.model.save(self.cfg.save_path)
+                        self.model.save_checkpoint(
+                            self.cfg.save_path,
+                            optimizer_state   = self.optimizer.state_dict(),
+                            scheduler_state   = self.lr_scheduler.state_dict(),
+                            best_val          = self.best_val,
+                            epoch             = e,
+                        )
                         self.logger.info(f"    new best model, saved to {self.cfg.save_path}")
                 else:
                     wait += 1

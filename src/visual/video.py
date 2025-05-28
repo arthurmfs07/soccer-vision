@@ -10,16 +10,16 @@ from src.logger import setup_logger
 from src.struct.frame import Frame
 from src.struct.detection import Detection
 from src.config import VisualizationConfig
+from src.struct.shared_data import SharedAnnotations
 
 
 @dataclass
 class VideoFrame:
     """Encapsulate a single video frame with raw image, timestamp, ID, and detections."""
-    frame_id:   int
-    timestamp:  float
-    image:      np.ndarray            # H×W×3, RGB or BGR uint8
-    detections: List[Detection]      
-    H:          Optional[np.ndarray] = None
+    frame_id:    int
+    timestamp:   float
+    image:       np.ndarray            # H×W×3, RGB or BGR uint8
+    annotations: SharedAnnotations
 
 
 class VideoVisualizer:
@@ -64,36 +64,12 @@ class VideoVisualizer:
           - BoxAnnotations for each detection, in normalized coords
         """
         img = self._prepare_frame(video_frame.image)
-        H_px, W_px = img.shape[:2]
-        f = Frame(img)
 
-        for det in video_frame.detections:
-            for box, cls, in zip(det.boxes, det.classes):
-                x1, y1, x2, y2 = box
-                if max(x1, y1, x2, y2) <= 1.0: # decide whether already normalized
-                    x1_n, y1_n, x2_n, y2_n = x1, y1, x2, y2
-                else:
-                    x1_n, y1_n = x1 / W_px, y1 / H_px
-                    x2_n, y2_n = x2 / W_px, y2 / H_px
+        img = video_frame.image
+        bgr = self._prepare_frame(img)
+        self.frame.data.image = bgr
 
-                cx = ((x1_n + x2_n) / 2)
-                cy = ((y1_n + y2_n) / 2)
-                w_n = (x2_n - x1_n)
-                h_n = (y2_n - y1_n)
 
-                label          = self.class_names.get(cls, str(cls))
-                color          = self.color_map.get(cls, "red")
-
-                f.add_box(
-                    x=cx,
-                    y=cy,
-                    width=w_n,
-                    height=h_n,
-                    label=label,
-                    color=color
-                )
-
-        self.frame = f
 
 
     def clear_annotations(self) -> None:

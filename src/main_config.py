@@ -11,14 +11,14 @@ class MainConfig:
         "points": "data/00--raw/football-field-detection.v15i.yolov5pytorch",
     })
     save_paths: Dict[str,str] = field(default_factory=lambda: {
-        "square": "data/10--models/perspect_cnn10_square_baseline.pth",
-        "points": "data/10--models/perspect_cnn10_points_baseline.pth",
+        "square": "data/10--models/perspect_cnn_square_baseline_lowres.pth",
+        "points": "data/10--models/perspect_cnn_points_heatmap_resnet18_coords.pth",
     })
 
     # shared hyperparams
     BATCH_SIZE: int = 16
-    LR:         float = 1e-5
-    PATIENCE:   int = 30
+    LR:         float = 2e-4# for square 1e-5
+    PATIENCE:   int = 50
     DEVICE:     str = "cuda"
 
     @property

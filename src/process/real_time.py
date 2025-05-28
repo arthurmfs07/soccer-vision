@@ -45,23 +45,36 @@ class RealTimeInference:
         loader = DatasetLoader(config=self.data_cfg, skip_sec=100*60)
         self.dataloader = loader.load()
 
+    # DEBUG DATALOADER
+    # def build_dataloader(self):
+    #     from src.model.train_loader_debug import TrainDatasetLoader
+    #     dataset_path = "data/00--raw/football-field-detection.v15i.yolov5pytorch"
+    #     loader = TrainDatasetLoader(
+    #         config = DataConfig(),      # ← note the ()!
+    #         root   = "data/00--raw/football-field-detection.v15i.yolov5pytorch",
+    #         split  = "train",
+    #         repeats= 10
+    #     )
+    #     self.dataloader = loader.load()  # ← this gives you a real DataLoader
+
+
     def build_persp_model(self):
         if not self.persp_model_path:
             self.model = None
             return
 
         mc = MainConfig()  # pull train_type & save_path
-        from src.model.perspect.model import PerspectModel
+        from src.model.perspect.model import build_model, BasePerspectModel
 
-        self.model = PerspectModel(
-            train_type=mc.TRAIN_TYPE,
-            device=self.rt_cfg.device
-        ).to(self.rt_cfg.device)
-
+        self.model = build_model(model_type=mc.TRAIN_TYPE, device=self.rt_cfg.device)
+        
         ckpt = Path(mc.SAVE_PATH)
         if ckpt.is_file():
             print(f"→ loading PerspectModel checkpoint from {ckpt}")
-            self.model.load(str(ckpt))
+            self.model, _ = BasePerspectModel.load_checkpoint(
+                str(ckpt), 
+                device=self.rt_cfg.device
+                )
         else:
             print(f"⚠️  No PerspectModel found at {ckpt}, starting from scratch")
 
@@ -101,7 +114,7 @@ class RealTimeInference:
         )
 
         # link for drawing overlays
-        self.visualizer.process = inference
+        self.visualizer.process = visualization
 
         # run threads
         t_inf = threading.Thread(target=inference.process_batches)

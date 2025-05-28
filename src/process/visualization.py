@@ -26,7 +26,7 @@ class VisualizationProcess(Process):
     ) -> None:
         self.buffer      = buffer
         self.vis         = visualizer
-        self.shared      = shared_data
+        self.shared_data = shared_data
 
         self.target_dt   = 1.0 / config.target_fps
         self.max_buf     = config.max_buffer_size
@@ -62,26 +62,7 @@ class VisualizationProcess(Process):
             except queue.Empty:
                 continue
 
-            det_entries = []
-            foot_pts_px = []
-            for det in vf.detections:
-                for box, cls in zip(det.boxes, det.classes):
-                    det_entries.append({"bbox": tuple(map(float, box)),
-                                        "class": int(cls)})
-                    foot_pts_px.append(self._centre_foot(box))
-            self.shared.yolo_detections = det_entries
-
-            if vf.H is not None and foot_pts_px:
-                self.H_video2field = vf.H.copy()
-
-                foot_np   = np.asarray(foot_pts_px, np.float32).reshape(-1, 1, 2)
-                proj_np   = cv2.perspectiveTransform(foot_np, self.H_video2field
-                                                     ).reshape(-1, 2)
-
-                self.shared.field_points["yellow"] = proj_np
-            else:
-                self.shared.field_points["yellow"] = np.zeros((0, 2),
-                                                              np.float32)
+            self.shared_data = vf.annotations
 
             self.vis.update(vf)
             self.vis.render()
@@ -103,7 +84,7 @@ class VisualizationProcess(Process):
         annot = HomographyAnnotator(
             image_np=current_img,
             visualizer=self.vis,
-            shared_data=self.shared,
+            shared_data=self.shared_data,
         )
         annot.run()
 
@@ -111,8 +92,8 @@ class VisualizationProcess(Process):
             annot.save_results(self.snap_idx, self.out_dir)
             self.snap_idx += 1
 
-        if self.shared.H_video2field is not None:
-            self.H_video2field = self.shared.H_video2field
+        if self.shared_data.H_video2field is not None:
+            self.H_video2field = self.shared_data.H_video2field
             print("↺  Updated homography from manual annot.")
 
     def stop(self)            -> None: self.running = False

@@ -82,7 +82,7 @@ class TrainerProcess(Process):
                 frame_id=batch_idx,
                 timestamp=0,
                 image=self.prepare_image(images[0].clone()),
-                detections=[]
+                annotations=None
             )
             self.visualizer.video_vis.update(video_frame)
             self.visualizer.render()

@@ -16,8 +16,9 @@ class CNNConfig:
     """
     input_channels: int = 3
     hidden_channels: List[int] = field(default_factory=lambda:  [ 32,  64, 128, 256])
-    kernel_sizes:    List[int] = field(default_factory= lambda: [  4,   4,   4,   4])
-    strides:         List[int] = field(default_factory=lambda:  [  2,   2,   2,   2])
+    # hidden_channels: List[int] = field(default_factory=lambda:  [ 64, 128, 256, 512])
+    kernel_sizes:    List[int] = field(default_factory= lambda: [  3,   3,   3,   3])
+    strides:         List[int] = field(default_factory=lambda:  [  2,   2,   2,   1])
     paddings:        List[int] = field(default_factory=lambda:  [  1,   1,   1,   1])
     activation_fn: nn.Module   = nn.LeakyReLU(negative_slope=0.01)
     use_batchnorm: bool        = True

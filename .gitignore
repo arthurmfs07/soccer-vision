@@ -1,5 +1,3 @@
-/venv/*
-
 
 /data/*
 
@@ -7,3 +5,8 @@
 /yolo_training/*
 /YOLOv8/*
 *__pycache__*
+
+/logs/*
+*.log
+
+/venv/*

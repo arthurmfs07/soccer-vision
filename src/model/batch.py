@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import List, Tuple, Dict, Any
 
 from src.config import DataConfig
+from src.data.add_coords import AddCoords
 
 from src.logger import setup_logger
 
@@ -45,8 +46,10 @@ class DatasetLoader(Dataset):
         self.skip_sec = skip_sec
 
         self.transform = transforms.Compose([
-            transforms.ToTensor(),
+            transforms.ToPILImage(),
             transforms.Resize((self.height, self.width)),
+            transforms.ToTensor(),
+            AddCoords()
         ])
 
         self.cap = cv2.VideoCapture(self.video_path)
