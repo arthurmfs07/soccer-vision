@@ -13,8 +13,10 @@ This repository contains the implementation and supporting materials for a proje
 Create environment and install dependencies.
 
 Place Roboflow training detection data in:
-- field  : `data/00--raw/football-field-detection.v15i.yolov8/`
-- player : `data/00--raw/football-players-detection.v12i.yolov8/`
+- field  : 
+`data/00--raw/football-field-detection.v15i.yolov8/`
+- player : 
+`data/00--raw/football-players-detection.v12i.yolov8/`
 
 
 ## Finetune and Train Models
