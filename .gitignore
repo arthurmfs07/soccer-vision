@@ -8,7 +8,6 @@
 /venv/*
 /sports/*
 /runs/*
-/reports/*
 *dist*
 *build*
 /ANALYSIS/*
