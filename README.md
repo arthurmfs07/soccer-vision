@@ -33,12 +33,12 @@ python3 -m src.model.process.trainer
 <div style="display: flex; justify-content: center; gap: 40px; align-items: flex-start;">
 
   <div style="text-align: center;">
-    <img src="reports/upper_half.png" width="320" alt="YOLO-based player detection">
+    <img src="reports/detections_cut2.png" width="320" alt="YOLO-based player detection">
     <div style="margin-top: 5px; font-style: italic; font-size: 12px;">Figure: YOLO-based player detection</div>
   </div>
 
   <div style="text-align: center;">
-    <img src="reports/parte_superior.png" width="320" alt="Keypoint CNN pose">
+    <img src="reports/keypoints_train_cut.png" width="320" alt="Keypoint CNN pose">
     <div style="margin-top: 5px; font-style: italic; font-size: 12px;">Figure: Keypoint CNN pose</div>
   </div>
 
