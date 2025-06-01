@@ -239,7 +239,7 @@ class SquarePerspectModel(BasePerspectModel):
         Hs  = []
         for dst in square.detach().cpu().numpy().astype(np.float32):
             H     = cv2.getPerspectiveTransform(src, dst)
-            Hs.append((H / H[2,2]).astype(np.float32))
+            Hs.append((H / (H[2,2] + 1e-12)).astype(np.float32))
         return torch.from_numpy(np.stack(Hs,0)).to(self.device)
 
 
@@ -327,7 +327,7 @@ class PointPerspectModel(BasePerspectModel):
             return None, coords, vis_log
         vis_prob = torch.sigmoid(vis_log)  # [B,32]
         H = self._fit_homography_from_points(coords, vis_prob, conf_th=self.conf_th)
-        return H, coords, vis_log
+        return H, coords, vis_prob
 
 
 
@@ -337,7 +337,7 @@ class PointPerspectModel(BasePerspectModel):
             vis_probs:   torch.Tensor,   # [B,32]
             conf_th:     float = 0.45,   # min confidence
             max_pts:     int   = 8,      # PROSAC‐style cap
-            max_err:     float = 0.17     # MSRE threshold in normalized units
+            max_err:     float = 0.07     # MSRE threshold in normalized units
         ) -> torch.Tensor:
 
         import logging
@@ -349,6 +349,9 @@ class PointPerspectModel(BasePerspectModel):
         canon        = self.canonical_points.astype(np.float32)  # (32,2) in [0,1]
         coords_np    = coords.cpu().numpy().astype(np.float32)
         probs_np     = vis_probs.cpu().numpy()
+
+        from src.model.perspect.homography_qc import HomographyQC
+        qc = HomographyQC(interactive=True)
 
         H_list: List[Optional[np.ndarray]] = []
         for b in range(B):
@@ -363,7 +366,6 @@ class PointPerspectModel(BasePerspectModel):
             inds = inds[np.argsort(-probs_np[b,inds])[:max_pts]]
             src  = canon[inds]
             dst  = coords_np[b,inds]
-
             try:
                 H, mask = cv2.findHomography(
                     src, dst,
@@ -380,15 +382,32 @@ class PointPerspectModel(BasePerspectModel):
                 H_list.append(self._prev_H.copy())
                 continue
         
-            H = H.astype(np.float32)
-            H = (H / H[2,2] + 1e-12)
+            if abs(H[2,2]) < 1e-8:
+                self.logger.debug("    → H[2,2] too small (singular) — fallback")
+                H_list.append(self._prev_H.copy())
+                continue
 
-            err = _msre(H, src, dst)
+            H = (H / (H[2,2] + 1e-12)).astype(np.float32)
+
+            if abs(np.linalg.det(H)) < 1e-6:
+                self.logger.debug("    → det(H)≈0 — fallback")
+                H_list.append(self._prev_H.copy())
+                continue
+
+            try:
+                err = _msre(H, src, dst)
+            except np.linalg.LinAlgError:    
+                self.logger.debug("    → inv(H) failed — fallback")
+                H_list.append(self._prev_H.copy())
+                continue
+ 
             self.logger.debug(f"  msre: {err:.4f}")
             if not math.isfinite(err) or err > max_err:
                 self.logger.debug("    → msre too large")
                 H_list.append(self._prev_H.copy())
                 continue
+
+            # qc.inspect(frame_index=b, H=H, src=src, dst=dst, err=err)
                        
             self.logger.debug("    → ACCEPTED")
             H_list.append(H.copy())

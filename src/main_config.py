@@ -12,12 +12,12 @@ class MainConfig:
     })
     save_paths: Dict[str,str] = field(default_factory=lambda: {
         "square": "data/10--models/perspect_cnn_square_baseline_lowres.pth",
-        "points": "data/10--models/perspect_cnn_points_heatmap_resnet18_coords.pth",
+        "points": "data/10--models/perspect_cnn_points_heatmapsigma2_resnet18_coords_entropy0.1.pth",
     })
 
     # shared hyperparams
-    BATCH_SIZE: int = 16
-    LR:         float = 2e-4# for square 1e-5
+    BATCH_SIZE: int = 20
+    LR:         float = 2e-4 # for square 1e-5
     PATIENCE:   int = 50
     DEVICE:     str = "cuda"
 

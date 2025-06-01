@@ -1,12 +1,19 @@
 
 /data/*
-
 /data/00--raw/*
 /yolo_training/*
 /YOLOv8/*
-*__pycache__*
 
 /logs/*
-*.log
-
 /venv/*
+/sports/*
+/runs/*
+/reports/*
+*dist*
+*build*
+/ANALYSIS/*
+
+.env
+*.pt*
+*egg-info*
+*__pycache__*

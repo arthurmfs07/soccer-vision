@@ -8,7 +8,7 @@ from typing import Literal, Optional
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 
-from typing import List, Tuple
+from typing import *
 from src.visual.video import VideoFrame
 from src.process.process import Process
 from src.config import RealTimeConfig
@@ -26,7 +26,7 @@ class InferenceProcess(Process):
             buffer: queue.Queue, 
             config: RealTimeConfig = RealTimeConfig(),
             shared_data: SharedAnnotations = SharedAnnotations(),
-            model: Optional["PerspectModel"] = None
+            model: Optional[Union["PerspectModel", "YOLOModel"]] = None
             ):
         self.detector = detector
         self.dataloader = dataloader
@@ -42,7 +42,7 @@ class InferenceProcess(Process):
         self.prev_log_Hs = None  # will hold list of previous log‐mats
 
         self.smooth_alpha: float = 0.8 # [0..1], greater = more smooth
-        self.conf_th:      float = 0.5
+        self.conf_th:      float = 0.95
 
         self.model.conf_th = self.conf_th
 
@@ -74,13 +74,12 @@ class InferenceProcess(Process):
 
             if self.model is not None:
                 with torch.no_grad():
-                    Hs_t, coords_t, vis_log_t = self.model.predict(images, predict_H=True)
+                    Hs_t, coords_t, vis_p_t = self.model.predict(images, predict_H=True)
                 Hs_np = Hs_t.cpu().numpy().astype(np.float32)  # [B,3,3]
                 # Hs    = self.smooth_homographies(Hs_np)
                 Hs = list(Hs_np)
                 coords_np = coords_t.cpu().numpy().astype(np.float32)
-                if vis_log_t is not None:
-                    vis_p_t = torch.sigmoid(vis_log_t)
+                if vis_p_t is not None:
                     vis_mask  = (vis_p_t.cpu().numpy() > self.conf_th)
                 else:
                     vis_mask = None

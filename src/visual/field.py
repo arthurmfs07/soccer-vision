@@ -220,7 +220,7 @@ class FieldVisualizer:
         return np.array(norm_pts, dtype=np.float32)
 
 
-    def _draw_reference_points(self, with_text: bool) -> None:
+    def _draw_reference_points(self, with_text: bool = False) -> None:
         for idx, (u, v) in enumerate(self._reference_model_pts()):
             self.frame.add_circle(u, v, 1.2/self.w_m, color="black", thickness=-1)
             if with_text:

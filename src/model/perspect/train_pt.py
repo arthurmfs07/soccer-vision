@@ -146,10 +146,13 @@ class PerspectPointsTrainer:
     """
     def __init__(self, cfg: PointsTrainConfig):
         self.cfg    = cfg
-        self.logger = setup_logger("train_points.log")
+        self.logger = setup_logger("important-runs/2901_heatmap_resnet18_coords_entropy0.1.log")
         self.device = cfg.device
 
-        self.sigma_pix: float = 2.0
+        self.sigma_pix:          float = 2.0   # std of target gauss in pixel
+        self.excl_thr:           float = 0.0   # only penalize where actually expect point
+        self.beta_excl_max:      float = 0.1   # weight of entropy term
+        self.beta_warmup_epochs: int   = 50    # warmup for entropy term
 
         full_train = PointsDataset(cfg.dataset_folder, "train")
         full_val   = PointsDataset(cfg.dataset_folder, "valid")
@@ -204,28 +207,40 @@ class PerspectPointsTrainer:
                                     coords_gt.to(self.device),
                                     vis_gt.to(self.device))
             
+            # forward pass
             hmap_pred       = self.model(imgs)             # [B,32,H,W]
             B, K, Hm, Wm    = hmap_pred.shape
-                        
+
+            # prepare values
             coords_pred, vis_log = self.model.heatmap_to_pts(hmap_pred)
             flat_pred       = hmap_pred.view(B,K,-1)
             logp_pred       = F.log_softmax(flat_pred, dim=-1)
+            P               = torch.exp(logp_pred)
 
+            # monitor peak
             with torch.no_grad():
-                P           = torch.exp(logp_pred)
-                peak_prob   = P.max(-1)[0].mean()
-                self.logger.info(f"*avg peak prob: {peak_prob:.3f}")
+                self.peak_sum   += P.max(-1)[0].mean().item()
+                self.peak_count += 1
 
+            # build gaussian targets
             sigma           = self.sigma_pix / max(Hm, Wm)
             hmap_tgt        = self.make_gaussian_heatmaps(coords_gt, vis_gt, Hm, Wm, sigma)
             flat_tgt        = hmap_tgt.view(B,K,-1)
             
+            # KL + BCE losses
             kl_map          = F.kl_div(logp_pred, flat_tgt, reduction='none')
             ce_per_pt       = kl_map.sum(dim=-1)
             ce              = (ce_per_pt * vis_gt).sum() / (vis_gt.sum() + 1e-8)
-
             Lvis            = F.binary_cross_entropy_with_logits(vis_log, vis_gt)
-            train_loss_real = ce + Lvis
+            
+            # ownership entropy regularization loss
+            prob_sum        = P.sum(dim=1, keepdim=True)
+            pi              = P / (prob_sum + 1e-8)
+            entropy         = -(pi * (pi + 1e-8).log()).sum(dim=1)
+            mask_true       = (flat_tgt.sum(dim=1) > self.excl_thr)
+            L_excl          = (entropy * mask_true).sum() / (mask_true.sum() + 1e-8)
+
+            train_loss_real = ce + Lvis + self.beta_excl * L_excl
 
             self.optimizer.zero_grad()
             train_loss_real.backward()
@@ -244,11 +259,15 @@ class PerspectPointsTrainer:
 
 
     def train(self, epochs: int = -1, on_batch: Optional[Callable]=None):
-        best, wait, e = float("inf"), 0, 0
+        best, wait, e = float("inf"), 0, self.start_epoch
         max_e = epochs if epochs>0 else float("inf")
 
         while e < max_e:
             e+=1
+            frac = min(e, self.beta_warmup_epochs) / self.beta_warmup_epochs
+            self.peak_sum = 0.0
+            self.peak_count = 0
+            self.beta_excl = frac * self.beta_excl_max
             self.logger.info(f"Epoch {e}/{max_e}")
             # train
             self.model.train()
@@ -278,7 +297,9 @@ class PerspectPointsTrainer:
                     val_loss += (Lpos + Lvis).item()
 
                 avg_val = val_loss / len(self.val_loader)
-                self.logger.info(f"  val loss:   {avg_val:.4f}")
+                self.avg_peak_prob = self.peak_sum / max(1, self.peak_count)
+                self.logger.info(f"  val loss:      {avg_val:.4f}")
+                self.logger.info(f"  avg_peak_prob: {self.avg_peak_prob:.4f}")
                 self.lr_scheduler.step(avg_val)
 
                 if avg_val < self.best_val:

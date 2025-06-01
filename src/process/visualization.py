@@ -3,6 +3,7 @@ import numpy as np
 from pathlib import Path
 from typing import Optional, List, Tuple
 
+from src.logger import setup_logger
 from src.visual.visualizer   import Visualizer
 from src.process.annotator   import HomographyAnnotator
 from src.config              import RealTimeConfig
@@ -24,6 +25,7 @@ class VisualizationProcess(Process):
         shared_data:   SharedAnnotations,
         output_dir:    Optional[str] = None,
     ) -> None:
+        self.logger      = setup_logger("visualization")
         self.buffer      = buffer
         self.vis         = visualizer
         self.shared_data = shared_data
@@ -36,6 +38,7 @@ class VisualizationProcess(Process):
 
         self.H_video2field = np.eye(3, dtype=np.float32)
 
+
         self.out_dir = Path(output_dir) if output_dir else None
         if self.out_dir:
             self.out_dir.mkdir(parents=True, exist_ok=True)
@@ -47,13 +50,13 @@ class VisualizationProcess(Process):
         return (x1 + x2) * 0.5, y2                       # (cx , bottom-y)
 
     def process_frames(self) -> None:
-        print("🎬  Visualisation loop started")
+        self.logger.info("🎬  Visualisation loop started")
         while self.running:
 
             t0 = time.time()
 
             if self.buffer.qsize() < int(self.max_buf * 0.3):
-                print(f"⏳ Buffer low ({self.buffer.qsize():d}/{self.max_buf})")
+                self.logger.debug(f"⏳ Buffer low ({self.buffer.qsize():d}/{self.max_buf})")
                 time.sleep(0.5)
                 continue
 
@@ -75,10 +78,10 @@ class VisualizationProcess(Process):
             if dt < self.target_dt:
                 time.sleep(self.target_dt - dt)
 
-        print("✅  Visualization loop finished")
+        self.logger.info("✅  Visualization loop finished")
 
     def _run_manual_annotation(self) -> None:
-        print("⏸️  Pausing for manual annotation …")
+        self.logger.info("⏸️  Pausing for manual annotation …")
         current_img = self.vis.video_vis.get_image().copy()
 
         annot = HomographyAnnotator(
@@ -94,7 +97,7 @@ class VisualizationProcess(Process):
 
         if self.shared_data.H_video2field is not None:
             self.H_video2field = self.shared_data.H_video2field
-            print("↺  Updated homography from manual annot.")
+            self.logger.info("↺  Updated homography from manual annot.")
 
     def stop(self)            -> None: self.running = False
     def on_mouse_click(self,*_): pass

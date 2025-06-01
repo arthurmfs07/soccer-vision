@@ -4,7 +4,7 @@ from typing import *
 
 class BaseConfig:
     device: str = "cuda"
-    batch_size: int = 16       # Size of a single inference batch
+    batch_size: int = 32       # Size of a single inference batch
     target_fps: int = 12
 
     video_name: str = "JOGO COMPLETO： WERDER BREMEN X BAYERN DE MUNIQUE ｜ RODADA 1 ｜ BUNDESLIGA 23⧸24.mp4"
@@ -29,7 +29,7 @@ class VisualizationConfig(BaseConfig):
     # 'none'        -> don't draw them
     # 'points'      -> only black dots
     # 'points_text' -> black dots + index labels
-    show_reference_points: Literal['none', 'points', 'points_text'] = 'points'
+    show_reference_points: Literal['none', 'points', 'points_text'] = 'points_text'
 
 
 @dataclass

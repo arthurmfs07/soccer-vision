@@ -65,6 +65,7 @@ class RealTimeInference:
 
         mc = MainConfig()  # pull train_type & save_path
         from src.model.perspect.model import build_model, BasePerspectModel
+        from src.model.perspect.yolo_model import YOLOModel
 
         self.model = build_model(model_type=mc.TRAIN_TYPE, device=self.rt_cfg.device)
         
@@ -79,6 +80,10 @@ class RealTimeInference:
             print(f"⚠️  No PerspectModel found at {ckpt}, starting from scratch")
 
         self.model.eval()
+
+        weights = "runs/pose/yolov8m-pose-imgsz320/weights/best.pt"
+        self.model = YOLOModel(weights, imgsz=320, device=self.rt_cfg.device)
+
 
     def build_visualizer(self):
         blank = np.zeros(

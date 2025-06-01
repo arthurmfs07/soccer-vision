@@ -49,7 +49,7 @@ class DatasetLoader(Dataset):
             transforms.ToPILImage(),
             transforms.Resize((self.height, self.width)),
             transforms.ToTensor(),
-            AddCoords()
+            # AddCoords()
         ])
 
         self.cap = cv2.VideoCapture(self.video_path)
