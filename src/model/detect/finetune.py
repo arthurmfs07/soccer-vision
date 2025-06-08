@@ -9,6 +9,9 @@ class YOLOTrainer:
             dataset_yaml: Path,
             model_size: str = "yolov8m",
             epochs: int = 50,
+            patience: int = 10,
+            lr: float = 0.005,
+            imgz: int = 640,
             batch_size: int = 16,
             device: str = "cuda"
         ):
@@ -16,6 +19,9 @@ class YOLOTrainer:
         self.dataset_yaml = dataset_yaml
         self.epochs = epochs
         self.batch_size = batch_size
+        self.imgz = imgz
+        self.lr = lr
+        self.patience = patience
         self.model_size = model_size
         self.model_path = Path(f"yolov8_finetuned.pt")
 
@@ -45,9 +51,9 @@ class YOLOTrainer:
             batch=self.batch_size,
             device=self.device,
             resume=self.resume,
-            imgsz=640,
-            patience=15,
-            lr0=0.005,
+            imgsz=self.imgz,
+            patience=self.patience,
+            lr0=self.lr,
             save=True,
             save_period=5,
             project="yolo_training",
@@ -82,7 +88,7 @@ class YOLOTrainer:
 if __name__ == "__main__":
     data_path = Path(__file__).resolve().parents[3] / "data"
     dataset_yaml = data_path / "00--raw" / "football-players-detection.v12i.yolov8" / "data.yaml"
-    trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=200, batch_size=16)
+    trainer = YOLOTrainer(dataset_yaml, model_size="yolov8m", epochs=200, batch_size=2)
 
     save_path = data_path / "10--models" / "yolo_finetune2.pt"
     trainer.train()

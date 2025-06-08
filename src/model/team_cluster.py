@@ -1,0 +1,67 @@
+# src/model/team_cluster.py
+from __future__ import annotations
+import cv2, numpy as np
+from typing import List, Tuple
+
+class TeamClusterer:
+    """
+    Unsupervised 2-colour clustering of player jerseys.
+    Always assigns cluster‐0 to the darker centroid (Lab-L).
+    """
+
+    def __init__(self, crop_top: float = 0.40) -> None:
+        self.crop_top = float(np.clip(crop_top, 0.05, 0.95))
+
+    def _feat(self, frame: np.ndarray, box: np.ndarray) -> np.ndarray:
+        h, w = frame.shape[:2]
+        if box.max() <= 1.05:
+            box = box * np.array([w, h, w, h])
+        x1, y1, x2, y2 = box.astype(int)
+        y_cut = int(y1 + self.crop_top * (y2 - y1))
+        crop  = frame[y1:y_cut, x1:x2]
+        if crop.size == 0:
+            return np.zeros(3, np.float32)
+        lab = cv2.cvtColor(crop, cv2.COLOR_BGR2Lab).reshape(-1, 3)
+        return lab.mean(0).astype(np.float32)
+
+    def cluster_batch(
+        self,
+        frames_bgr: List[np.ndarray],
+        boxes_list: List[np.ndarray]
+    ) -> List[Tuple[np.ndarray, np.ndarray]]:
+        """Returns per-frame boolean masks (team-0 = darker, team-1 = lighter)."""
+        feats = []
+        for frm, boxes in zip(frames_bgr, boxes_list):
+            for b in boxes:
+                feats.append(self._feat(frm, b))
+
+        X = np.vstack(feats) if feats else np.empty((0,3), np.float32)
+
+        # trivial: <2 players → everyone team-0
+        if X.shape[0] < 2:
+            return [
+                (np.ones(len(b), bool), np.zeros(len(b), bool))
+                for b in boxes_list
+            ]
+
+        term = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_MAX_ITER, 10, 1e-3)
+        _, raw_lbl, cents = cv2.kmeans(
+            X, 2, None, term, 1, cv2.KMEANS_PP_CENTERS
+        )
+        lbl = raw_lbl.ravel().astype(int)
+        c0, c1 = cents  # c0,L ; c1,L  in Lab space
+
+        # swap if c0 is *lighter* than c1
+        if c0[0] > c1[0]:
+            lbl = 1 - lbl
+            c0, c1 = c1, c0
+
+        # split back to per-frame masks
+        masks, ptr = [], 0
+        for boxes in boxes_list:
+            n = len(boxes)
+            m1 = lbl[ptr:ptr+n].astype(bool)  # lighter = cluster 1 (yellow)
+            masks.append((~m1, m1))           # (darker, lighter)
+            ptr += n
+
+        return masks
