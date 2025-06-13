@@ -8,8 +8,8 @@ from torchvision import transforms
 from dataclasses import dataclass
 from typing import List, Tuple, Dict, Any
 
-from src.config import DataConfig
-from src.data.add_coords import AddCoords
+from src.config import RealTimeConfig
+from src.model.add_coords import AddCoords
 
 from src.logger import setup_logger
 
@@ -27,8 +27,7 @@ class DatasetLoader(Dataset):
     
     def __init__(
             self, 
-            config: DataConfig = DataConfig(),
-            skip_sec: int = 0,
+            config: RealTimeConfig = RealTimeConfig()
             ):
         
         self.logger = setup_logger("dataset_loader.log")
@@ -40,10 +39,9 @@ class DatasetLoader(Dataset):
 
         self.target_fps = config.target_fps
         self.batch_size = config.batch_size
-        self.shuffle = config.shuffle
-        self.width = config.width
-        self.height = config.height
-        self.skip_sec = skip_sec
+        self.width = config.imgsz
+        self.height = config.imgsz
+        self.skip_sec = config.skip_sec
 
         self.transform = transforms.Compose([
             transforms.ToPILImage(),
@@ -70,7 +68,7 @@ class DatasetLoader(Dataset):
         self.dataloader = DataLoader(
             dataset=self, 
             batch_size=self.batch_size, 
-            shuffle=self.shuffle, 
+            shuffle=False, 
             collate_fn=BatchProcessor.collate_fn
             )
         return self.dataloader
@@ -104,11 +102,10 @@ class DatasetLoader(Dataset):
 class BatchProcessor:
     """Handles batch inference and dataset processing."""
 
-    def __init__(self, model: torch.nn.Module, config: DataConfig):
+    def __init__(self, model: torch.nn.Module, config: RealTimeConfig):
         self.config = config
         self.batch_size = config.batch_size
         self.device = config.device
-        self.shuffle = config.shuffle
         self.logger = setup_logger("batch_processor.log")
         self.model = model.to(self.device)
 
@@ -137,7 +134,7 @@ if __name__ == "__main__":
     from src.utils import load_abs_path
     project_path = load_abs_path()
 
-    dataset = DatasetLoader(config=DataConfig(), skip_sec=100*60)
+    dataset = DatasetLoader(config=RealTimeConfig())
     
     print(f"Dataset contains {len(dataset)} frames.")
 

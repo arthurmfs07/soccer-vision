@@ -11,8 +11,8 @@ from torch.utils.data import Dataset, DataLoader, random_split
 
 from src.logger import setup_logger
 from src.model.detect.objdetect import ObjectDetector
-from src.data.add_coords import AddCoords
-from src.model.perspect.model import build_model, BasePerspectModel
+from model.add_coords import AddCoords
+from src.model.perspect.handcraft.model import build_model, BasePerspectModel
 from src.utils import get_actual_yolo, get_csv_path, get_data_path
 from src.model.perspect.batch import Batch
 from src.struct.utils import create_base_square

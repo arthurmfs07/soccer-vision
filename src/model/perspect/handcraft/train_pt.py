@@ -11,8 +11,8 @@ from torch.utils.data import Dataset, DataLoader
 
 
 from src.logger import setup_logger
-from src.data.add_coords import AddCoords
-from src.model.perspect.model import build_model, BasePerspectModel
+from model.add_coords import AddCoords
+from src.model.perspect.handcraft.model import build_model, BasePerspectModel
 from src.utils import rf2my  # your roboflow→ours index map
 
 @dataclass

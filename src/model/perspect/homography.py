@@ -7,17 +7,7 @@ from src.logger import setup_logger
 from dataclasses import dataclass
 
 from src.visual.field import FieldVisualizer, PitchConfig
-
-
-@dataclass
-class HEConfig:
-    smooth_alpha: float = 0.8   # [0..1] greater = more smooth
-    max_err:      float = 0.01 # MSRE threshold in normalized units
-    min_pts:      int   = 4     # min=4, filter frames with few pts
-    min_inl:      int   = 6     # min_inl>=min_pts, filter homographies with few pts
-    det_lo:       float = 5e-3  # filter if det(H) < det_lo
-    det_hi:       float = 200   # filter if det(H) > det_hi
-    thr_px:       float = 0.01   # 
+from src.config import HEConfig
 
 
 class HomographyEstimator:
@@ -30,7 +20,8 @@ class HomographyEstimator:
         self.device = device
 
         self.smooth_alpha = cfg.smooth_alpha
-        self.max_err      = cfg.max_err 
+        self.max_err      = cfg.max_err
+        self.max_pts      = cfg.max_pts 
         self.min_pts      = cfg.min_pts
         self.min_inl      = cfg.min_inl
         self.det_lo       = cfg.det_lo
@@ -64,7 +55,6 @@ class HomographyEstimator:
             self,
             coords:      torch.Tensor,   # [B,32,2], normalized [0–1]
             vis_probs:   torch.Tensor,   # [B,32]
-            max_pts:     int   = 8,      # PROSAC‐style cap
         ) -> List[np.ndarray]:
 
         import logging
@@ -82,7 +72,7 @@ class HomographyEstimator:
             self.logger.debug(f"[{b}] pts={idx.size}")
             if idx.size < self.min_pts: continue
 
-            idx  = idx[np.argsort(-probs_np[b,idx])[:max_pts]]
+            idx  = idx[np.argsort(-probs_np[b,idx])[:self.max_pts]]
             src  = coords_np[b,idx]
             dst  = canon[idx]
             try:
@@ -197,7 +187,6 @@ class HomographyEstimator:
         self._prev_log_Hs = new_logs
         self._prev_H      = out[-1]
         return torch.from_numpy(np.stack(out)).to(self.device)
-
 
 
 

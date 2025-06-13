@@ -4,8 +4,7 @@ import numpy as np
 from pathlib import Path
 from typing import Optional
 
-from src.config                      import RealTimeConfig, DataConfig, VisualizationConfig
-from src.main_config                 import MainConfig
+from src.config                      import MainConfig, RealTimeConfig, VisualizationConfig
 from src.model.batch                 import DatasetLoader
 from src.model.detect.objdetect      import ObjectDetector
 from src.visual.visualizer           import Visualizer
@@ -19,8 +18,8 @@ class RealTimeInference:
 
     def __init__(self, persp_model_path: Optional[str] = None):
         # real-time & data configs
+        self.main_cfg = MainConfig()
         self.rt_cfg = RealTimeConfig()
-        self.data_cfg = DataConfig()
         self.vis_cfg  = VisualizationConfig()
 
         self.persp_model_path = persp_model_path
@@ -34,28 +33,18 @@ class RealTimeInference:
         self.build_visualizer()
 
     def setup_paths(self):
-        base = Path(__file__).resolve().parents[2] / "data"
-        self.yolo_path       = base / "10--models" / "yolov8_finetuned.pt"
-        # video path can be read from DataConfig if needed
+        self.detect_yolo_path = self.main_cfg.yolo_paths["detect"]
+        self.keypoints_yolo_path = self.main_cfg.yolo_paths["keypoints"]
 
     def build_detector(self):
-        self.detector = ObjectDetector(self.yolo_path, conf=self.rt_cfg.yolo_conf)
+        self.detector = ObjectDetector(
+            self.detect_yolo_path, 
+            conf=self.rt_cfg.detect_conf
+            )
 
     def build_dataloader(self):
-        loader = DatasetLoader(config=self.data_cfg, skip_sec=100*60)
+        loader = DatasetLoader(config=self.rt_cfg)
         self.dataloader = loader.load()
-
-    # DEBUG DATALOADER
-    # def build_dataloader(self):
-    #     from src.model.train_loader_debug import TrainDatasetLoader
-    #     dataset_path = "data/00--raw/football-field-detection.v15i.yolov5pytorch"
-    #     loader = TrainDatasetLoader(
-    #         config = DataConfig(),      # ← note the ()!
-    #         root   = "data/00--raw/football-field-detection.v15i.yolov5pytorch",
-    #         split  = "train",
-    #         repeats= 10
-    #     )
-    #     self.dataloader = loader.load()  # ← this gives you a real DataLoader
 
 
     def build_persp_model(self):
@@ -63,31 +52,23 @@ class RealTimeInference:
             self.model = None
             return
 
-        mc = MainConfig()  # pull train_type & save_path
-        from src.model.perspect.model import build_model, BasePerspectModel
+        mc = self.main_cfg
+
+
+        # Handcrafted model if needed
+        # self.model = self._build_handcrafted_model()
+
         from src.model.perspect.yolo_model import YOLOModel
-
-        self.model = build_model(model_type=mc.TRAIN_TYPE, device=self.rt_cfg.device)
-        
-        ckpt = Path(mc.SAVE_PATH)
-        if ckpt.is_file():
-            print(f"→ loading PerspectModel checkpoint from {ckpt}")
-            self.model, _ = BasePerspectModel.load_checkpoint(
-                str(ckpt), 
-                device=self.rt_cfg.device
-                )
-        else:
-            print(f"⚠️  No PerspectModel found at {ckpt}, starting from scratch")
-
-        self.model.eval()
-
-        weights = "runs/pose/yolov8m-pose-imgsz320/weights/best.pt"
-        self.model = YOLOModel(weights, imgsz=320, device=self.rt_cfg.device)
+        self.model = YOLOModel(
+            self.keypoints_yolo_path, 
+            imgsz=self.rt_cfg.imgsz, 
+            device=self.rt_cfg.device
+            )
 
 
     def build_visualizer(self):
         blank = np.zeros(
-            (self.data_cfg.height, self.data_cfg.width, 3),
+            (self.rt_cfg.imgsz, self.rt_cfg.imgsz, 3),
             dtype=np.uint8
         )
         self.shared_data = SharedAnnotations()
@@ -106,7 +87,6 @@ class RealTimeInference:
             detector=self.detector,
             dataloader=self.dataloader,
             buffer=buffer,
-            config=self.rt_cfg,
             shared_data=self.shared_data,
             model=self.model
         )
@@ -133,6 +113,27 @@ class RealTimeInference:
         except KeyboardInterrupt:
             inference.stop()
             visualization.stop()
+
+
+    def _build_handcrafted_model(self):
+    
+        mc = self.main_cfg
+        from src.model.perspect.handcraft.model import build_model, BasePerspectModel
+
+        self.model = build_model(model_type=mc.TRAIN_TYPE, device=self.rt_cfg.device)
+        
+        ckpt = Path(mc.SAVE_PATH)
+        if ckpt.is_file():
+            print(f"→ loading PerspectModel checkpoint from {ckpt}")
+            self.model, _ = BasePerspectModel.load_checkpoint(
+                str(ckpt), 
+                device=self.rt_cfg.device
+                )
+        else:
+            print(f"⚠️  No PerspectModel found at {ckpt}, starting from scratch")
+
+        self.model.eval()
+
 
 
 if __name__ == "__main__":

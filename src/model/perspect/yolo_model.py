@@ -9,6 +9,7 @@ from src.logger import setup_logger
 from src.struct.utils              import create_base_square
 
 from src.utils import rf2my
+from src.config import InferenceConfig
 from src.model.perspect.homography import HomographyEstimator
 
 
@@ -27,8 +28,8 @@ class YOLOModel:
     def __init__(
         self,
         weights: str,
+        imgsz: int,
         device: str = "cpu",
-        imgsz: int = 640,
         iou: float  = 0.45
     ):
 
@@ -36,13 +37,14 @@ class YOLOModel:
         self.imgsz  = imgsz
         self._yolo = YOLO(weights)
         self._yolo.to(device)
-        self._yolo.overrides = dict(conf=0.9, iou=iou)
+        self._yolo.overrides = dict(conf=0.3, iou=iou)
         self.K = int(self._yolo.model.yaml["kpt_shape"][0])
 
         self.logger = setup_logger("yolo_model.log")
 
-        self.conf_thr:       float = 0.45
-        self.border_margin: float = 0.01
+        self.inf_cfg = InferenceConfig()
+        self.conf_thr = self.inf_cfg.kp_conf_th
+        self.border_margin = self.inf_cfg.border_margin
 
         self.homography_estimator = HomographyEstimator(device=self.device)
 

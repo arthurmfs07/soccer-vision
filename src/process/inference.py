@@ -9,7 +9,7 @@ from scipy.linalg import logm, expm, LinAlgError
 
 from src.visual.video import VideoFrame
 from src.process.process import Process
-from src.config import RealTimeConfig
+from src.config import RealTimeConfig, InferenceConfig
 from src.struct.shared_data import SharedAnnotations
 from src.model.team_cluster import TeamClusterer
 
@@ -22,26 +22,27 @@ class InferenceProcess(Process):
         detector,
         dataloader: DataLoader,
         buffer: queue.Queue,
-        config: RealTimeConfig = RealTimeConfig(),
         shared_data: SharedAnnotations = SharedAnnotations(),
         model: Optional[Union["PerspectModel", "YOLOModel"]] = None,
     ):
         self.detector = detector
         self.dataloader = dataloader
         self.buffer = buffer
-        self.config = config
+        self.rt_cfg = RealTimeConfig()
+        self.inf_cfg = InferenceConfig()
         self.shared_data = shared_data
         self.model = model
         self.model.eval()
 
-        self.conf_th: float = 0.80
+        self.conf_th = self.inf_cfg.kp_conf_th
         self.model.conf_th = self.conf_th
 
         self.player_class_id: int = 2
-        self.team_clusterer = TeamClusterer(0.40)
+        self.tc_conf_th = self.inf_cfg.tc_conf_th
+        self.team_clusterer = TeamClusterer(self.tc_conf_th)
 
         self.prev_log_Hs: Optional[List[np.ndarray]] = None
-        self.smooth_alpha: float = 0.7
+        self.smooth_alpha = self.inf_cfg.smooth_alpha
 
         self.running = True
         self.phase: Literal["inference", "annotation", "done"] = "inference"
@@ -57,7 +58,7 @@ class InferenceProcess(Process):
                 break
 
             frame_ids, timestamps = batch.frame_id, batch.timestamp
-            images = batch.image.to(self.config.device)          # B×3×H×W
+            images = batch.image.to(self.rt_cfg.device)          # B×3×H×W
             detections = self.detector.detect(images[:, :3])
 
             # homography model
@@ -141,27 +142,6 @@ class InferenceProcess(Process):
                 )
 
         self.phase = "done"
-
-    # ──────────────────────────────────────────────────────────────
-    def smooth_homographies(self, Hs_np: np.ndarray) -> List[Optional[np.ndarray]]:
-        smoothed, new_prev = [], []
-        if self.prev_log_Hs is None:
-            self.prev_log_Hs = [None] * len(Hs_np)
-        for L_prev, H in zip(self.prev_log_Hs, Hs_np):
-            if H is None:
-                smoothed.append(None)
-                new_prev.append(L_prev)
-                continue
-            try:
-                with warnings.catch_warnings(): warnings.filterwarnings("ignore")
-                L = logm(H)
-            except LinAlgError:
-                smoothed.append(H); new_prev.append(L_prev); continue
-            L_s = L if L_prev is None else (1 - self.smooth_alpha) * L + self.smooth_alpha * L_prev
-            H_s = expm(L_s).real; H_s /= H_s[2, 2]
-            smoothed.append(H_s.astype(np.float32)); new_prev.append(L_s)
-        self.prev_log_Hs = new_prev
-        return smoothed
 
     @staticmethod
     def warp_points_np(H: np.ndarray, pts: np.ndarray) -> np.ndarray:

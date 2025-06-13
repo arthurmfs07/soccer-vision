@@ -7,7 +7,7 @@ import torchvision.models as tvm
 from typing import *
 
 from src.logger import setup_logger
-from src.model.perspect.cnn import CNN
+from src.model.perspect.handcraft.cnn import CNN
 from src.struct.utils              import create_base_square
 from src.visual.field             import FieldVisualizer, PitchConfig
 

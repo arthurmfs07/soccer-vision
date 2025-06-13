@@ -22,7 +22,7 @@ class ObjectDetector:
 
     def __init__(
             self,
-            model_path: Path = Path("yolov8m.pt"),
+            model_path: str = "yolov8m.pt",
             conf: float = 0.01,
             device: str = "cuda"
         ):
@@ -31,11 +31,11 @@ class ObjectDetector:
         self.device = device if torch.cuda.is_available() else "cpu"
         self.conf = conf
 
-        self.model_path = model_path or self.MODEL_PATH
+        self.model_path = Path(model_path) or self.MODEL_PATH
         self._ensure_model_downloaded()
 
         self.model = YOLO(model_path).to(self.device)
-        self.logger.info(f"Loaded YOLO model : {model_path.name}")
+        self.logger.info(f"Loaded YOLO model : {self.model_path.name}")
 
     def detect(self, images: torch.Tensor) -> List[Detection]:
         """
