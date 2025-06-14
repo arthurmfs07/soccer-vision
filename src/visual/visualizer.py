@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 
 from src.logger import setup_logger
 from src.config import VisualizationConfig
@@ -21,32 +21,64 @@ class Visualizer:
     ):
         self.logger = setup_logger("api.log")
         self.field_vis = FieldVisualizer(field_config)
-        self.video_vis = VideoVisualizer(frame, class_names)
+        
+        # Apply video quality control if specified
+        self.original_frame_size = frame.shape[:2]
+        processed_frame = self._apply_video_quality_control(frame, vis_config.video_max_resolution)
+        
+        self.video_vis = VideoVisualizer(processed_frame, class_names)
         self.process   = process
 
-        self.video_size = frame.shape[:2]
+        self.video_size = processed_frame.shape[:2]
         self.vis_cfg    = vis_config
 
         self.video_disp_sz = vis_config.video_disp_size
         self.field_disp_sz = vis_config.field_disp_size
+        self.video_max_res = vis_config.video_max_resolution
 
         self.window_name = "Unified Visualization"
         self._dirty = True
 
+    def _apply_video_quality_control(self, frame: np.ndarray, max_resolution: Optional[Tuple[int, int]]) -> np.ndarray:
+        """Downsample video frame if max_resolution is specified and smaller than current size."""
+        if max_resolution is None:
+            return frame
+        
+        h, w = frame.shape[:2]
+        max_w, max_h = max_resolution
+        
+        # Only downsample if current resolution exceeds maximum
+        if w > max_w or h > max_h:
+            # Calculate scaling factor to fit within max resolution while maintaining aspect ratio
+            scale = min(max_w / w, max_h / h)
+            new_w = int(w * scale)
+            new_h = int(h * scale)
+            return cv2.resize(frame, (new_w, new_h), interpolation=cv2.INTER_AREA)
+        
+        return frame
 
     def get_image(self) -> np.ndarray:
         """Just a one‐off capture of the rendered view."""
         return self._generate_combined_view()
 
-
     def update(self, video_frame: "VideoFrame"):
         """Feed new YOLO detections into the video visualizer."""
-        self.video_vis.update(video_frame)
+        # Apply quality control to the new frame
+        processed_image = self._apply_video_quality_control(
+            video_frame.image, 
+            self.video_max_res
+        )
+        
+        # Create a modified VideoFrame with the processed image
+        from copy import copy
+        processed_vf = copy(video_frame)
+        processed_vf.image = processed_image
+        
+        self.video_vis.update(processed_vf)
         self._dirty = True
 
-
     def show(self) -> None:
-        """Interactive loop—handles clicks and redraws until ‘q’ or process.is_done()."""
+        """Interactive loop—handles clicks and redraws until 'q' or process.is_done()."""
 
         def on_click(evt, x, y, flags, _):
             if evt == cv2.EVENT_LBUTTONDOWN and self.process:
@@ -67,14 +99,12 @@ class Visualizer:
             if key == ord("q") or (self.process and self.process.is_done()):
                 break
 
-
     def render(self) -> None:
         """Non‐blocking single‐frame render (for real‐time pipelines)."""
         self._annotate_and_render()
         img = self._generate_combined_view()
         cv2.imshow(self.window_name, img)
         cv2.waitKey(1)
-
 
     def _annotate_and_render(self):
         """Clears old, adds fresh annotations based on normalized shared_data."""
@@ -159,7 +189,6 @@ class Visualizer:
         self.video_vis.frame.data.image = video_img
         self.field_vis.frame.data.image = field_img
 
-
     def _generate_combined_view(self) -> np.ndarray:
         """Stack the two denormalized & annotated views vertically."""
         vid = self.video_vis.get_image()
@@ -171,52 +200,3 @@ class Visualizer:
             fld = cv2.resize(fld, (w, h), interpolation=cv2.INTER_LINEAR)
 
         return np.vstack((vid, fld))
-
-
-
-if __name__ == "__main__":
-    from src.visual.video import VideoFrame
-
-    img_path = "data/00--raw/frames/match_3895113/t1_0.913.jpg"
-    bgr      = cv2.imread(img_path)
-    vis_cfg  = VisualizationConfig()
-
-    shared = SharedAnnotations()
-
-    shared.yolo_detections = [
-        {"bbox": (0.1, 0.1, 0.3, 0.3), "class": 1},
-        {"bbox": (0.6, 0.5, 0.9, 0.8), "class": 2},
-    ]
-
-    shared.video_points["red"]   = np.array([[0.1, 0.2], [0.25, 0.15]], dtype=np.float32)
-    shared.video_points["green"] = np.array([[0.5, 0.2]], dtype=np.float32)
-    shared.video_points["blue"]  = np.array([[0.8, 0.7], [0.7, 0.85]], dtype=np.float32)
-
-    shared.field_points["red"]   = np.array([[0.2, 0.3]], dtype=np.float32)
-    shared.field_points["green"] = np.array([[0.4, 0.6], [0.6, 0.4]], dtype=np.float32)
-    shared.field_points["blue"]  = np.array([[0.75, 0.25]], dtype=np.float32)
-
-    class DummyProcess:
-        def __init__(self, shared):  self.shared = shared
-        def is_done(self):           return False
-        def on_mouse_click(self, x, y): pass
-
-    proc = DummyProcess(shared)
-
-    class_names = {1: "TeamA", 2: "TeamB"}
-    vis = Visualizer(
-        PitchConfig(),      # your field config
-        bgr,                # the test image
-        vis_cfg,
-        class_names=class_names,
-        process=proc
-    )
-
-    vf = VideoFrame(
-        frame_id=0,
-        timestamp=0.0,
-        image=bgr,
-        detections=shared.yolo_detections
-    )
-    vis.update(vf)
-    vis.show()

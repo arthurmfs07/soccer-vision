@@ -9,7 +9,7 @@ from scipy.linalg import logm, expm, LinAlgError
 
 from src.visual.video import VideoFrame
 from src.process.process import Process
-from src.config import RealTimeConfig, InferenceConfig
+from src.config import RealTimeConfig, InferenceConfig, VisualizationConfig
 from src.struct.shared_data import SharedAnnotations
 from src.model.team_cluster import TeamClusterer
 
@@ -41,8 +41,9 @@ class InferenceProcess(Process):
         self.tc_conf_th = self.inf_cfg.tc_conf_th
         self.team_clusterer = TeamClusterer(self.tc_conf_th)
 
+        self.vis_cfg = VisualizationConfig()
+
         self.prev_log_Hs: Optional[List[np.ndarray]] = None
-        self.smooth_alpha = self.inf_cfg.smooth_alpha
 
         self.running = True
         self.phase: Literal["inference", "annotation", "done"] = "inference"
@@ -98,18 +99,20 @@ class InferenceProcess(Process):
 
                 # show all detections
                 det = detections[i]
-                snap.yolo_detections = [
-                    {"bbox": tuple(map(float, b)), "class": int(c)}
-                    for b, c in zip(det.boxes, det.classes)
-                ]
+                if self.vis_cfg.show_detections:
+                    snap.yolo_detections = [
+                        {"bbox": tuple(map(float, b)), "class": int(c)}
+                        for b, c in zip(det.boxes, det.classes)
+                    ]
 
                 # blue numbered field points
-                from src.visual.field import FieldVisualizer, PitchConfig
-                canon = FieldVisualizer(PitchConfig())._reference_model_pts()
-                if vis_mask is not None:
-                    snap.numbered_field_points["blue"] = np.where(
-                        vis_mask[i][:, None], canon, -1.0
-                    ).astype(np.float32)
+                if self.vis_cfg.show_field_keypoints:
+                    from src.visual.field import FieldVisualizer, PitchConfig
+                    canon = FieldVisualizer(PitchConfig())._reference_model_pts()
+                    if vis_mask is not None:
+                        snap.field_points["blue"] = np.where(
+                            vis_mask[i][:, None], canon, -1.0
+                        ).astype(np.float32)
 
                 # homography
                 if Hs[i] is None:
@@ -117,20 +120,22 @@ class InferenceProcess(Process):
                 snap.H_video2field = Hs[i]
 
                 # CNN points
-                if vis_mask is not None:
-                    snap.numbered_video_points["blue"] = np.where(
-                        vis_mask[i][:, None], coords_np[i], -1.0
-                    ).astype(np.float32)
-                else:
-                    snap.field_points["blue"] = coords_np[i]
+                if self.vis_cfg.show_detected_keypoints:
+                    if vis_mask is not None:
+                        snap.video_points["blue"] = np.where(
+                            vis_mask[i][:, None], coords_np[i], -1.0
+                        ).astype(np.float32)
+                    else:
+                        snap.field_points["blue"] = coords_np[i]
 
-                # project player feet by team
-                snap.field_points["red"] = self.warp_points_np(
-                    Hs[i], ply_feet[i][m0]
-                )
-                snap.field_points["yellow"] = self.warp_points_np(
-                    Hs[i], ply_feet[i][m1]
-                )
+                if self.vis_cfg.show_projected_detections:
+                    # project player feet by team
+                    snap.field_points["yellow"] = self.warp_points_np(
+                        Hs[i], ply_feet[i][m1]
+                    ) # darker
+                    snap.field_points["red"] = self.warp_points_np(
+                        Hs[i], ply_feet[i][m0]
+                    ) # lighter
 
                 self.buffer.put(
                     VideoFrame(

@@ -1710,3 +1710,403 @@
 [2025-06-11 20:11:41] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
 [2025-06-11 20:12:04] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
 [2025-06-11 20:14:03] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 11:52:05] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 11:59:36] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:00:31] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:01:59] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:04:41] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:08:06] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:10:58] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:22:39] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:31:46] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:33:44] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 12:36:52] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 15:28:03] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 15:40:07] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 15:41:03] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 15:42:10] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 15:43:30] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 16:11:02] INFO - Loaded YOLO model : yolov8m_detect_imgsz320.pt
+[2025-06-13 20:32:07] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:33:50] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:34:44] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:37:58] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:39:08] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:40:45] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:42:28] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:44:19] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:46:07] INFO - Loaded YOLO model : best.pt
+[2025-06-13 20:48:10] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:14:51] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:16:45] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:19:03] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:20:35] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:22:19] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:31:17] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:33:12] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:35:15] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:39:27] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:40:43] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:46:01] INFO - Loaded YOLO model : best.pt
+[2025-06-13 21:48:03] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:01:51] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:04:33] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:07:56] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:13:20] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:53:29] INFO - Loaded YOLO model : best.pt
+[2025-06-13 22:55:21] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:01:57] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:05:51] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:06:59] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:08:34] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:11:47] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:14:24] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:15:04] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:17:31] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:19:45] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:22:51] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:25:07] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:27:32] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:30:16] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:33:57] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:33:59] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:12] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:13] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:15] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:15] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:16] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:17] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:18] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:19] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:19] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:20] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:21] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:23] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:23] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:23] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:23] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:24] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:25] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:25] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:25] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:26] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:27] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:28] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:29] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:30] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:30] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:30] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:31] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:32] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:34] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:34] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:34] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:34] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:35] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:36] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:36] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:36] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:37] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:38] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:39] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:40] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:41] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:42] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:43] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:43] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:43] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:43] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:43] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:44] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:44] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:44] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:44] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:45] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:46] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:46] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:46] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:46] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:46] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:47] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:48] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:48] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:48] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:48] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:49] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:50] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:50] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:50] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:50] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:50] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:52] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:53] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:54] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:55] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:56] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:57] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:57] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:57] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:57] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:34:57] INFO - Downsampling video from 640x640 to 540x540 (max: 960x540)
+[2025-06-13 23:35:53] INFO - Loaded YOLO model : best.pt
+[2025-06-13 23:37:29] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:16:46] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:17:34] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:20:44] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:22:24] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:23:06] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:25:28] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:26:18] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:27:32] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:29:58] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:31:25] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:33:00] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:34:46] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:36:14] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:36:58] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:40:49] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:44:00] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:48:27] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:52:28] INFO - Loaded YOLO model : best.pt
+[2025-06-14 00:57:07] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:01:51] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:08:49] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:17:12] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:22:25] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:29:57] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:39:52] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:41:19] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:48:59] INFO - Loaded YOLO model : best.pt
+[2025-06-14 01:56:47] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:05:02] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:13:36] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:14:51] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:22:20] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:30:33] INFO - Loaded YOLO model : best.pt
+[2025-06-14 02:39:24] INFO - Loaded YOLO model : best.pt
