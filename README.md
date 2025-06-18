@@ -4,11 +4,11 @@ This repository contains the implementation and supporting materials for a proje
 ## Overview
 
 - Fine tune YOLO for detecting players in video in real time.
-- Estimate homographies from video frames using CNN-detected keypoints.
-- Further process group team members.
-- Analyze shot patterns via clustering (PCA + KMeans).
+- Estimate field keypoint detections.
+- Estimate real-time homographies from detected keypoint.
+- Further process group team members via clustering analysis.
 
-## Setup
+## Ubuntu-based setup
 
 Create environment and install dependencies.
 
@@ -23,10 +23,17 @@ Place Roboflow training detection data in:
 
 ```bash
 # train player detection box YOLO
-python3 -m src.model.detect.finetune
+python3 -m scripts.train_detect
 
 # train perspect transformation model
-python3 -m src.model.process.trainer
+python3 -m scripts.train_keypoints
+```
+
+After train the models
+
+```bash
+# run real-time inference
+python3 -m src.process.real_time
 ```
 
 
@@ -57,10 +64,4 @@ See actual models working:
     <img src="reports/square resultados.png" width="480" alt="Figure: Real-time inference - checkpoint">
     <div style="margin-top: 5px; font-style: italic; font-size: 12px;">Figure: Keypoint CNN pose</div>
   </div> -->
-
-
-## Future Work
-
-- Real-time homography filtering
-- Increase detection accuracy
 

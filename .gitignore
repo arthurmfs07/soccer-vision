@@ -5,6 +5,7 @@
 /YOLOv8/*
 
 /logs/*
+reports/*
 /venv/*
 /sports/*
 Pose/*
@@ -20,3 +21,4 @@ Pose/*
 
 
 *.pt
+
